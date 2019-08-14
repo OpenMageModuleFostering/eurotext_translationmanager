@@ -8,6 +8,15 @@ class Eurotext_TranslationManager_Helper_String
      */
     public function replaceMagentoBlockDirectives($content)
     {
-        return preg_replace('#\{{2}((.*?) (.*?=)"(.*?)"\s*)\}{2}#', '{{$2 $3\'$4\'}}', $content);
+        preg_match_all('#(\{{2}.*?\}{2})#', $content, $matches);
+        $replace = [];
+        foreach ($matches[0] as $m) {
+            if ($m === []) {
+                continue;
+            }
+            $replace[$m] = str_replace('"', "'", $m);
+        }
+
+        return strtr($content, $replace);
     }
 }

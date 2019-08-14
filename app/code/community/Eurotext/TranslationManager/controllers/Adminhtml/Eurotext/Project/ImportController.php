@@ -191,6 +191,15 @@ class Eurotext_TranslationManager_Adminhtml_Eurotext_Project_ImportController ex
     }
 
     /**
+     * @return bool
+     */
+    protected function _isAllowed()
+    {
+        return Mage::getSingleton('admin/session')
+            ->isAllowed('eurotext_translationmanager/import');
+    }
+
+    /**
      * @return Eurotext_TranslationManager_Helper_Eurotext
      */
     protected function getEurotextHelper()

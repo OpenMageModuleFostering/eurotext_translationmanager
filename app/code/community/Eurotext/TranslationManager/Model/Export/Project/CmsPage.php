@@ -41,22 +41,15 @@ class Eurotext_TranslationManager_Model_Export_Project_CmsPage
         $project->addAllRelationalData();
         $helper = Mage::helper('eurotext_translationmanager');
 
-        $manualSelected = false;
-
         /** @var Mage_Cms_Model_Resource_page_Collection $pageSrcCollection */
         $pageSrcCollection = $this->getCmsPageCollectionFor($project->getStoreviewSrc());
         /** @var Mage_Cms_Model_Resource_page_Collection $pageDstCollection */
         $pageDstCollection = $this->getCmsPageCollectionFor($project->getStoreviewDst());
 
-        if (!$project->isExportingAllCmsContent()) {
-            $pageSrcCollection->addFieldToFilter('main_table.page_id', ['in' => $project->getPages()]);
-            $pageDstCollection->addFieldToFilter('main_table.page_id', ['in' => $project->getPages()]);
-            $manualSelected = true;
-        }
+        $pageSrcCollection->addFieldToFilter('main_table.page_id', ['in' => $project->getPages()]);
+        $pageDstCollection->addFieldToFilter('main_table.page_id', ['in' => $project->getPages()]);
 
-        if ($offset > $pageSrcCollection->getLastPageNumber() ||
-            (!$project->isExportingAllCmsContent() && !count($project->getPages()))
-        ) {
+        if ($offset > $pageSrcCollection->getLastPageNumber() || !count($project->getPages())) {
             return [
                 'status_msg' => $helper->__('Exported CMS Pages.'),
                 'step'       => ProjectExporter::STEP_COLLECT_CMSBLOCKS,
@@ -89,12 +82,12 @@ class Eurotext_TranslationManager_Model_Export_Project_CmsPage
             $this->addBasicInformation($project, $pageSrc, $pageDst);
 
             foreach ($this->attributes as $attr => $nodeName) {
-                $this->addAttributeToXml($attr, $nodeName, $pageSrc, $pageDst, $manualSelected);
+                $this->addAttributeToXml($attr, $nodeName, $pageSrc, $pageDst);
             }
 
             if ($project->isExportingMetaAttributes()) {
                 foreach ($this->metAttributes as $attr => $nodeName) {
-                    $this->addAttributeToXml($attr, $nodeName, $pageSrc, $pageDst, $manualSelected);
+                    $this->addAttributeToXml($attr, $nodeName, $pageSrc, $pageDst);
                 }
             }
 
@@ -125,13 +118,12 @@ class Eurotext_TranslationManager_Model_Export_Project_CmsPage
      * @param string              $nodeName
      * @param Mage_Cms_Model_Page $pageSrc
      * @param Mage_Cms_Model_Page $pageDst
-     * @param bool                $manualSelected
      */
-    private function addAttributeToXml($attr, $nodeName, $pageSrc, $pageDst, $manualSelected)
+    private function addAttributeToXml($attr, $nodeName, $pageSrc, $pageDst)
     {
         $srcValue = $pageSrc->getDataUsingMethod($attr);
         $dstValue = $pageDst->getDataUsingMethod($attr);
-        if ($srcValue != '' && (($srcValue == $dstValue) || ($dstValue == '') || $manualSelected)) {
+        if ($srcValue != '' && ($srcValue == $dstValue || $dstValue == '')) {
             $item = $this->doc->createElement($nodeName);
             Mage::helper('eurotext_translationmanager/xml')
                 ->appendTextChild($this->doc, $item, $srcValue);

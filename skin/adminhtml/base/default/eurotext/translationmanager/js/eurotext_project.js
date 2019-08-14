@@ -1,10 +1,4 @@
 document.observe('dom:loaded', function () {
-    hideTabWhenCheckboxIsChecked('productmode', 'project_tabs_products_section');
-    hideTabWhenCheckboxIsChecked('categorymode', 'project_tabs_categories_section');
-    hideTabWhenCheckboxIsChecked('cmsmode', 'project_tabs_cms_block_section');
-    hideTabWhenCheckboxIsChecked('cmsmode', 'project_tabs_cms_page_section');
-    hideTabWhenCheckboxIsChecked('templatemode', 'project_tabs_transaction_email_section');
-    hideTabWhenCheckboxIsChecked('langfilesmode', 'project_tabs_translate_file_section');
 
     // disable export button on project change
     new PeriodicalExecuter(function () {
@@ -27,24 +21,6 @@ document.observe('dom:loaded', function () {
         }
     );
 });
-
-function hideTabWhenCheckboxIsChecked(checkboxId, tabId) {
-    var elem = $(checkboxId);
-    if (elem.checked) {
-        $(tabId).up().hide();
-    } else {
-        $(tabId).up().show();
-    }
-
-    $(checkboxId).observe('click', function (event) {
-        var elem = event.element();
-        if (elem.checked) {
-            $(tabId).up().hide();
-        } else {
-            $(tabId).up().show();
-        }
-    });
-}
 
 serializerController.prototype.orig_initialize = serializerController.prototype.initialize;
 serializerController.prototype.initialize = function (hiddenDataHolder, predefinedData, inputsToManage, grid, reloadParamName) {
@@ -76,6 +52,26 @@ varienGridMassaction.prototype.selectVisible = function () {
     return false;
 };
 
+varienGridMassaction.prototype.selectAll = function () {
+    this.gridIds.split(',').each(function (key) {
+        this.checkedString = varienStringArray.add(key, this.checkedString);
+    }.bind(this));
+    this.checkCheckboxes();
+    this.updateCount();
+    this.clearLastChecked();
+    return false;
+};
+
+varienGridMassaction.prototype.unselectAll = function () {
+    this.gridIds.split(',').each(function (key) {
+        this.checkedString = varienStringArray.remove(key, this.checkedString);
+    }.bind(this));
+    this.checkCheckboxes();
+    this.updateCount();
+    this.clearLastChecked();
+    return false;
+};
+
 varienGridMassaction.prototype.oldCheckCheckboxes = varienGridMassaction.prototype.checkCheckboxes;
 varienGridMassaction.prototype.checkCheckboxes = function () {
     this.oldCheckCheckboxes();
@@ -88,6 +84,8 @@ varienGridMassaction.prototype.checkCheckboxes = function () {
 };
 
 varienGrid.prototype.resetFilter = function () {
-    productGridJsObject.reloadParams.category_id = null;
+    if (this.containerId == "productGrid") {
+        productGridJsObject.reloadParams.category_id = null;
+    }
     this.reload(this.addVarToUrl(this.filterVar, ''));
 };

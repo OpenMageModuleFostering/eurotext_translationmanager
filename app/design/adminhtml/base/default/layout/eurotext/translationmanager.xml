@@ -200,12 +200,12 @@
         </block>
     </adminhtml_eurotext_project_transactionemailfilesgrid>
 
-    <adminhtml_eurotext_project_transactionemailsdatabasegrid>
+    <adminhtml_eurotext_project_transactionmailsdatabasegrid>
         <block type="core/text_list" name="root" output="toHtml">
             <block type="eurotext_translationmanager/adminhtml_eurotext_project_edit_tab_transactionEmailsDatabase"
                    name="project_edit.project.tab.transactionemailsdatabase"/>
         </block>
-    </adminhtml_eurotext_project_transactionemailsdatabasegrid>
+    </adminhtml_eurotext_project_transactionmailsdatabasegrid>
 
     <adminhtml_eurotext_project_translatefilestab>
         <block type="core/text_list" name="root" output="toHtml">

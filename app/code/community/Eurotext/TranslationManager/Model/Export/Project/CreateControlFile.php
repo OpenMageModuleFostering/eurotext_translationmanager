@@ -267,7 +267,7 @@ COMMENT;
         );
         $allFilesWithoutXmlDir = array_map(
             function (SplFileInfo $entry) use ($xmlDir) {
-                return str_replace($xmlDir . '/', '', $entry->getRealPath());
+                return str_replace($xmlDir . '/', '', $entry->getPathname());
             },
             $directoryFiltered
         );

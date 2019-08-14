@@ -9,14 +9,9 @@
  * @method int getStoreviewSrc()
  * @method int getStoreviewDst()
  * @method int getProjectStatus()
- * @method int getLangfilesmode()
  * @method int getExportSeo()
- * @method int getProductmode()
- * @method int getCategorymode()
- * @method int getCmsmode()
  * @method string getZipFilename()
  * @method int getExportAttributes()
- * @method int getTemplatemode()
  * @method int getExportUrlkeys()
  * @method int getFilterStatus()
  * @method int getFilterStock()
@@ -25,14 +20,9 @@
  * @method setDeleted(bool $deleted)
  * @method setCreateId(int $created)
  * @method setUpatedAt(int $timestamp)
- * @method setLangfilesmode(int $mode)
  * @method setExportSeo(int $seo)
- * @method setProductmode(int $mode)
- * @method setCategorymode(int $mode)
- * @method setCmsmode(int $mode)
  * @method setZipFilename(string $name)
  * @method setExportAttributes(int $attributes)
- * @method setTemplatemode(int $mode)
  * @method setExportUrlkeys(int $keys)
  * @method setFilterStatus(int $status)
  * @method setFilterStock(int $stock)
@@ -262,46 +252,6 @@ class Eurotext_TranslationManager_Model_Project extends Mage_Core_Model_Abstract
         }
 
         return parent::_afterLoad();
-    }
-
-    /**
-     * @return bool
-     */
-    public function isExportingAllCategories()
-    {
-        return (bool)$this->getCategorymode();
-    }
-
-    /**
-     * @return bool
-     */
-    public function isExportingAllProducts()
-    {
-        return (bool)$this->getProductmode();
-    }
-
-    /**
-     * @return bool
-     */
-    public function isExportingAllEmailTemplates()
-    {
-        return (bool)$this->getTemplatemode();
-    }
-
-    /**
-     * @return bool
-     */
-    public function isExportingAllCmsContent()
-    {
-        return (bool)$this->getCmsmode();
-    }
-
-    /**
-     * @return bool
-     */
-    public function isExportingAllLanguageFiles()
-    {
-        return (bool)$this->getLangfilesmode();
     }
 
     /**

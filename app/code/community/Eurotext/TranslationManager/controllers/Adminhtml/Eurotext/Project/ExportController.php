@@ -57,6 +57,15 @@ class Eurotext_TranslationManager_Adminhtml_Eurotext_Project_ExportController ex
     }
 
     /**
+     * @return bool
+     */
+    protected function _isAllowed()
+    {
+        return Mage::getSingleton('admin/session')
+            ->isAllowed('eurotext_translationmanager/export');
+    }
+
+    /**
      * @param int $projectId
      * @return Eurotext_TranslationManager_Model_Project
      */

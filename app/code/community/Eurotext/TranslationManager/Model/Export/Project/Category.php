@@ -55,20 +55,14 @@ class Eurotext_TranslationManager_Model_Export_Project_Category
 
         $maxItems = $this->configHelper->getCategoriesPerFile();
 
-        $manualSelected = false;
-
         $categorySrcCollection = $this->getCategoryCollectionFor($project->getStoreviewSrc(), $page, $maxItems);
         $categoryDstCollection = $this->getCategoryCollectionFor($project->getStoreviewDst(), $page, $maxItems);
 
-        if (!$project->isExportingAllCategories()) {
-            $manualSelected = true;
-            $categorySrcCollection->addIdFilter($project->getCategories());
-            $categoryDstCollection->addIdFilter($project->getCategories());
-        }
+        $categorySrcCollection->addIdFilter($project->getCategories());
+        $categoryDstCollection->addIdFilter($project->getCategories());
 
-        if ($page > $categorySrcCollection->getLastPageNumber() ||
-            (!count($project->getCategories()) && !$project->isExportingAllCategories())
-        ) {
+
+        if ($page > $categorySrcCollection->getLastPageNumber() || !count($project->getCategories())) {
             $emulator->stopEnvironmentEmulation($emulation);
 
             return [
@@ -96,15 +90,15 @@ class Eurotext_TranslationManager_Model_Export_Project_Category
 
             $catNode = $this->doc->createElement('category');
 
-            $this->createDefaultAttributeNodes($catNode, $catDst, $catSrc, $manualSelected);
-            $this->createCustomCategoryAttributeNodes($catNode, $catDst, $catSrc, $manualSelected);
+            $this->createDefaultAttributeNodes($catNode, $catDst, $catSrc);
+            $this->createCustomCategoryAttributeNodes($catNode, $catDst, $catSrc);
 
             if ($project->isExportingUrlKeys()) {
-                $this->createUrlKeyNode($catSrc, $catDst, $manualSelected, $catNode);
+                $this->createUrlKeyNode($catSrc, $catDst, $catNode);
             }
 
             if ($project->isExportingMetaAttributes()) {
-                $this->createSeoNodes($catSrc, $catDst, $manualSelected, $catNode);
+                $this->createSeoNodes($catSrc, $catDst, $catNode);
             }
 
             if ($catNode->hasChildNodes()) {
@@ -188,19 +182,17 @@ class Eurotext_TranslationManager_Model_Export_Project_Category
      * @param DOMElement                  $catNode
      * @param Mage_Catalog_Model_Category $catDst
      * @param Mage_Catalog_Model_Category $catSrc
-     * @param bool                        $manualSelected
      */
     private function createDefaultAttributeNodes(
         DOMElement $catNode,
         Mage_Catalog_Model_Category $catDst,
-        Mage_Catalog_Model_Category $catSrc,
-        $manualSelected
+        Mage_Catalog_Model_Category $catSrc
     ) {
         foreach ($this->attributesToExportAlwaysWithMapping as $attr => $nodeName) {
             $valueSrc = $catSrc->getDataUsingMethod($attr);
             $valueDst = $catDst->getDataUsingMethod($attr);
 
-            if ($valueSrc != '' && ($valueSrc == $valueDst || $valueDst == '' || $manualSelected)) {
+            if ($valueSrc != '' && ($valueSrc == $valueDst || $valueDst == '')) {
                 $item = $this->doc->createElement($nodeName);
                 Mage::helper('eurotext_translationmanager/xml')->appendTextChild($this->doc, $item, $valueSrc);
                 $catNode->appendChild($item);
@@ -212,13 +204,11 @@ class Eurotext_TranslationManager_Model_Export_Project_Category
      * @param DOMElement                  $catNode
      * @param Mage_Catalog_Model_Category $catDst
      * @param Mage_Catalog_Model_Category $catSrc
-     * @param bool                        $manualSelected
      */
     private function createCustomCategoryAttributeNodes(
         DOMElement $catNode,
         Mage_Catalog_Model_Category $catDst,
-        Mage_Catalog_Model_Category $catSrc,
-        $manualSelected
+        Mage_Catalog_Model_Category $catSrc
     ) {
         if (!$this->configHelper->getCustomCategoryAttributesForExport()) {
             return;
@@ -229,7 +219,7 @@ class Eurotext_TranslationManager_Model_Export_Project_Category
             $valueSrc = $catSrc->getDataUsingMethod($customCategoryAttribute);
             $valueDst = $catDst->getDataUsingMethod($customCategoryAttribute);
 
-            if ($valueSrc != '' && ($valueSrc == $valueDst || $valueDst == '' || $manualSelected)) {
+            if ($valueSrc != '' && ($valueSrc == $valueDst || $valueDst == '')) {
                 Mage::helper('eurotext_translationmanager/xml')->appendTextNode(
                     $this->doc,
                     (string)$customCategoryAttribute,
@@ -247,18 +237,16 @@ class Eurotext_TranslationManager_Model_Export_Project_Category
     /**
      * @param Mage_Catalog_Model_Category $catSrc
      * @param Mage_Catalog_Model_Category $catDst
-     * @param bool                        $manualSelected
      * @param DOMElement                  $catNode
      */
     private function createUrlKeyNode(
         Mage_Catalog_Model_Category $catSrc,
         Mage_Catalog_Model_Category $catDst,
-        $manualSelected,
         DOMElement $catNode
     ) {
         $srcUrlKey = $catSrc->getUrlKey();
         $dstUrlKey = $catDst->getUrlKey();
-        if ($srcUrlKey != '' && (($srcUrlKey == $dstUrlKey) || ($dstUrlKey == '') || $manualSelected)) {
+        if ($srcUrlKey != '' && ($srcUrlKey == $dstUrlKey || $dstUrlKey == '')) {
             $item = $this->doc->createElement('UrlKey');
             Mage::helper('eurotext_translationmanager/xml')->appendTextChild(
                 $this->doc,
@@ -272,20 +260,18 @@ class Eurotext_TranslationManager_Model_Export_Project_Category
     /**
      * @param Mage_Catalog_Model_Category $catSrc
      * @param Mage_Catalog_Model_Category $catDst
-     * @param bool                        $manualSelected
      * @param DOMElement                  $catNode
      */
     private function createSeoNodes(
         Mage_Catalog_Model_Category $catSrc,
         Mage_Catalog_Model_Category $catDst,
-        $manualSelected,
         DOMElement $catNode
     ) {
         foreach ($this->seoAttributesWithMapping as $attr => $nodeName) {
             $valueSrc = $catSrc->getDataUsingMethod($attr);
             $valueDst = $catDst->getDataUsingMethod($attr);
 
-            if ($valueSrc != '' && ($valueSrc == $valueDst || $valueDst == '' || $manualSelected)) {
+            if ($valueSrc != '' && ($valueSrc == $valueDst || $valueDst == '')) {
                 $item = $this->doc->createElement($nodeName);
                 Mage::helper('eurotext_translationmanager/xml')->appendTextChild($this->doc, $item, $valueSrc);
                 $catNode->appendChild($item);

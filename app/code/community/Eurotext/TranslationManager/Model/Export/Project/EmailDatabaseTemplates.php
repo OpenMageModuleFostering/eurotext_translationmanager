@@ -41,12 +41,10 @@ class Eurotext_TranslationManager_Model_Export_Project_EmailDatabaseTemplates
         $templateCollection->setPageSize(self::PAGE_SIZE);
         $templateCollection->setCurPage($this->offset);
 
-        if (!$this->project->isExportingAllEmailTemplates()) {
-            $templateCollection->addFieldToFilter(
-                'template_id',
-                ['in' => $this->project->getTransactionEmailDatabase()]
-            );
-        }
+        $templateCollection->addFieldToFilter(
+            'template_id',
+            ['in' => $this->project->getTransactionEmailDatabase()]
+        );
 
         if (!$templateCollection->getSize()) {
             return [

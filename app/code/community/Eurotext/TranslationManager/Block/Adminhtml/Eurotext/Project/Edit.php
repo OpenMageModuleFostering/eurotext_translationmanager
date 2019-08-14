@@ -11,6 +11,8 @@ class Eurotext_TranslationManager_Block_Adminhtml_Eurotext_Project_Edit
 
         parent::__construct();
 
+        $this->_removeButton('reset');
+
         $this->_controller = 'adminhtml_eurotext_project';
         $this->_blockGroup = 'eurotext_translationmanager';
 
@@ -34,7 +36,6 @@ class Eurotext_TranslationManager_Block_Adminhtml_Eurotext_Project_Edit
         if (!$project->isEditable()) {
             $this->_removeButton('save');
             $this->_removeButton('export');
-            $this->_removeButton('reset');
 
             $url = $this->getUrl('*/eurotext_project/reset', ['project_id' => $projectId]);
             $this->_addButton(

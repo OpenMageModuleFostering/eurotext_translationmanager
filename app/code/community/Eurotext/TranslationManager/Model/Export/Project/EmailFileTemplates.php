@@ -3,11 +3,6 @@
 class Eurotext_TranslationManager_Model_Export_Project_EmailFileTemplates
 {
     /**
-     * @var bool
-     */
-    private $filesManuallySelected = false;
-
-    /**
      * @var string
      */
     private $xmlDir;
@@ -34,7 +29,7 @@ class Eurotext_TranslationManager_Model_Export_Project_EmailFileTemplates
     {
         $this->project = $project;
         $emailTemplates = $this->createTemplateCollection($project);
-        $this->filterTemplatesByProjectSetting($project, $emailTemplates);
+        $this->filterTemplatesByProject($project, $emailTemplates);
 
         $numberOfEmailTemplatesExported = $emailTemplates->count();
 
@@ -183,20 +178,6 @@ class Eurotext_TranslationManager_Model_Export_Project_EmailFileTemplates
      * @param Eurotext_TranslationManager_Model_Project                                      $project
      * @param Eurotext_TranslationManager_Model_Resource_Emailtemplate_Filesystem_Collection $emailTemplates
      */
-    private function filterTemplatesByProjectSetting(
-        Eurotext_TranslationManager_Model_Project $project,
-        $emailTemplates
-    ) {
-        if (!$project->isExportingAllEmailTemplates()) {
-            $this->filesManuallySelected = true;
-            $this->filterTemplatesByProject($project, $emailTemplates);
-        }
-    }
-
-    /**
-     * @param Eurotext_TranslationManager_Model_Project                                      $project
-     * @param Eurotext_TranslationManager_Model_Resource_Emailtemplate_Filesystem_Collection $emailTemplates
-     */
     private function filterTemplatesByProject(Eurotext_TranslationManager_Model_Project $project, $emailTemplates)
     {
         $filenames = Mage::getResourceModel('eurotext_translationmanager/project_emailtemplateFile_collection')
@@ -218,6 +199,6 @@ class Eurotext_TranslationManager_Model_Export_Project_EmailFileTemplates
      */
     private function isTranslationNeeded($destination)
     {
-        return $this->filesManuallySelected || !file_exists($destination);
+        return !file_exists($destination);
     }
 }

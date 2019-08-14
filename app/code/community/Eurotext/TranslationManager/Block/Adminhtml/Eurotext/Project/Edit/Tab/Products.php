@@ -2,9 +2,9 @@
 
 /**
  * @method int[] getSelectedProducts()
- * @method setSelectedProducts(int[] $ids)
+ * @method setSelectedProducts(int [] $ids)
  * @method Mage_Catalog_Model_Resource_Product_Collection getCollection()
- * @method setSelected(int[] $ids)
+ * @method setSelected(int [] $ids)
  */
 class Eurotext_TranslationManager_Block_Adminhtml_Eurotext_Project_Edit_Tab_Products
     extends Mage_Adminhtml_Block_Catalog_Product_Grid
@@ -296,6 +296,7 @@ class Eurotext_TranslationManager_Block_Adminhtml_Eurotext_Project_Edit_Tab_Prod
      */
     private function createCollection()
     {
+        /** @var $collection Mage_Catalog_Model_Resource_Product_Collection */
         $collection = Mage::getModel('catalog/product')->getCollection();
 
         $category = Mage::getModel('catalog/category')->load($this->getRequest()->getParam('category_id'));
@@ -310,8 +311,9 @@ class Eurotext_TranslationManager_Block_Adminhtml_Eurotext_Project_Edit_Tab_Prod
                 ->addPathFilter("^{$category->getPath()}/[0-9]*$");
             $categories = $categoryCollection->getAllIds();
             $categories[] = $category->getId();
-            $collection->joinField('category_id', 'catalog/category_product', 'category_id', 'product_id=entity_id')
-                ->addAttributeToFilter('category_id', ['in' => $categories]);
+            $collection->joinTable('catalog/category_product', 'product_id=entity_id', ['product_id'])
+                ->addFilter('category_id', ['in' => $categories], 'public')
+                ->distinct(true);
 
             return $collection;
         }

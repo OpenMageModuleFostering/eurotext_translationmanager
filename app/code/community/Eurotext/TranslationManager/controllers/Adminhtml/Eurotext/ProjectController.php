@@ -188,9 +188,6 @@ class Eurotext_TranslationManager_Adminhtml_Eurotext_ProjectController extends M
 
         $this->loadLayout();
 
-        $transactionEmailDatabase = $this->getRequest()->getPost('transactionEmailsDatabase', null);
-        $this->renderTransactionEmailDatabaseGrid($transactionEmailDatabase);
-
         $transactionEmailFiles = $this->getRequest()->getPost('transactionEmailFiles', null);
         $this->renderTransactionEmailFilesGrid($transactionEmailFiles);
 
@@ -205,6 +202,7 @@ class Eurotext_TranslationManager_Adminhtml_Eurotext_ProjectController extends M
 
         $transactionEmailFiles = $this->getRequest()->getPost('transactionEmailsDatabase', null);
         $this->renderTransactionEmailDatabaseGrid($transactionEmailFiles);
+
         $this->renderLayout();
     }
 
@@ -229,7 +227,7 @@ class Eurotext_TranslationManager_Adminhtml_Eurotext_ProjectController extends M
     protected function _isAllowed()
     {
         return Mage::getSingleton('admin/session')
-            ->isAllowed('eurotext_translationmanager/export');
+            ->isAllowed('eurotext_translationmanager/project');
     }
 
     /**

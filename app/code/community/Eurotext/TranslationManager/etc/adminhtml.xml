@@ -16,11 +16,11 @@
                     <sort_order>20</sort_order>
                     <action>adminhtml/eurotext_status</action>
                 </status>
-                <export translate="title" module="eurotext_translationmanager">
+                <project translate="title" module="eurotext_translationmanager">
                     <title>Projects</title>
                     <sort_order>30</sort_order>
                     <action>adminhtml/eurotext_project</action>
-                </export>
+                </project>
                 <help translate="title" module="eurotext_translationmanager">
                     <title>Help</title>
                     <sort_order>40</sort_order>
@@ -40,10 +40,18 @@
                                 <title>Status</title>
                                 <sort_order>20</sort_order>
                             </status>
-                            <export translate="title" module="eurotext_translationmanager">
+                            <project translate="title" module="eurotext_translationmanager">
                                 <title>Projects</title>
                                 <sort_order>30</sort_order>
+                            </project>
+                            <export translate="title" module="eurotext_translationmanager">
+                                <title>Export</title>
+                                <sort_order>30</sort_order>
                             </export>
+                            <import translate="title" module="eurotext_translationmanager">
+                                <title>Import</title>
+                                <sort_order>30</sort_order>
+                            </import>
                             <help translate="title" module="eurotext_translationmanager">
                                 <title>Help</title>
                                 <sort_order>40</sort_order>

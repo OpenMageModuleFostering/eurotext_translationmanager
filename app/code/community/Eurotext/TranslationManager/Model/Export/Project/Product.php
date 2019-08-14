@@ -73,22 +73,15 @@ class Eurotext_TranslationManager_Model_Export_Project_Product
 
         $maxItems = $this->configHelper->getProductsPerFile();
 
-        $manualSelected = false;
 
         /** @var Mage_Catalog_Model_Resource_Product_Collection $productCollectionSrc */
         $productCollectionSrc = $this->getProductCollectionFor($project->getStoreviewSrc(), $page, $maxItems);
         $productCollectionDst = $this->getProductCollectionFor($project->getStoreviewDst(), $page, $maxItems);
 
-        if (!$project->isExportingAllProducts()) {
-            $manualSelected = true;
+        $productCollectionSrc->addIdFilter($project->getProducts());
+        $productCollectionDst->addIdFilter($project->getProducts());
 
-            $productCollectionSrc->addIdFilter($project->getProducts());
-            $productCollectionDst->addIdFilter($project->getProducts());
-        }
-
-        if ($page > $productCollectionSrc->getLastPageNumber() ||
-            (!count($project->getProducts()) && !$project->isExportingAllProducts())
-        ) {
+        if ($page > $productCollectionSrc->getLastPageNumber() || !count($project->getProducts())) {
             $emulator->stopEnvironmentEmulation($emulation);
 
             return [
@@ -124,12 +117,12 @@ class Eurotext_TranslationManager_Model_Export_Project_Product
                 ->setAttribute($productCollectionSrc->getResource()->getAttribute('media_gallery'))
                 ->afterLoad($productDst);
 
-            $this->exportDefaultAttributes($productSrc, $productDst, $manualSelected);
-            $this->exportCustomProductAttributes($productSrc, $productDst, $manualSelected);
-            $this->exportImageLabels($productSrc, $productDst, $manualSelected);
+            $this->exportDefaultAttributes($productSrc, $productDst);
+            $this->exportCustomProductAttributes($productSrc, $productDst);
+            $this->exportImageLabels($productSrc, $productDst);
             $this->exportOptions($productSrc);
-            $this->exportUrlKeys($project, $productSrc, $productDst, $manualSelected);
-            $this->exportMetaAttributes($project, $productSrc, $productDst, $manualSelected);
+            $this->exportUrlKeys($project, $productSrc, $productDst);
+            $this->exportMetaAttributes($project, $productSrc, $productDst);
 
             if ($this->nodeArticle->hasChildNodes()) {
                 $firstChildNode = $this->nodeArticle->childNodes->item(0);
@@ -193,9 +186,8 @@ class Eurotext_TranslationManager_Model_Export_Project_Product
     /**
      * @param Mage_Catalog_Model_Product $productSrc
      * @param Mage_Catalog_Model_Product $productDst
-     * @param bool                       $manualSelected
      */
-    private function exportImageLabels($productSrc, $productDst, $manualSelected)
+    private function exportImageLabels($productSrc, $productDst)
     {
         $imagesOrig = [];
         $imagesOrigUrl = [];
@@ -231,7 +223,7 @@ class Eurotext_TranslationManager_Model_Export_Project_Product
                 $imagesDstLabel[$imgValueId] = '';
             }
 
-            $needsUpdate = $manualSelected;
+            $needsUpdate = false;
             if (trim($imagesDstLabel[$imgValueId]) === '') {
                 $needsUpdate = true;
             }
@@ -278,9 +270,8 @@ class Eurotext_TranslationManager_Model_Export_Project_Product
     /**
      * @param Mage_Catalog_Model_Product $productSrc
      * @param Mage_Catalog_Model_Product $productDst
-     * @param boolean                    $manualSelected
      */
-    private function exportCustomProductAttributes($productSrc, $productDst, $manualSelected)
+    private function exportCustomProductAttributes($productSrc, $productDst)
     {
         if (!$this->configHelper->getCustomProductAttributesForExport()) {
             return;
@@ -290,7 +281,7 @@ class Eurotext_TranslationManager_Model_Export_Project_Product
         foreach ($this->configHelper->getCustomProductAttributesForExport() as $customProductAttribute) {
             $srcValue = $productSrc->getDataUsingMethod($customProductAttribute);
             $dstValue = $productDst->getDataUsingMethod($customProductAttribute);
-            if ($srcValue && ($srcValue == $dstValue || $dstValue == '' || $manualSelected)) {
+            if ($srcValue && ($srcValue == $dstValue || $dstValue == '')) {
                 Mage::helper('eurotext_translationmanager/xml')->appendTextNode(
                     $this->doc,
                     (string)$customProductAttribute,
@@ -309,15 +300,14 @@ class Eurotext_TranslationManager_Model_Export_Project_Product
     /**
      * @param Mage_Catalog_Model_Product $productSrc
      * @param Mage_Catalog_Model_Product $productDst
-     * @param bool                       $manualSelected
      */
-    private function exportDefaultAttributes($productSrc, $productDst, $manualSelected)
+    private function exportDefaultAttributes($productSrc, $productDst)
     {
         $xmlHelper = Mage::helper('eurotext_translationmanager/xml');
         foreach ($this->attributesToExportAlways as $attribute => $xmlNode) {
             $srcValue = $productSrc->getDataUsingMethod($attribute);
             $dstValue = $productDst->getDataUsingMethod($attribute);
-            if ($srcValue && ($srcValue == $dstValue || $dstValue == '' || $manualSelected)) {
+            if ($srcValue && ($srcValue == $dstValue || $dstValue == '')) {
                 $xmlHelper->appendTextNode($this->doc, $xmlNode, $srcValue, $this->nodeArticle);
             }
         }
@@ -402,20 +392,18 @@ class Eurotext_TranslationManager_Model_Export_Project_Product
      * @param Eurotext_TranslationManager_Model_Project $project
      * @param Mage_Catalog_Model_Product                $productSrc
      * @param Mage_Catalog_Model_Product                $productDst
-     * @param bool                                      $manualSelected
      */
     private function exportUrlKeys(
         Eurotext_TranslationManager_Model_Project $project,
         Mage_Catalog_Model_Product $productSrc,
-        Mage_Catalog_Model_Product $productDst,
-        $manualSelected
+        Mage_Catalog_Model_Product $productDst
     ) {
         if (!$project->isExportingUrlKeys()) {
             return;
         }
         $valueSrc = $productSrc->getUrlKey();
         $valueDst = $productDst->getUrlKey();
-        if ($valueSrc != '' && ($valueSrc == $valueDst || $valueDst == '' || $manualSelected)) {
+        if ($valueSrc != '' && ($valueSrc == $valueDst || $valueDst == '')) {
             $item = $this->doc->createElement('UrlKey');
             Mage::helper('eurotext_translationmanager/xml')
                 ->appendTextChild($this->doc, $item, $productSrc->getUrlKey());
@@ -428,13 +416,11 @@ class Eurotext_TranslationManager_Model_Export_Project_Product
      * @param Eurotext_TranslationManager_Model_Project $project
      * @param Mage_Catalog_Model_Product                $productSrc
      * @param Mage_Catalog_Model_Product                $productDst
-     * @param bool                                      $manualSelected
      */
     private function exportMetaAttributes(
         Eurotext_TranslationManager_Model_Project $project,
         Mage_Catalog_Model_Product $productSrc,
-        Mage_Catalog_Model_Product $productDst,
-        $manualSelected
+        Mage_Catalog_Model_Product $productDst
     ) {
         if (!$project->isExportingMetaAttributes()) {
             return;
@@ -443,7 +429,7 @@ class Eurotext_TranslationManager_Model_Export_Project_Product
         foreach ($this->seoAttributes as $attribute => $xmlNode) {
             $srcValue = $productSrc->getDataUsingMethod($attribute);
             $dstValue = $productDst->getDataUsingMethod($attribute);
-            if ($srcValue && ($srcValue == $dstValue || $dstValue == '' || $manualSelected)) {
+            if ($srcValue && ($srcValue == $dstValue || $dstValue == '')) {
                 $item = $this->doc->createElement($xmlNode);
                 Mage::helper('eurotext_translationmanager/xml')
                     ->appendTextChild($this->doc, $item, $srcValue);

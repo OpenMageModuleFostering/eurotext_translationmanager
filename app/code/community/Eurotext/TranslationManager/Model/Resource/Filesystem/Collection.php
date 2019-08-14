@@ -39,4 +39,15 @@ class Eurotext_TranslationManager_Model_Resource_Filesystem_Collection extends V
 
         return $file;
     }
+
+    public function filterCallbackLike($field, $filterValue, $row)
+    {
+        if (!($filterValue instanceof Zend_Db_Expr)) {
+            return parent::filterCallbackLike($field, $filterValue, $row);
+        }
+        $filterValue = substr((string)$filterValue, 1, -1);
+        $filterValueRegex = str_replace('%', '(.*?)', preg_quote($filterValue, '/'));
+
+        return (bool)preg_match("/^{$filterValueRegex}$/i", $row[$field]);
+    }
 }

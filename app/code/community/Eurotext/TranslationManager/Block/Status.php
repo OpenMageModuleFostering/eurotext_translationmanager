@@ -254,6 +254,17 @@ class Eurotext_TranslationManager_Block_Status extends Mage_Adminhtml_Block_Widg
                 ]
             );
         }
+        if(is_link(Mage::getBaseDir('var'))) {
+            $fieldset->addField(
+                'Symlink',
+                'note',
+                [
+                    'label' => 'Symlink',
+                    'text'  => Mage::getBaseDir('var'),
+                ]
+            );
+
+        }
     }
 
     /**

@@ -14,23 +14,21 @@ class Eurotext_TranslationManager_Model_Resource_Csv_Collection
      */
     public function filterByProject(Eurotext_TranslationManager_Model_Project $project)
     {
-        if (!$project->getLangfilesmode()) {
-            $project->addAllRelationalData();
+        $project->addAllRelationalData();
 
-            $localeFilesWithBasePath = array_map(
-                function ($fileWithoutBasePath) {
-                    return Mage::getBaseDir('app') . $fileWithoutBasePath;
-                },
-                $project->getTranslationFiles()
-            );
+        $localeFilesWithBasePath = array_map(
+            function ($fileWithoutBasePath) {
+                return Mage::getBaseDir('app') . $fileWithoutBasePath;
+            },
+            $project->getTranslationFiles()
+        );
 
-            $this->addFieldToFilter(
-                'filename',
-                [
-                    'in' => $localeFilesWithBasePath
-                ]
-            );
-        }
+        $this->addFieldToFilter(
+            'filename',
+            [
+                'in' => $localeFilesWithBasePath
+            ]
+        );
 
         $this->setTargetPathByLanguageAndStore($project->getStoreviewSrcLocale(), $project->getStoreviewSrc());
 

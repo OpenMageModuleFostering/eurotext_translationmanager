@@ -43,7 +43,8 @@ class Eurotext_TranslationManager_Model_ProductLoader
         }
 
         $productAttributes = Mage::getResourceModel('catalog/product_attribute_collection')
-            ->addFieldToFilter('backend_type', ['neq' => 'static']);
+            ->addFieldToFilter('backend_type', ['neq' => 'static'])
+            ->addFieldToFilter('is_global', Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_STORE);
 
         foreach ($productAttributes as $a) {
             /** @var $a Mage_Eav_Model_Attribute */
