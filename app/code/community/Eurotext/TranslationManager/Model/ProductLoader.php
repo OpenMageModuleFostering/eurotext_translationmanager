@@ -2,6 +2,9 @@
 
 class Eurotext_TranslationManager_Model_ProductLoader
 {
+    /**
+     * @var string[]
+     */
     private $requiredAttributes = [
         'entity_id', 'attribute_set_id', 'store_id', 'media_gallery'
     ];
@@ -39,19 +42,16 @@ class Eurotext_TranslationManager_Model_ProductLoader
             );
         }
 
-        $requiredAttributes = $this->requiredAttributes;
-        $data = $product->getData();
-        array_walk(
-            $data,
-            function (&$value, $key) use ($requiredAttributes) {
-                if (in_array($key, $requiredAttributes, true)) {
-                    return;
-                }
-                $value = false;
-            }
-        );
+        $productAttributes = Mage::getResourceModel('catalog/product_attribute_collection')
+            ->addFieldToFilter('backend_type', ['neq' => 'static']);
 
-        $product->setData($data);
+        foreach ($productAttributes as $a) {
+            /** @var $a Mage_Eav_Model_Attribute */
+            if (in_array($a->getAttributeCode(), $this->requiredAttributes, true)) {
+                continue;
+            }
+            $product->setData($a->getAttributeCode(), false);
+        }
 
         return $product;
     }
