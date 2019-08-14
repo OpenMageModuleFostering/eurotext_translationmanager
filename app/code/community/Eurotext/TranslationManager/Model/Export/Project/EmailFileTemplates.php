@@ -190,7 +190,10 @@ class Eurotext_TranslationManager_Model_Export_Project_EmailFileTemplates
             $filenames
         );
 
-        $emailTemplates->addFieldToFilter('filename', ['in' => $emailTemplatesWithBasePath]);
+        $emailTemplates->addFieldToFilter(
+            'filename',
+            ['in' => array_map([Normalizer::class, 'normalize'], $emailTemplatesWithBasePath)]
+        );
     }
 
     /**

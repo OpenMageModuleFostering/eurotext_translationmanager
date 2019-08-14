@@ -16,12 +16,12 @@ class Eurotext_TranslationManager_Model_Import_Project
         $importFiles = Mage::getResourceModel('eurotext_translationmanager/project_import_collection');
         $importFiles->addFieldToFilter('project_id', $project->getId())->setPageSize(1);
 
-        /** @var Eurotext_TranslationManager_Model_Project_Import $importFile */
         $fileCollection = Mage::getResourceModel('eurotext_translationmanager/project_import_collection')
             ->addFieldToFilter('project_id', $project->getId())
             ->addFieldToFilter('is_imported', 0)
             ->setPageSize(1);
 
+        /** @var Eurotext_TranslationManager_Model_Project_Import $importFile */
         $importFile = $fileCollection->getFirstItem();
 
         if ($importFile->isObjectNew()) {

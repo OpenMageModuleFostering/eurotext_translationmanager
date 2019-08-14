@@ -50,4 +50,13 @@ class Eurotext_TranslationManager_Model_Resource_Filesystem_Collection extends V
 
         return (bool)preg_match("/^{$filterValueRegex}$/i", $row[$field]);
     }
+
+    protected function _collectRecursive($dir)
+    {
+        parent::_collectRecursive($dir);
+
+        $this->_collectedDirs = array_map([Normalizer::class, 'normalize'], $this->_collectedDirs);
+        $this->_collectedFiles = array_map([Normalizer::class, 'normalize'], $this->_collectedFiles);
+    }
+
 }

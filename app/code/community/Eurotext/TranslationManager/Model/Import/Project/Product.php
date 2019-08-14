@@ -317,7 +317,7 @@ class Eurotext_TranslationManager_Model_Import_Project_Product
             $urlKey = $matches[1];
         }
         $urlKeys = Mage::getResourceModel('catalog/product_collection')
-            ->addAttributeToFilter('url_key', ['regexp' => "^$urlKey(-\d+)?$"])
+            ->addAttributeToFilter('url_key', ['regexp' => "^$urlKey(-\d+)?"])
             ->addIdFilter($productId, true)
             ->getColumnValues('url_key');
         if (!in_array($origUrlKey, $urlKeys)) {
