@@ -1,36 +1,48 @@
 <?xml version="1.0"?>
 <jstranslator>
     <msg1 translate="message" module="eurotext_translationmanager">
-        <message>Processing - please wait …</message>
+        <message>Processing - please wait…</message>
     </msg1>
-	<msg2 translate="message" module="eurotext_translationmanager">
-        <message>Loading - please wait …</message>
+    <msg2 translate="message" module="eurotext_translationmanager">
+        <message>Loading - please wait…</message>
     </msg2>
-	<msg3 translate="message" module="eurotext_translationmanager">
+    <msg3 translate="message" module="eurotext_translationmanager">
         <message>Please wait - this may take a while</message>
     </msg3>
-	<msg4 translate="message" module="eurotext_translationmanager">
+    <msg4 translate="message" module="eurotext_translationmanager">
         <message>Please wait - saving project settings</message>
     </msg4>
-	<msg5 translate="message" module="eurotext_translationmanager">
+    <msg5 translate="message" module="eurotext_translationmanager">
         <message>Please wait</message>
     </msg5>
-	<msg6 translate="message" module="eurotext_translationmanager">
+    <msg6 translate="message" module="eurotext_translationmanager">
         <message>Unable to save project settings</message>
     </msg6>
-	<msg7 translate="message" module="eurotext_translationmanager">
+    <msg7 translate="message" module="eurotext_translationmanager">
         <message>Save project</message>
     </msg7>
-	<msg8 translate="message" module="eurotext_translationmanager">
+    <msg8 translate="message" module="eurotext_translationmanager">
         <message>Try again</message>
     </msg8>
-	<msg9 translate="message" module="eurotext_translationmanager">
-		<message>No file was selected, or the file selected is not a ZIP file</message>
-	</msg9>
-	<msg10 translate="message" module="eurotext_translationmanager">
-		<message>Do you really want to delete this project?</message>
-	</msg10>
-	<msg11 translate="message" module="eurotext_translationmanager">
-		<message>Do you really want to reset this project?</message>
-	</msg11>
+    <msg9 translate="message" module="eurotext_translationmanager">
+        <message>No file was selected, or the file selected is not a ZIP file</message>
+    </msg9>
+    <msg10 translate="message" module="eurotext_translationmanager">
+        <message>Do you really want to delete this project?</message>
+    </msg10>
+    <msg11 translate="message" module="eurotext_translationmanager">
+        <message>Do you really want to reset this project?</message>
+    </msg11>
+    <msg12 translate="message" module="eurotext_translationmanager">
+        <message>Something went wrong while importing: #{error}. Please try again.</message>
+    </msg12>
+    <msg13 translate="message" module="eurotext_translationmanager">
+        <message>Export done.</message>
+    </msg13>
+    <msg14 translate="message" module="eurotext_translationmanager">
+        <message>Please wait …</message>
+    </msg14>
+    <msg15 translate="message" module="eurotext_translationmanager">
+        <message>Please save the project before exporting it!</message>
+    </msg15>
 </jstranslator>

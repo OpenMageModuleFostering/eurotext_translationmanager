@@ -1,13 +1,247 @@
 <?xml version="1.0"?>
 <config>
     <sections>
+        <eurotext translate="label" module="eurotext_translationmanager">
+            <tab>catalog</tab>
+            <label>Eurotext AG translationMANAGER</label>
+            <show_in_default>1</show_in_default>
+            <show_in_website>0</show_in_website>
+            <show_in_store>0</show_in_store>
+            <sort_order>500</sort_order>
+            <groups>
+                <config translate="label" module="eurotext_translationmanager">
+                    <label>Registration</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <sort_order>100</sort_order>
+                    <expanded>1</expanded>
+                    <fields>
+                        <register_status>
+                            <frontend_model>eurotext_translationmanager/system_config_form_field_registration_status</frontend_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <sort_order>50</sort_order>
+                        </register_status>
+                        <ettm_head_shop>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <label>Shop data</label>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <sort_order>75</sort_order>
+                        </ettm_head_shop>
+                        <register_shopname translate="label" module="eurotext_translationmanager">
+                            <label>Shop name</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <sort_order>100</sort_order>
+                            <validate>required-entry</validate>
+                        </register_shopname>
+                        <register_url translate="label comment" module="eurotext_translationmanager">
+                            <label>Shop URL</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <sort_order>150</sort_order>
+                            <comment>starting with http:// or https://</comment>
+                            <validate>validate-url required-entry</validate>
+                        </register_url>
+                        <ettm_head_contact>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <label>Contact data</label>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <sort_order>175</sort_order>
+                            <validate>required-entry</validate>
+                        </ettm_head_contact>
+                        <register_company translate="label" module="eurotext_translationmanager">
+                            <label>Company</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <sort_order>200</sort_order>
+                            <validate>required-entry</validate>
+                        </register_company>
+                        <register_salutation translate="label" module="eurotext_translationmanager">
+                            <label>Salutation</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>eurotext_translationmanager/system_config_source_salutation</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <sort_order>300</sort_order>
+                            <validate>required-entry</validate>
+                        </register_salutation>
+                        <register_firstname translate="label" module="eurotext_translationmanager">
+                            <label>First name</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <sort_order>400</sort_order>
+                            <validate>required-entry</validate>
+                        </register_firstname>
+                        <register_lastname translate="label" module="eurotext_translationmanager">
+                            <label>Last name</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <sort_order>500</sort_order>
+                            <validate>required-entry</validate>
+                        </register_lastname>
+                        <register_street translate="label" module="eurotext_translationmanager">
+                            <label>Street</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <sort_order>600</sort_order>
+                            <validate>required-entry</validate>
+                        </register_street>
+                        <register_zip translate="label" module="eurotext_translationmanager">
+                            <label>ZIP Code</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <sort_order>800</sort_order>
+                            <validate>required-entry</validate>
+                        </register_zip>
+                        <register_city translate="label" module="eurotext_translationmanager">
+                            <label>City</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <sort_order>900</sort_order>
+                            <validate>required-entry</validate>
+                        </register_city>
+                        <register_country translate="label" module="eurotext_translationmanager">
+                            <label>Country</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <sort_order>1000</sort_order>
+                            <validate>required-entry</validate>
+                        </register_country>
+                        <register_email translate="label" module="eurotext_translationmanager">
+                            <label>Email Address</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <sort_order>1000</sort_order>
+                            <validate>validate-email required-entry</validate>
+                        </register_email>
+                        <register_telephone translate="label" module="eurotext_translationmanager">
+                            <label>Phone</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <sort_order>1200</sort_order>
+                            <validate>required-entry</validate>
+                        </register_telephone>
+                    </fields>
+                </config>
+                <user_settings translate="label" module="eurotext_translationmanager">
+                    <label>Connection credentials</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <sort_order>200</sort_order>
+                    <fields>
+                        <customerid translate="label" module="eurotext_translationmanager">
+                            <label>Customer ID</label>
+                            <sort_order>100</sort_order>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <validate>validate-digits</validate>
+                        </customerid>
+                        <ftp_username translate="label" module="eurotext_translationmanager">
+                            <label>User name</label>
+                            <sort_order>200</sort_order>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </ftp_username>
+                        <ftp_password translate="label" module="eurotext_translationmanager">
+                            <label>Password</label>
+                            <sort_order>300</sort_order>
+                            <frontend_type>password</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </ftp_password>
+                    </fields>
+                </user_settings>
+                <export_settings translate="label" module="eurotext_translationmanager">
+                    <label>Export</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <sort_order>300</sort_order>
+                    <fields>
+                        <ettm_export_information translate="text" module="eurotext_translationmanager">
+                            <frontend_model>eurotext_translationmanager/system_config_form_field_text</frontend_model>
+                            <text>The number of entries per file heavily depends on your systems resources. You should decrease these numbers if your system fails to compile the files. The minimum number of entries per file is 6.</text>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <sort_order>100</sort_order>
+                        </ettm_export_information>
+                        <categories_per_file translate="label comment" module="eurotext_translationmanager">
+                            <label>Categories per file</label><comment>Leave empty for default value: 20</comment>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <validate>validate-digits validate-digits-range-6-500</validate>
+                            <sort_order>200</sort_order>
+                        </categories_per_file>
+                        <cmspages_per_file translate="label comment" module="eurotext_translationmanager">
+                            <label>CMS Pages per file</label><comment>Leave empty for default value: 20</comment>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <validate>validate-digits validate-digits-range-6-500</validate>
+                            <sort_order>300</sort_order>
+                        </cmspages_per_file>
+                        <products_per_file translate="label comment" module="eurotext_translationmanager">
+                            <label>Products per file</label><comment>Leave empty for default value: 20</comment>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <validate>validate-digits validate-digits-range-6-500</validate>
+                            <sort_order>400</sort_order>
+                        </products_per_file>
+                    </fields>
+                </export_settings>
+            </groups>
+        </eurotext>
         <dev>
             <groups>
                 <log>
                     <fields>
                         <ettm_head>
                             <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
-                            <label>Eurotext translationMANAGER</label>
+                            <label>Eurotext AG translationMANAGER</label>
                             <show_in_default>1</show_in_default>
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
@@ -23,9 +257,21 @@
                             <show_in_store>0</show_in_store>
                             <sort_order>110</sort_order>
                         </ettm_debug>
+                        <ettm_ftp translate="comment label">
+                            <frontend_type>select</frontend_type>
+                            <label>Enable FTP Upload</label>
+                            <comment>Enables FTP Upload of Project Files</comment>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <depends>
+                                <ettm_debug>1</ettm_debug>
+                            </depends>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <sort_order>120</sort_order>
+                        </ettm_ftp>
                     </fields>
                 </log>
-
             </groups>
         </dev>
     </sections>

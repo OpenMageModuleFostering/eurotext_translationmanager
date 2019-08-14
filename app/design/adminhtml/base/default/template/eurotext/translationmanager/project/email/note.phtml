@@ -1,0 +1,22 @@
+<?php /** @var Eurotext_TranslationManager_Block_Adminhtml_Eurotext_Project_Edit_Tab_Emails_Note $this */ ?>
+<ul class="messages">
+	<li class="notice-msg">
+		<ul>
+			<li>
+				<span>
+					<?php echo $this->__(
+                        'To translate the Email Templates, we need to translate header.phtml and footer.phtml. We have prechecked these two files for you! If you do not want these files translated, please uncheck them.'
+                    ); ?>
+				</span>
+			</li>
+			<li>
+				<span>
+					<?php echo $this->__(
+                        'Email Templates which origin from a file are written back to a file after translation. Email Templates from the database are written back to the database with the language prefix "[%s]".',
+                        $this->getLanguageFromProject()
+                    ); ?>
+				</span>
+			</li>
+		</ul>
+	</li>
+</ul>

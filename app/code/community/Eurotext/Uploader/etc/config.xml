@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Eurotext_Uploader>
+            <version>0.1.1</version>
+        </Eurotext_Uploader>
+    </modules>
+    <global>
+        <blocks>
+            <eurotext_uploader>
+                <class>Eurotext_Uploader_Block</class>
+            </eurotext_uploader>
+        </blocks>
+        <helpers>
+            <eurotext_uploader>
+                <class>Eurotext_Uploader_Helper</class>
+            </eurotext_uploader>
+        </helpers>
+        <models>
+            <eurotext_uploader>
+                <class>Eurotext_Uploader_Model</class>
+            </eurotext_uploader>
+        </models>
+    </global>
+</config>

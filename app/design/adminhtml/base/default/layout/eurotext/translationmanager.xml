@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 <layout>
-
     <eurotext_prepare_popup>
         <reference name="root">
             <action method="setTemplate">
@@ -11,118 +10,286 @@
         <remove name="footer"/>
     </eurotext_prepare_popup>
 
-    <eurotext_add_css>
+    <adminhtml_system_config_edit>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>eurotext/translationmanager/js/system_config.js</name>
+            </action>
+        </reference>
+    </adminhtml_system_config_edit>
+
+    <!--
+    LAYOUT AREA FOR VISIBLE BACKEND PAGES
+    -->
+
+    <adminhtml_eurotext_status_index>
+        <reference name="content">
+            <block type="eurotext_translationmanager/status" name="et.tm.status"/>
+        </reference>
+    </adminhtml_eurotext_status_index>
+
+    <adminhtml_eurotext_project_index>
+        <reference name="content">
+            <block name="et.tm.projects.grid" as="project.grid.container"
+                   type="eurotext_translationmanager/adminhtml_eurotext_project"/>
+        </reference>
+    </adminhtml_eurotext_project_index>
+
+    <adminhtml_eurotext_project_edit>
+        <reference name="head">
+            <action method="setCanLoadExtJs">
+                <value>1</value>
+            </action>
+            <action method="addJs"><name>eurotext/uploader/flow.min.js</name></action>
+            <action method="addJs"><name>eurotext/uploader/fusty-flow.js</name></action>
+            <action method="addJs"><name>eurotext/uploader/fusty-flow-factory.js</name></action>
+            <action method="addJs"><name>eurotext/uploader/instance.js</name></action>
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>eurotext/translationmanager/css/project.css</name>
+                <params/>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>eurotext/translationmanager/js/eurotext_project.js</name>
+            </action>
+        </reference>
+        <reference name="left">
+            <block type="eurotext_translationmanager/adminhtml_eurotext_project_edit_tabs" name="project_edit.tabs"/>
+        </reference>
+        <reference name="content">
+            <block name="project_edit" type="eurotext_translationmanager/adminhtml_eurotext_project_edit"/>
+        </reference>
+    </adminhtml_eurotext_project_edit>
+
+    <adminhtml_eurotext_project_productstab>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block name="project_edit.project.tab.products"
+                   type="eurotext_translationmanager/adminhtml_eurotext_project_edit_tab_products"/>
+            <block name="project.edit.project.tab.products.categry_tree"
+                   template="eurotext/translationmanager/project/products/category_tree.phtml"
+                   type="eurotext_translationmanager/adminhtml_eurotext_project_edit_tab_products_categoryTree">
+                <action method="setJsFormObject">
+                    <form>editForm</form>
+                </action>
+            </block>
+            <block type="adminhtml/template" name="project.edit.project.tab.products.bulk_sku"
+                   template="eurotext/translationmanager/project/products/bulk_sku.phtml"/>
+            <block type="adminhtml/widget_grid_serializer" name="project_edit.project.tab.products.serializer">
+                <action method="initSerializerBlock">
+                    <grid_block_name>project_edit.project.tab.products</grid_block_name>
+                    <data_callback>_getSelectedProducts</data_callback>
+                    <hidden_input_name>product_ids</hidden_input_name>
+                    <reload_param_name>products</reload_param_name>
+                </action>
+            </block>
+        </block>
+    </adminhtml_eurotext_project_productstab>
+
+    <adminhtml_eurotext_project_productsgrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block name="project.edit.project.tab.products.script"
+                   template="eurotext/translationmanager/project/products/script.phtml"
+                   type="eurotext_translationmanager/adminhtml_eurotext_project_edit_tab_products_script"/>
+            <block type="eurotext_translationmanager/adminhtml_eurotext_project_edit_tab_products"
+                   name="project_edit.project.tab.products"/>
+        </block>
+    </adminhtml_eurotext_project_productsgrid>
+
+    <adminhtml_eurotext_project_categoriestab>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block name="project_edit.project.tab.categories"
+                   type="eurotext_translationmanager/adminhtml_eurotext_project_edit_tab_categories"/>
+            <block type="adminhtml/widget_grid_serializer" name="project_edit.project.tab.categories.serializer">
+                <action method="initSerializerBlock">
+                    <grid_block_name>project_edit.project.tab.categories</grid_block_name>
+                    <data_callback>_getSelectedCategories</data_callback>
+                    <hidden_input_name>category_ids</hidden_input_name>
+                    <reload_param_name>categories</reload_param_name>
+                </action>
+            </block>
+        </block>
+    </adminhtml_eurotext_project_categoriestab>
+
+    <adminhtml_eurotext_project_categoriesgrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="eurotext_translationmanager/adminhtml_eurotext_project_edit_tab_categories"
+                   name="project_edit.project.tab.categories"/>
+        </block>
+    </adminhtml_eurotext_project_categoriesgrid>
+
+    <adminhtml_eurotext_project_cmsblockstab>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block name="project_edit.project.tab.cmsblocks"
+                   type="eurotext_translationmanager/adminhtml_eurotext_project_edit_tab_cmsBlock"/>
+            <block type="adminhtml/widget_grid_serializer" name="project_edit.project.tab.cmsblocks.serializer">
+                <action method="initSerializerBlock">
+                    <grid_block_name>project_edit.project.tab.cmsblocks</grid_block_name>
+                    <data_callback>_getSelectedCmsBlocks</data_callback>
+                    <hidden_input_name>cmsBlock_ids</hidden_input_name>
+                    <reload_param_name>cmsBlocks</reload_param_name>
+                </action>
+            </block>
+        </block>
+    </adminhtml_eurotext_project_cmsblockstab>
+
+    <adminhtml_eurotext_project_cmsblocksgrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="eurotext_translationmanager/adminhtml_eurotext_project_edit_tab_cmsBlock"
+                   name="project_edit.project.tab.cmsblocks"/>
+        </block>
+    </adminhtml_eurotext_project_cmsblocksgrid>
+
+    <adminhtml_eurotext_project_cmspagestab>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block name="project_edit.project.tab.cmspages"
+                   type="eurotext_translationmanager/adminhtml_eurotext_project_edit_tab_cmsPage"/>
+            <block type="adminhtml/widget_grid_serializer" name="project_edit.project.tab.cmspages.serializer">
+                <action method="initSerializerBlock">
+                    <grid_block_name>project_edit.project.tab.cmspages</grid_block_name>
+                    <data_callback>_getSelectedCmsPages</data_callback>
+                    <hidden_input_name>cmsPage_ids</hidden_input_name>
+                    <reload_param_name>cmsPages</reload_param_name>
+                </action>
+            </block>
+        </block>
+    </adminhtml_eurotext_project_cmspagestab>
+
+    <adminhtml_eurotext_project_cmspagesgrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="eurotext_translationmanager/adminhtml_eurotext_project_edit_tab_cmsPage"
+                   name="project_edit.project.tab.cmspages"/>
+        </block>
+    </adminhtml_eurotext_project_cmspagesgrid>
+
+    <adminhtml_eurotext_project_transactionemailfilestab>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="eurotext_translationmanager/adminhtml_eurotext_project_edit_tab_emails_note"
+                   template="eurotext/translationmanager/project/email/note.phtml"
+                   name="project_edit.project.tab.transactionemailfiles.note"/>
+            <block type="eurotext_translationmanager/adminhtml_eurotext_project_edit_tab_transactionEmailFiles"
+                   name="project_edit.project.tab.transactionemailfiles"/>
+            <block type="eurotext_translationmanager/adminhtml_eurotext_project_edit_tab_transactionEmailsDatabase"
+                   name="project_edit.project.tab.transactionemailsdatabase"/>
+            <block type="adminhtml/widget_grid_serializer"
+                   name="project_edit.project.tab.transactionemailfiles.serializer">
+                <action method="initSerializerBlock">
+                    <grid_block_name>project_edit.project.tab.transactionemailfiles</grid_block_name>
+                    <data_callback>_getSelectedTransactionEmailFiles</data_callback>
+                    <hidden_input_name>transactionEmailFile_ids</hidden_input_name>
+                    <reload_param_name>transactionEmailFiles</reload_param_name>
+                </action>
+            </block>
+            <block type="adminhtml/widget_grid_serializer"
+                   name="project_edit.project.tab.transactionemailsdatabase.serializer">
+                <action method="initSerializerBlock">
+                    <grid_block_name>project_edit.project.tab.transactionemailsdatabase</grid_block_name>
+                    <data_callback>_getSelectedTransactionEmailsDatabase</data_callback>
+                    <hidden_input_name>transactionEmailDatabase_ids</hidden_input_name>
+                    <reload_param_name>transactionEmailsDatabase</reload_param_name>
+                </action>
+            </block>
+        </block>
+    </adminhtml_eurotext_project_transactionemailfilestab>
+
+    <adminhtml_eurotext_project_transactionemailfilesgrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="eurotext_translationmanager/adminhtml_eurotext_project_edit_tab_transactionEmailFiles"
+                   name="project_edit.project.tab.transactionemailfiles"/>
+        </block>
+    </adminhtml_eurotext_project_transactionemailfilesgrid>
+
+    <adminhtml_eurotext_project_transactionemailsdatabasegrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="eurotext_translationmanager/adminhtml_eurotext_project_edit_tab_transactionEmailsDatabase"
+                   name="project_edit.project.tab.transactionemailsdatabase"/>
+        </block>
+    </adminhtml_eurotext_project_transactionemailsdatabasegrid>
+
+    <adminhtml_eurotext_project_translatefilestab>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="eurotext_translationmanager/adminhtml_eurotext_project_edit_tab_translateFiles"
+                   name="project_edit.project.tab.translatefiles"/>
+            <block type="adminhtml/widget_grid_serializer" name="project_edit.project.tab.translatefiles.serializer">
+                <action method="initSerializerBlock">
+                    <grid_block_name>project_edit.project.tab.translatefiles</grid_block_name>
+                    <data_callback>_getSelectedTranslateFiles</data_callback>
+                    <hidden_input_name>translateFiles_ids</hidden_input_name>
+                    <reload_param_name>translateFiles</reload_param_name>
+                </action>
+            </block>
+        </block>
+    </adminhtml_eurotext_project_translatefilestab>
+
+    <adminhtml_eurotext_project_translatefilesgrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="eurotext_translationmanager/adminhtml_eurotext_project_edit_tab_translateFiles"
+                   name="project_edit.project.tab.translatefiles"/>
+        </block>
+    </adminhtml_eurotext_project_translatefilesgrid>
+
+    <adminhtml_eurotext_project_grid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="eurotext_translationmanager/adminhtml_eurotext_project_edit_tab_products"
+                   name="project_edit.project.tab.products"/>
+        </block>
+    </adminhtml_eurotext_project_grid>
+
+    <adminhtml_eurotext_help_index>
         <reference name="head">
             <action method="addItem">
                 <type>skin_css</type>
-                <name>eurotext/translationmanager/css/styles.css</name>
-                <params/>
-            </action>
-            <action method="addItem">
-                <type>skin_js</type>
-                <name>eurotext/translationmanager/js/eurotext-jquery-1.9.1.js</name>
-                <params/>
-            </action>
-            <action method="addItem">
-                <type>skin_js</type>
-                <name>eurotext/translationmanager/js/eurotext.js</name>
+                <name>eurotext/translationmanager/css/help.css</name>
                 <params/>
             </action>
         </reference>
-    </eurotext_add_css>
-
-    <!--
-
-    LAYOUT AREA FOR VISIBLE BACKEND PAGES
-
-    -->
-    <adminhtml_eurotext_translationmanager_register_index>
-        <update handle="eurotext_add_css"/>
-        <reference name="content">
-            <block type="eurotext_translationmanager/register" name="et.tm.register"
-                   template="eurotext/translationmanager/register.phtml"/>
-        </reference>
-    </adminhtml_eurotext_translationmanager_register_index>
-
-    <adminhtml_eurotext_translationmanager_settings_index>
-        <update handle="eurotext_add_css"/>
-        <reference name="content">
-            <block type="eurotext_translationmanager/settings" name="et.tm.settings"
-                   template="eurotext/translationmanager/settings.phtml"/>
-        </reference>
-    </adminhtml_eurotext_translationmanager_settings_index>
-
-    <adminhtml_eurotext_translationmanager_projects_index>
-        <update handle="eurotext_add_css"/>
-        <reference name="content">
-            <block type="eurotext_translationmanager/projects" name="et.tm.projects"
-                   template="eurotext/translationmanager/projects.phtml"/>
-        </reference>
-    </adminhtml_eurotext_translationmanager_projects_index>
-
-    <adminhtml_eurotext_translationmanager_help_index>
-        <update handle="eurotext_add_css"/>
         <reference name="content">
             <block type="eurotext_translationmanager/help" name="et.tm.help"
                    template="eurotext/translationmanager/help.phtml"/>
         </reference>
-    </adminhtml_eurotext_translationmanager_help_index>
-
-    <adminhtml_eurotext_translationmanager_selectproducts_index>
-        <update handle="eurotext_add_css"/>
-        <update handle="eurotext_prepare_popup"/>
-        <reference name="content">
-            <block type="eurotext_translationmanager/selectproducts" name="et.tm.selectproducts"
-                   template="eurotext/translationmanager/selectproducts.phtml"/>
-        </reference>
-    </adminhtml_eurotext_translationmanager_selectproducts_index>
-
-    <adminhtml_eurotext_translationmanager_selectcategories_index>
-        <update handle="eurotext_add_css"/>
-        <update handle="eurotext_prepare_popup"/>
-        <reference name="content">
-            <block type="eurotext_translationmanager/selectcategories" name="et.tm.selectcategories"
-                   template="eurotext/translationmanager/selectcategories.phtml"/>
-        </reference>
-    </adminhtml_eurotext_translationmanager_selectcategories_index>
-
-    <adminhtml_eurotext_translationmanager_selectcmspages_index>
-        <update handle="eurotext_add_css"/>
-        <update handle="eurotext_prepare_popup"/>
-        <reference name="content">
-            <block type="eurotext_translationmanager/selectcmspages" name="et.tm.selectcmspages"
-                   template="eurotext/translationmanager/selectcmspages.phtml"/>
-        </reference>
-    </adminhtml_eurotext_translationmanager_selectcmspages_index>
-
-    <adminhtml_eurotext_translationmanager_selectlangfiles_index>
-        <update handle="eurotext_add_css"/>
-        <update handle="eurotext_prepare_popup"/>
-        <reference name="content">
-            <block type="eurotext_translationmanager/selectlangfiles" name="et.tm.selectlangfiles"
-                   template="eurotext/translationmanager/selectlangfiles.phtml"/>
-        </reference>
-    </adminhtml_eurotext_translationmanager_selectlangfiles_index>
-
-    <adminhtml_eurotext_translationmanager_selectemails_index>
-        <update handle="eurotext_add_css"/>
-        <update handle="eurotext_prepare_popup"/>
-        <reference name="content">
-            <block type="eurotext_translationmanager/selectemails" name="et.tm.selectemails"
-                   template="eurotext/translationmanager/selectemails.phtml"/>
-        </reference>
-    </adminhtml_eurotext_translationmanager_selectemails_index>
-
+    </adminhtml_eurotext_help_index>
 
     <!--
-
     LAYOUT AREA FOR AJAX REQUESTS
-
     -->
     <adminhtml_eurotext_translationmanager_ajax>
-        <block type="eurotext_translationmanager/response_ajax" output="toJson" name="et.tm.response.ajax" />
+        <block type="eurotext_translationmanager/response_ajax" output="toJson" name="et.tm.response.ajax"/>
     </adminhtml_eurotext_translationmanager_ajax>
+
     <adminhtml_eurotext_translationmanager_text>
-        <block type="core/text" output="toHtml" name="et.tm.response.text" />
+        <block type="core/text" output="toHtml" name="et.tm.response.text"/>
     </adminhtml_eurotext_translationmanager_text>
+
+    <adminhtml_eurotext_project_import_importparse>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>eurotext/translationmanager/css/status.css</name>
+                <params/>
+            </action>
+        </reference>
+        <reference name="content">
+            <block name="et.import.status" type="eurotext_translationmanager/adminhtml_eurotext_import_overview"
+                   template="eurotext/translationmanager/import/overview.phtml"/>
+        </reference>
+    </adminhtml_eurotext_project_import_importparse>
+
+    <adminhtml_eurotext_project_export_index>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>eurotext/translationmanager/css/status.css</name>
+                <params/>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>eurotext/translationmanager/js/export.js</name>
+            </action>
+        </reference>
+        <reference name="content">
+            <block name="et.export.overview" type="eurotext_translationmanager/adminhtml_eurotext_export_overview"
+                   template="eurotext/translationmanager/export/overview.phtml"/>
+        </reference>
+    </adminhtml_eurotext_project_export_index>
 </layout>

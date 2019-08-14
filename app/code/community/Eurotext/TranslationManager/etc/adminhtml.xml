@@ -6,24 +6,25 @@
             <sort_order>70</sort_order>
             <children>
                 <register translate="title" module="eurotext_translationmanager">
-                    <title>Registration</title>
+                    <title>Registration/Settings</title>
                     <sort_order>10</sort_order>
-                    <action>adminhtml/eurotext_translationmanager_register</action>
+                    <action>adminhtml/system_config/edit/section/eurotext</action>
+                    <resource>system/config/eurotext</resource>
                 </register>
-                <settings translate="title" module="eurotext_translationmanager">
-                    <title>Settings</title>
+                <status translate="title" module="eurotext_translationmanager">
+                    <title>System Status</title>
                     <sort_order>20</sort_order>
-                    <action>adminhtml/eurotext_translationmanager_settings</action>
-                </settings>
+                    <action>adminhtml/eurotext_status</action>
+                </status>
                 <export translate="title" module="eurotext_translationmanager">
                     <title>Projects</title>
                     <sort_order>30</sort_order>
-                    <action>adminhtml/eurotext_translationmanager_projects</action>
+                    <action>adminhtml/eurotext_project</action>
                 </export>
                 <help translate="title" module="eurotext_translationmanager">
                     <title>Help</title>
                     <sort_order>40</sort_order>
-                    <action>adminhtml/eurotext_translationmanager_help</action>
+                    <action>adminhtml/eurotext_help</action>
                 </help>
             </children>
         </eurotext_translationmanager>
@@ -32,17 +33,13 @@
         <resources>
             <admin>
                 <children>
-                    <eurotext_translationmanager module="eurotext_translationmanager">
+                    <eurotext_translationmanager module="eurotext_translationmanager" translate="title">
                         <title>Eurotext - translationMANAGER</title>
                         <children>
-                            <register translate="title" module="eurotext_translationmanager">
-                                <title>Registration</title>
-                                <sort_order>10</sort_order>
-                            </register>
-                            <settings translate="title" module="eurotext_translationmanager">
-                                <title>Settings</title>
+                            <status translate="title" module="eurotext_translationmanager">
+                                <title>Status</title>
                                 <sort_order>20</sort_order>
-                            </settings>
+                            </status>
                             <export translate="title" module="eurotext_translationmanager">
                                 <title>Projects</title>
                                 <sort_order>30</sort_order>
@@ -53,6 +50,18 @@
                             </help>
                         </children>
                     </eurotext_translationmanager>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <eurotext translate="title" module="eurotext_translationmanager">
+                                        <title>Eurotext Settings</title>
+                                        <sort_order>100</sort_order>
+                                    </eurotext>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
                 </children>
             </admin>
         </resources>

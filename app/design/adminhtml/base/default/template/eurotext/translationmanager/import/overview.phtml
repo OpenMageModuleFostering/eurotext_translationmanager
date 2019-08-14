@@ -1,0 +1,63 @@
+<?php /** @var $this Eurotext_TranslationManager_Block_Adminhtml_Eurotext_Import_Overview */ ?>
+<script>
+	document.observe('dom:loaded', function () {
+
+		function addEntryToList(message, cssClass) {
+			cssClass = typeof cssClass !== 'undefined' ? cssClass : '';
+
+			var li = new Template('<li class="#{cssClass}">#{message}</li>');
+			$('import-status').insert({
+				bottom: li.evaluate({cssClass: cssClass, message: message})
+			});
+		}
+
+		function processImportFile() {
+			if (continueImport) {
+				new Ajax.Request(url, {
+					onSuccess: function (response) {
+						addEntryToList(response.responseJSON.message, response.responseJSON.class);
+						continueImport = response.responseJSON.continueImport;
+						processImportFile();
+						if (!continueImport) {
+							var text = Translator.translate('Back to Project');
+							var button = '<button type="button" onclick="location.href=\'' + successUrl + '\'" style=""><span><span>' + text + '</span></span></button>';
+							$('import-status').insert({bottom: '<li class="success">' + button + '</li>'})
+						}
+					},
+					onFailure: function (response) {
+						if (response.responseJSON == null) {
+							addEntryToList(Translator.translate('Something went wrong while importing, please try again.'));
+							return;
+						}
+						addEntryToList(response.responseJSON.message, response.responseJSON.class);
+						continueImport = false;
+					},
+					onException: function (request, exception) {
+						addEntryToList(
+								new Template(
+										Translator.translate('Something went wrong while importing: "#{error}". Please try again.')
+								).evaluate({error: exception.message})
+						);
+						continueImport = false;
+					}
+				});
+				url = processFilesFromQueueUrl;
+			}
+		}
+
+		var url = '<?php echo $this->getAddFilesToImportQueueUrl(); ?>';
+		var processFilesFromQueueUrl = '<?php echo $this->getProcessFilesFromQueueUrl(); ?>';
+		var continueImport = true;
+		var successUrl = '<?php echo $this->getSuccessUrl(); ?>';
+
+		processImportFile();
+	});
+</script>
+<ul class="eurotext_import_status" id="import-status">
+	<li class="ok"><?php echo $this->__('Your data are imported, please stay tuned. '); ?></li>
+	<li class="error">
+        <?php echo $this->__(
+            'This process may take a few minutes depending on project size. Please wait until a message is displayed that the import has been completed.'
+        ); ?>
+	</li>
+</ul>

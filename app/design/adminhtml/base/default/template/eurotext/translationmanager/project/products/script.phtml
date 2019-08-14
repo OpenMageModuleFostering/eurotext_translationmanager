@@ -1,0 +1,9 @@
+<script>
+    //# sourceURL=script.phtml
+
+    <?php if(!$this->getRequest()->getParam('category_id')): ?>
+    $$('.x-tree-selected').each(function (elem) {
+        elem.removeClassName('x-tree-selected')
+    });
+    <?php endif; ?>
+</script>

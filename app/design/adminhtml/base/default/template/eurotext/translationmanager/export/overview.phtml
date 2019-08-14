@@ -1,0 +1,16 @@
+<?php /** @var Eurotext_TranslationManager_Block_Adminhtml_Export_Overview $this */ ?>
+<script type="text/javascript">
+	var exportUrl = '<?php echo $this->getExportUrl(); ?>';
+	var successUrl = '<?php echo $this->getSuccessUrl(); ?>';
+	var formKey = "<?php echo $this->getFormKey();?>";
+	exportProject(exportUrl, successUrl, formKey, <?php echo $this->getProjectId(); ?>, 0, 0)
+</script>
+
+<ul class="eurotext_export_status">
+	<li class="ok">
+        <?php echo $this->__("Starting profile execution, please wait …"); ?>
+	</li>
+	<li class="error">
+        <?php echo $this->__("Warning: Please do not close the window during exporting data"); ?>
+	</li>
+</ul>

@@ -1,0 +1,22 @@
+.eurotext_export_status li,
+.eurotext_import_status li {
+    background: no-repeat 4px 5px;
+    padding: 5px 5px 5px 27px;
+    border: 1px solid #ccc;
+    margin: 2px;
+}
+
+.eurotext_export_status .ok,
+.eurotext_import_status .ok {
+    background: url("../../../../../default/default/images/fam_bullet_success.gif") no-repeat 4px 5px;
+}
+
+.eurotext_export_status .error,
+.eurotext_import_status .error {
+    background: #FFD url("../../../../../default/default/images/fam_bullet_error.gif") no-repeat 4px 5px;
+}
+
+.eurotext_export_status .success,
+.eurotext_import_status .success {
+    background: #DDF url("../../../../../default/default/images/fam_bullet_success.gif") no-repeat 4px 5px;
+}

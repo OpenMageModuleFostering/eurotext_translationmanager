@@ -1,11 +1,13 @@
 <?xml version="1.0"?>
-<!--
--->
 <config>
     <modules>
         <Eurotext_TranslationManager>
             <active>true</active>
             <codePool>community</codePool>
         </Eurotext_TranslationManager>
+        <Eurotext_Uploader>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Eurotext_Uploader>
     </modules>
 </config>

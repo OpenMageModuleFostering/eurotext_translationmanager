@@ -1,0 +1,133 @@
+#project_tabs_products_section_content .tree {
+    width: 20%;
+    margin-top: 33px;
+}
+
+#project_tabs_products_section_content #productGrid {
+    width: 80%;
+    float: right;
+}
+
+.tree .incomplete a span {
+    color: lightgrey;
+}
+
+div#project_tabs_transaction_email_section_content > div {
+    float: left;
+    width: 49.5%;
+}
+
+div#project_tabs_transaction_email_section_content > div:nth-child(2) {
+    margin-right: 1%;
+}
+
+.bulk_sku.bulk_sku {
+    width: 20%;
+    margin-top: 4px;
+}
+
+.bulk_sku textarea {
+    max-width: 80%;
+    width: 80%;
+    resize: none;
+    height: 40em;
+}
+
+/* Files Uploader */
+.files .flex,
+.files-wide .flex {
+    float: right !important;
+    position: static !important;
+}
+
+.files .uploader,
+.files-wide .uploader {
+    float: left;
+    overflow: hidden;
+}
+
+.files .uploader {
+    width: 100px;
+}
+
+.files-wide .uploader {
+    width: 260px;
+}
+
+.files .uploader .file-row-info,
+.files-wide .uploader .file-row-info,
+.files .uploader .file-row-narrow,
+.files-wide .uploader .file-row-narrow {
+    margin: 0 !important;
+}
+
+/** Media Library **/
+.uploader {
+    margin-top: -10px;;
+}
+
+.uploader .file-row {
+    width: 600px;
+    padding: 0.5em 0.6em;
+    margin: 0.5em 0.6em;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9; /*vertical-align:middle;*/
+}
+
+.uploader .file-row-narrow {
+    width: auto;
+    margin: 0 0 2px 40px;
+}
+
+.uploader .file-row .file-info {
+    float: left;
+    margin-left: 14px;
+    margin-top: 2px;
+}
+
+/*.uploader .file-row .file-info-name { with: 80%; overflow: hidden; }
+.uploader .file-row .file-info-size { width: 20%; }*/
+.uploader .file-row-info {
+    margin: 0 0 0 10px;
+}
+
+.uploader .file-row-info .file-info-name {
+    font-weight: bold;
+}
+
+.uploader .file-row .progress-text {
+    float: right;
+    font-weight: bold;
+}
+
+.uploader .file-row .delete-button {
+    float: right;
+}
+
+.uploader .progress {
+    border: 1px solid #f0e6b7;
+    background-color: #feffcc;
+}
+
+.uploader .error {
+    border: 1px solid #aa1717;
+    background-color: #ffe6de;
+}
+
+.uploader .error .progress-text {
+    padding-right: 10px;
+}
+
+.uploader .complete {
+    border: 1px solid #90c898;
+    background-color: #e5ffed;
+}
+
+.uploader .buttons {
+    margin-top: 7px;
+    margin-left: 14px;
+}
+
+#productGrid_massaction-form {
+    display: none;
+}

@@ -2,20 +2,10 @@
 <config>
     <modules>
         <Eurotext_TranslationManager>
-            <version>1.1.2.2</version>
+            <version>3.2.13</version>
         </Eurotext_TranslationManager>
     </modules>
     <global>
-        <models>
-            <eurotext_translationmanager>
-                <class>Eurotext_TranslationManager_Model</class>
-            </eurotext_translationmanager>
-        </models>
-        <helpers>
-            <eurotext_translationmanager>
-                <class>Eurotext_TranslationManager_Helper</class>
-            </eurotext_translationmanager>
-        </helpers>
         <models>
             <eurotext_translationmanager>
                 <class>Eurotext_TranslationManager_Model</class>
@@ -27,38 +17,119 @@
                     <project>
                         <table>eurotext_project</table>
                     </project>
+                    <project_categories>
+                        <table>eurotext_project_categories</table>
+                    </project_categories>
+                    <project_cmsblocks>
+                        <table>eurotext_project_cmsblocks</table>
+                    </project_cmsblocks>
+                    <project_cmspages>
+                        <table>eurotext_project_cmspages</table>
+                    </project_cmspages>
+                    <project_products>
+                        <table>eurotext_project_products</table>
+                    </project_products>
+                    <project_import>
+                        <table>eurotext_project_import</table>
+                    </project_import>
+                    <project_emailtemplates>
+                        <table>eurotext_project_emailtemplates</table>
+                    </project_emailtemplates>
+                    <project_emailtemplate_files>
+                        <table>eurotext_project_emailtemplate_files</table>
+                    </project_emailtemplate_files>
+                    <project_emailtemplate_database>
+                        <table>eurotext_project_emailtemplate_database</table>
+                    </project_emailtemplate_database>
+                    <project_csv>
+                        <table>eurotext_project_csv</table>
+                    </project_csv>
+
+                    <project_csv_data>
+                        <!-- deprecated but can't delete, because then the sql scripts will fail -->
+                        <table>eurotext_project_csv_data</table>
+                    </project_csv_data>
+                    <csv>
+                        <!-- deprecated but can't delete, because then the sql scripts will fail -->
+                        <table>eurotext_csv</table>
+                    </csv>
+                    <csv_data>
+                        <!-- deprecated but can't delete, because then the sql scripts will fail -->
+                        <table>eurotext_csv_data</table>
+                    </csv_data>
+                    <emailtemplates>
+                        <!-- deprecated but can't delete, because then the sql scripts will fail -->
+                        <table>eurotext_emailtemplates</table>
+                    </emailtemplates>
+                    <import>
+                        <!-- deprecated but can't delete, because then the sql scripts will fail -->
+                        <table>eurotext_import</table>
+                    </import>
+                    <languages>
+                        <!-- deprecated but can't delete, because then the sql scripts will fail -->
+                        <table>eurotext_languages</table>
+                    </languages>
                 </entities>
             </eurotext_translationmanager_resource>
         </models>
+        <blocks>
+            <eurotext_translationmanager>
+                <class>Eurotext_TranslationManager_Block</class>
+            </eurotext_translationmanager>
+        </blocks>
+        <helpers>
+            <eurotext_translationmanager>
+                <class>Eurotext_TranslationManager_Helper</class>
+            </eurotext_translationmanager>
+        </helpers>
         <resources>
             <eurotext_translationmanager_setup>
                 <setup>
                     <module>Eurotext_TranslationManager</module>
                     <class>Eurotext_TranslationManager_Model_Resource_Setup</class>
                 </setup>
-                <connection>
-                    <use>core_setup</use>
-                </connection>
             </eurotext_translationmanager_setup>
         </resources>
-        <blocks>
-            <eurotext_translationmanager>
-                <class>Eurotext_TranslationManager_Block</class>
-            </eurotext_translationmanager>
-        </blocks>
     </global>
     <admin>
         <routers>
             <adminhtml>
                 <args>
                     <modules>
-                        <eurotext_translationmanager before="Mage_Adminhtml">Eurotext_TranslationManager_Adminhtml</eurotext_translationmanager>
+                        <eurotext_translationmanager
+                                before="Mage_Adminhtml">Eurotext_TranslationManager_Adminhtml</eurotext_translationmanager>
                     </modules>
                 </args>
             </adminhtml>
         </routers>
     </admin>
     <adminhtml>
+        <events>
+            <model_config_data_save_before>
+                <observers>
+                    <eurotext_translationmanager>
+                        <class>eurotext_translationmanager/observer</class>
+                        <method>modelConfigDataSaveBefore</method>
+                    </eurotext_translationmanager>
+                </observers>
+            </model_config_data_save_before>
+            <admin_system_config_section_save_after>
+                <observers>
+                    <eurotext_translationmanager>
+                        <class>eurotext_translationmanager/observer</class>
+                        <method>adminSystemConfigSectionSaveAfter</method>
+                    </eurotext_translationmanager>
+                </observers>
+            </admin_system_config_section_save_after>
+            <controller_action_predispatch>
+                <observers>
+                    <eurotext_translationmanager>
+                        <class>eurotext_translationmanager/observer</class>
+                        <method>outputDebugNotice</method>
+                    </eurotext_translationmanager>
+                </observers>
+            </controller_action_predispatch>
+        </events>
         <translate>
             <modules>
                 <Eurotext_TranslationManager>
@@ -76,4 +147,17 @@
             </updates>
         </layout>
     </adminhtml>
+    <default>
+        <eurotext>
+            <user_settings>
+                <ftp_password backend_model="adminhtml/system_config_backend_encrypted"/>          
+            </user_settings>
+        </eurotext>
+        <dev>
+            <log>
+                <ettm_debug>0</ettm_debug>
+                <ettm_ftp>1</ettm_ftp>
+            </log>
+        </dev>
+    </default>
 </config>

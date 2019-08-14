@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<jstranslator>
+    <uploader-exceed_max-1 translate="message" module="eurotext_uploader">
+        <message>Maximum allowed file size for upload is</message>
+    </uploader-exceed_max-1>
+    <uploader-exceed_max-2 translate="message" module="eurotext_uploader">
+        <message>Please check your server PHP settings.</message>
+    </uploader-exceed_max-2>
+    <uploader-tab-change-event-confirm translate="message" module="eurotext_uploader">
+        <message>There are files that were selected but not uploaded yet. After switching to another tab your selections will be lost. Do you wish to proceed?</message>
+    </uploader-tab-change-event-confirm>
+    <uploader-complete-event-text translate="message" module="eurotext_uploader">
+        <message>Complete</message>
+    </uploader-complete-event-text>
+    <uploader-uploading-progress translate="message" module="eurotext_uploader">
+        <message>Uploading…</message>
+    </uploader-uploading-progress>
+</jstranslator>
+
