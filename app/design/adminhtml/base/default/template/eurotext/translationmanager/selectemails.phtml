@@ -1,0 +1,113 @@
+<?php
+// allow utf8-detection: öäü€
+
+$visibleEmailTemplates=array();
+?>
+
+<div class="eurotext_layertitle"><?php echo $this->__("Add eMail-Template"); ?></div>
+<div class="eurotext_layerstrip"></div>
+
+<table cellpadding="0" cellspacing="0" style="width:100%;border:1px solid #E6E6E6;">
+	<tr>
+		<td class="eurotext_layercellheader"><?php echo $this->__("Select email templates"); ?></td>
+		<td class="eurotext_layercellheader" style="border-left:1px solid #E6E6E6;"><?php echo $this->__("Selected eMail-Templates"); ?></td>
+	</tr>
+	<tr>
+		<td style="width:50%;vertical-align:top;">
+			<div style="margin:20px;">					
+			<?php
+				$emailTemplates=$this->getEMailTemplates();
+				
+				// Results:
+				echo "<table cellpadding=0 cellspacing=0>";
+				echo "<tr>";
+				echo "  <td class='et_th'>".$this->__("Translate")."</td>";
+				echo "  <td class='et_th'>".$this->__("Filename")."</td>";
+				echo "  <td class='et_th'>&nbsp;</td>";
+				echo "</tr>";
+										
+				foreach($emailTemplates as $emailTemplate)
+				{
+					$checkStr="";
+					if ($emailTemplate['checked'])
+					{
+						$checkStr="checked='checked'";
+					}
+					
+					array_push($visibleEmailTemplates,$emailTemplate['file_hash']);
+					
+					echo "<tr>";
+					echo "  <td class='et_tc'><input ".$checkStr." type='checkbox' id='et_selemail1_".$emailTemplate['file_hash']."' class='et_selemail et_selemail_".$emailTemplate['file_hash']."' onchange=\"eurotext_selectemail('1','".$emailTemplate['file_hash']."')\" /></td>";
+					echo "  <td class='et_tc'>".$emailTemplate['filename']."</td>";
+					echo "  <td class='et_tc'>&nbsp;</td>";
+					echo "</tr>";
+				}		
+				echo "</table>";			
+			?>
+			</div>	
+			<?php		
+				echo "<div style='margin:20px;'>";
+				//echo "<div><a href='#' class='eurotext_selectemails_allvisible'>".$this->__("Select all email templates displayed")."</a></div>";
+				echo "<div><a href='#' class='eurotext_selectemails_all'>".$this->__("Select all email templates")."</a></div>";
+				echo "<div><a href='#' class='eurotext_selectemails_none'>".$this->__("No selection")."</a></div>";
+				echo "</div>";
+			?>			
+		</td>
+		<td style="vertical-align:top;background-color:#F2F2F2;">
+			<div style="margin:20px;">
+				<div id="et_saveinfo"><?php $this->__("Loading - please wait..."); ?></div>
+				<div id="selectedemails_result"></div>
+			</div>
+		</td>
+	</tr>
+</table>
+<div style="text-align:center;margin-top:10px;"><a href="#" onclick="return eurotext_closeme()" class="et_btt"><?php echo $this->__("Save"); ?></a></div>
+<div>&nbsp;</div>
+
+<script>
+var eurotext_selectemails_url="<?php echo $this->getSelectEMailsUrl(); ?>";
+var eurotext_selectemails_saveurl="<?php echo $this->getSelectEMailsSaveUrl(); ?>";
+var eurotext_formkey="<?php echo Mage::getSingleton('core/session')->getFormKey(); ?>";
+var eurotext_projectid="<?php echo $this->getRequest()->getParam("id"); ?>";
+
+jQuery(document).ready(function()
+{
+	eurotext_selectedemails_send(new Array(),null);
+	
+	jQuery(".eurotext_selectemails_all").click(function()
+	{		
+		var postdata=new Array();
+				
+		<?php
+			echo "postdata['cnt']=".count($visibleEmailTemplates).";";
+			for($i=0; $i<count($visibleEmailTemplates); $i++)
+			{
+				echo "postdata['file_hash_".$i."']='".$visibleEmailTemplates[$i]."';\r\n";
+				echo "postdata['set_".$i."']='enabled';\r\n";
+			}
+		?>
+		
+		jQuery(".et_selemail").attr("checked","checked");
+		jQuery(".et_selemail").prop("checked",true); // for some reason Chrome ignores the line above (but works on every other page) ;/
+				
+		eurotext_selectedemails_send(postdata,null);
+		
+		return false;
+	});
+	
+	jQuery(".eurotext_selectemails_none").click(function()
+	{		
+		var postdata=new Array();
+		postdata['cnt']=0;
+		postdata['select']='none';
+		
+		eurotext_selectemails_ignore=true;
+		
+		jQuery(".et_selemail").attr("checked",false);
+				
+		eurotext_selectedemails_send(postdata,null);
+		
+		return false;
+	});
+});
+</script>

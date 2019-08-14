@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<layout>
+
+    <eurotext_prepare_popup>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>popup.phtml</template>
+            </action>
+        </reference>
+        <remove name="header"/>
+        <remove name="footer"/>
+    </eurotext_prepare_popup>
+
+    <eurotext_add_css>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>eurotext/translationmanager/css/styles.css</name>
+                <params/>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>eurotext/translationmanager/js/eurotext-jquery-1.9.1.js</name>
+                <params/>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>eurotext/translationmanager/js/eurotext.js</name>
+                <params/>
+            </action>
+        </reference>
+    </eurotext_add_css>
+
+    <!--
+
+    LAYOUT AREA FOR VISIBLE BACKEND PAGES
+
+    -->
+    <adminhtml_eurotext_translationmanager_register_index>
+        <update handle="eurotext_add_css"/>
+        <reference name="content">
+            <block type="eurotext_translationmanager/register" name="et.tm.register"
+                   template="eurotext/translationmanager/register.phtml"/>
+        </reference>
+    </adminhtml_eurotext_translationmanager_register_index>
+
+    <adminhtml_eurotext_translationmanager_settings_index>
+        <update handle="eurotext_add_css"/>
+        <reference name="content">
+            <block type="eurotext_translationmanager/settings" name="et.tm.settings"
+                   template="eurotext/translationmanager/settings.phtml"/>
+        </reference>
+    </adminhtml_eurotext_translationmanager_settings_index>
+
+    <adminhtml_eurotext_translationmanager_projects_index>
+        <update handle="eurotext_add_css"/>
+        <reference name="content">
+            <block type="eurotext_translationmanager/projects" name="et.tm.projects"
+                   template="eurotext/translationmanager/projects.phtml"/>
+        </reference>
+    </adminhtml_eurotext_translationmanager_projects_index>
+
+    <adminhtml_eurotext_translationmanager_help_index>
+        <update handle="eurotext_add_css"/>
+        <reference name="content">
+            <block type="eurotext_translationmanager/help" name="et.tm.help"
+                   template="eurotext/translationmanager/help.phtml"/>
+        </reference>
+    </adminhtml_eurotext_translationmanager_help_index>
+
+    <adminhtml_eurotext_translationmanager_selectproducts_index>
+        <update handle="eurotext_add_css"/>
+        <update handle="eurotext_prepare_popup"/>
+        <reference name="content">
+            <block type="eurotext_translationmanager/selectproducts" name="et.tm.selectproducts"
+                   template="eurotext/translationmanager/selectproducts.phtml"/>
+        </reference>
+    </adminhtml_eurotext_translationmanager_selectproducts_index>
+
+    <adminhtml_eurotext_translationmanager_selectcategories_index>
+        <update handle="eurotext_add_css"/>
+        <update handle="eurotext_prepare_popup"/>
+        <reference name="content">
+            <block type="eurotext_translationmanager/selectcategories" name="et.tm.selectcategories"
+                   template="eurotext/translationmanager/selectcategories.phtml"/>
+        </reference>
+    </adminhtml_eurotext_translationmanager_selectcategories_index>
+
+    <adminhtml_eurotext_translationmanager_selectcmspages_index>
+        <update handle="eurotext_add_css"/>
+        <update handle="eurotext_prepare_popup"/>
+        <reference name="content">
+            <block type="eurotext_translationmanager/selectcmspages" name="et.tm.selectcmspages"
+                   template="eurotext/translationmanager/selectcmspages.phtml"/>
+        </reference>
+    </adminhtml_eurotext_translationmanager_selectcmspages_index>
+
+    <adminhtml_eurotext_translationmanager_selectlangfiles_index>
+        <update handle="eurotext_add_css"/>
+        <update handle="eurotext_prepare_popup"/>
+        <reference name="content">
+            <block type="eurotext_translationmanager/selectlangfiles" name="et.tm.selectlangfiles"
+                   template="eurotext/translationmanager/selectlangfiles.phtml"/>
+        </reference>
+    </adminhtml_eurotext_translationmanager_selectlangfiles_index>
+
+    <adminhtml_eurotext_translationmanager_selectemails_index>
+        <update handle="eurotext_add_css"/>
+        <update handle="eurotext_prepare_popup"/>
+        <reference name="content">
+            <block type="eurotext_translationmanager/selectemails" name="et.tm.selectemails"
+                   template="eurotext/translationmanager/selectemails.phtml"/>
+        </reference>
+    </adminhtml_eurotext_translationmanager_selectemails_index>
+
+
+    <!--
+
+    LAYOUT AREA FOR AJAX REQUESTS
+
+    -->
+    <adminhtml_eurotext_translationmanager_ajax>
+        <block type="eurotext_translationmanager/response_ajax" output="toJson" name="et.tm.response.ajax" />
+    </adminhtml_eurotext_translationmanager_ajax>
+    <adminhtml_eurotext_translationmanager_text>
+        <block type="core/text" output="toHtml" name="et.tm.response.text" />
+    </adminhtml_eurotext_translationmanager_text>
+</layout>

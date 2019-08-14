@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <dev>
+            <groups>
+                <log>
+                    <fields>
+                        <ettm_head>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <label>Eurotext translationMANAGER</label>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <sort_order>100</sort_order>
+                        </ettm_head>
+                        <ettm_debug translate="comment label">
+                            <frontend_type>select</frontend_type>
+                            <label>Debug Mode</label>
+                            <comment>Enabling this option writes an eurotext.log file into {{base_dir}}/var/log</comment>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <sort_order>110</sort_order>
+                        </ettm_debug>
+                    </fields>
+                </log>
+
+            </groups>
+        </dev>
+    </sections>
+</config>

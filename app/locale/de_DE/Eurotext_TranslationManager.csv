@@ -1,0 +1,223 @@
+﻿(All products),(Alle Artikel)
+-- Select storeview --,-- Bitte Storeview wählen --
+"<b>Please note:</b> For safety reasons, we recommend importing to a staging system first. Make sure to backup all your data before importing.",<b>Bitte beachten Sie:</b> Aus Sicherheitsgründen sollte der erste Import in einem Testsystem (Staging) durchgeführt werden. Erstellen Sie vor dem Import ein Backup Ihrer Daten.
+"<b>Select all [...] without existing translation:</b> The module will automatically select all Products, categories, CMS pages and email templates for which no translated text exists in the target language.","<b>Alle [...] ohne vorhandene Übersetzung auswählen:</b> Das Modul wählt für Sie automatisch alle Artikel, Kategorien, CMS-Seiten und/oder E-Mail-Vorlagen aus, für die noch keine Texte in der Zielsprache existieren."
+<i><span style='color:red;'>Important:</span> All previous assignments will be deleted!</i>,<i><span style='color:red;'>Achtung:</span> Alle vorherigen Zuordnungen werden dadurch gelöscht!</i>
+"<i><span style='color:red;'>Important:</span> We recommend using this setting only for the initial translation of a new online shop, as it will trigger a translation of ALL language files for the selected target language!</i>","<i><span style='color:red;'>Achtung:</span> Diese Einstellung empfiehlt sich nur bei der ersten Übersetzung neuer Onlineshops, denn hier werden ALLE Sprachdateien der gewählten Zielsprache neu übersetzt!</i>"
+A storeview does not exist (anymore),Der Storeview existiert nicht (mehr)
+Action,Aktion
+Add eMail-Template,E-Mail-Vorlage hinzufügen
+Additional settings,Weitere Einstellungen
+Already submitted. Project settings can no longer be edited.,Bereits abgeschickt. Projekteinstellungen können nicht mehr geändert werden.
+Analysing,Analysiere
+Analyzing,Analysiere
+Any information you provide is voluntary. Your data will be used for the purpose of logging in to the translation portal and for project processing in your dealings with Eurotext AG only. Your information will not be forwarded to third parties. You can request a deletion of your information at any time by sending an email to <a href='mailto:datenschutz@eurotext.de'>privacy@eurotext.de</a>.,Alle Angaben erfolgen freiwillig. Die von Ihnen übermittelten Informationen werden ausschließlich für die Anmeldung am Übersetzungsportal und die Projektabwicklung mit der Eurotext AG genutzt. Die Weitergabe der Daten an Dritte ist ausgeschlossen. Sie können jederzeit eine Löschung Ihrer Daten unter <a href='mailto:datenschutz@eurotext.de'>privacy@eurotext.de</a>veranlassen.
+Begin import,Import starten
+Bundle Product,Bündelartikel
+CMS pages per file,CMS-Seiten pro Datei
+CMS-Block,CMS-Block
+CMS-Page,CMS-Seite
+CMS-Type,CMS-Typ
+Categories per file,Kategorien pro Datei
+Category filter,Kategorienfilter
+Checking CMS-Block,Prüfe CMS-Block
+Checking CMS-Blocks,Prüfe CMS-Blöcke
+Checking CMS-Page,Prüfe CMS-Seite
+Checking CMS-Pages,Prüfe CMS-Seiten
+Checking Product,Prüfe Artikel
+Checking attributes,Prüfe Attribute
+Checking category,Prüfe Kategorie
+Checking eMail-Template,Prüfe E-Mail-Vorlage
+Checking eMail-Templates,Prüfe E-Mail-Vorlagen
+City,Ort
+Click here to change the scope of url keys to enable translation of url keys for products and categories. (Attention: This can not be undone!),"Klicken Sie hier, um den Umfang der URL-Keys zu ändern, damit die URL-Keys für Artikel und Kategorien übersetzt werden können. (Achtung: Dies kann nicht mehr rückgängig gemacht werden!)"
+Clicking <b>Select all language files without existing translation</b> will automatically select all files and check for missing translations. All entries without an existing translation will be exported.,Mit Klick auf <b>Alle Einträge in Sprachdateien ohne vorhandene Übersetzung auswählen</b> werden alle Sprachdateien eingelesen und nach fehlenden Übersetzungen überprüft. Alle Einträge ohne Übersetzung werden exportiert.
+Clicking <b>Select language files</b> will allow you to manually select specific shop system texts in the selection window for translation.,Mit Klick auf <b>Sprachdateien auswählen</b> können Sie die für die Übersetzung bestimmten Shop-Systemtexte im Auswahlfenster manuell zuordnen.
+"Clicking the button <b>Request your free quote now</b> will transmit your texts for translation to the translation portal, and you will receive a detailed quote for your translation project within the next 24 hours (weekdays).",Durch Klick auf den Button <b>Jetzt kostenloses Angebot anfordern</b> werden die zu übersetzenden Texte an das Übersetzungsportal übermittelt und Sie erhalten innerhalb von 24 Stunden (werktags) ein detailliertes Angebot für die Übersetzung Ihrer Texte.
+"Clicking the button below will transmit the selected texts to the translation portal, and you will receive a detailed quote for the translation of your texts within 24h (weekdays).",Mit einem Klick auf den nachfolgenden Button werden die ausgewählten Texte an das Übersetzungsportal übermittelt und Sie erhalten innerhalb von 24 Stunden (werktags) ein detailliertes Angebot für die Übersetzung Ihrer Texte.
+Company,Firma
+Configurable Product,Konfigurierbarer Artikel
+Contact,Kontakt
+Could not connect to server. Could be a temporary error or firewall problem. You could also check for a new module version.,"Es konnte keine Server-Verbindung hergestellt werden. Dies kann auf einen vorübergehenden Fehler oder ein Problem mit der Firewall zurückzuführen sein. Sie sollten außerdem prüfen, ob eine neue Modul-Version verfügbar ist."
+Country,Land
+Create a new project for each translation order.,Legen Sie für jeden Übersetzungsauftrag ein Projekt an.
+Create a unique project name here. This will allow you better recognize your various projects later.,"Setzen Sie hier einen eindeutigen Projektnamen ein. Das erlaubt Ihnen, die Projekte besser zuzuordnen bzw. sie wiederzuerkennen."
+Current value,Aktueller Wert
+Current value for 'max_execution_time',Aktueller Wert von 'max_execution_time'
+Currently your Magento installation is not capable to save translated url keys for products and categories.,"Ihre aktuelle Magento-Installation ist nicht in der Lage, übersetzte URL-Keys für Artikel und Kategorien zu speichern."
+Customer ID,Kunden-Nummer
+Delete,Löschen
+Designation,Bezeichnung
+Disabled,Deaktiviert
+Do you really want to delete this project?,Wollen Sie dieses Projekt wirklich löschen?
+Do you really want to reset this project?,Wollen Sie dieses Projekt wirklich zurücksetzen?
+Done,Fertig
+Downloadable Product,Downloadartikel
+Each project must have a name assigned (we recommend something unique and identifiable).,Vergeben Sie dem Projekt einen Namen (es empfiehlt sich hier einen aussagekräftigen Namen zu wählen)
+Edit,Bearbeiten
+Edit information,Daten ändern
+Enabled,Aktiviert
+Enter designation or SKU,Bezeichnung oder Artikelnummer eingeben
+Error Message,Fehlermeldung
+Export,Export
+Export SEO content?,SEO-Inhalte exportieren?
+Export URL keys?,URL-Keys exportieren?
+Export attributes und attribute options?,Attribute und Attribut-Optionen exportieren?
+Filename,Dateiname
+Filter,Filter
+Finished loading language files.,Das Laden der Sprachdateien ist abgeschlossen.
+First Name,Vorname
+Generating Language files,Erzeuge Sprachdateien
+Generating ZIP-Archive,Erzeuge ZIP-Archiv
+Generating language files...,Erzeuge Sprachdateien ...
+Grouped Product,Gruppen Artikel
+Help,Hilfe
+Here you will find a list of the settings required for operating the Eurotext interface,Hier finden Sie eine Auflistung der für den Betrieb der Eurotext-Schnittstelle notwendigen Einstellungen
+House No,Hausnummer
+ID,ID
+Identifier,Identifizierer
+Import,Importieren
+Import the *.zip file containing the finished translations here,Die *.zip-Datei mit den fertigen Übersetzungen können Sie hier wieder importieren
+Import translations,Übersetzungen importieren
+Import translations now,Jetzt Übersetzungen importieren
+Important,Wichtig
+In Stock,Auf Lager
+In progress,In Bearbeitung
+Installed,Installiert
+Language of the translation portal,Sprache im Übersetzungsportal
+Language settings,Spracheinstellungen
+Last Name,Nachname
+Last save,Zuletzt gespeichert
+Last update,Letzte Aktualisierung
+Loaded,Geladen
+Loading - Please wait,Lade - Einen Moment
+Loading - please wait …,Lade - Einen Moment...
+Loading - please wait...,Lade - Einen Moment...
+Login data could not be validated. FTP-Extension is missing!,Die Login-Daten konnten nicht bestätigt werden. FTP-Extension fehlt!
+Make sure to complete the registration process and enter your access information before submitting your first translation project. Fill out all fields of the registration form and click <b><i>Save and send</i>.</b> Eurotext will send you your login details within 24 hours (weekdays). Enter that information in the menu item <b><i>Settings</i></b>.,Vor dem ersten Übersetzungsprojekt müssen Sie den Registrierungsprozess abgeschlossen und die Zugangsdaten eingetragen haben. Füllen Sie bitte alle Felder des Registrierungsformulars aus und klicken Sie auf <b><i>Speichern und Senden</i></b>. Eurotext wird Ihnen innerhalb von 24 Stunden (werktags) Ihre Zugangsdaten zusenden. Tragen Sie diese Daten im Menüpunkt <b><i>Einstellungen</i></b> ein.
+Minimum,Minimum
+Missing,Fehlend
+Module-Version,Modul-Version
+Mr.,Herr
+Ms.,Frau
+New,Neu
+New Project,Neues Projekt
+New project,Neues Projekt
+No file given!,Keine Datei angegeben!
+"No file was selected, or the file selected is not a ZIP file",Es wurde keine Datei ausgewählt oder die Datei ist keine ZIP-Datei
+No projects created,Noch keine Projekte angelegt
+No result,Nichts gefunden
+No selection,Nichts ausgewählt
+Not yet saved,Noch nicht gespeichert
+Not yet selected,Noch nicht ausgewählt
+Note,Hinweis
+Open help,Hilfe starten
+Out of Stock,Nicht auf Lager
+Page,Seite
+Password,Passwort
+Per Page,Pro Seite
+Phone,Telefon
+Please enter all requested information!,Bitte füllen Sie alle Felder aus!
+Please enter project name!,Bitte vergeben Sie einen Projektnamen!
+Please enter your contact information here,Bitte tragen Sie hier Ihre Kontaktdaten ein
+Please read the translationManager documentation for more information.,"Für weitere Informationen, lesen Sie bitte die translationMANAGER Dokumentation."
+Please select Destination Storeview!,Bitte Ziel-Storeview wählen!
+Please select Source Storeview!,Bitte Ausgangs-Storeview wählen!
+Please select different Storeviews for Source and Destination!,Wählen Sie bitte verschiedene Storeviews für Ausgang und Ziel aus!
+Please wait,Einen Moment
+Please wait - saving project settings,Einen Moment - Speichere Projekteinstellungen
+Please wait - this may take a while,Einen Moment - Kann etwas dauern
+Processing - please wait …,Arbeite - Einen Moment...
+Processing File,Verarbeite Datei
+Product Type,Artikel-Art
+Products per file,Artikel pro Datei
+"Products, categories, CMS pages, or email templates can be selected individually (<b>Select […]</b>), or alternatively:","Die Artikel, Kategorien, CMS-Seiten und/oder E-Mail-Vorlagen können individuell ausgewählt werden (Klick auf <b>[…] auswählen</b>) oder"
+Project name,Projektname
+Project settings,Projekt-Einstellungen
+Projects,Projekte
+Quote request,Angebot anfordern
+Registration,Registrierung
+Request your free quote now,Jetzt kostenloses Angebot anfordern
+Required value,Benötigter Wert
+Reset,Zurücksetzen
+SKU,Artikelnr
+Salutation,Anrede
+Save,Speichern
+Save and send,Senden und Speichern
+Save project,Projekt speichern
+Saved Project!,Projekt gespeichert!
+Select CMS pages,CMS-Seiten auswählen
+Select CMS pages/blocks,CMS-Seiten/-Blöcke auswählen
+Select all CMS pages displayed,Alle angezeigten CMS-Seiten auswählen
+Select all CMS pages without existing translations,Alle CMS-Seiten ohne vorhandene Übersetzung auswählen
+Select all CMS pages/blocks,Alle CMS-Seiten/-Blöcke auswählen
+Select all categories,Alle Kategorien auswählen
+Select all categories displayed,Alle angezeigten Kategorien auswählen
+Select all categories without existing translations,Alle Kategorien ohne vorhandene Übersetzung auswählen
+Select all email templates,Alle E-Mail-Vorlagen auswählen
+Select all email templates displayed,Alle angezeigten E-Mail-Vorlagen auswählen
+Select all email templates without existing translations,Alle E-Mail-Templates ohne vorhandene Übersetzung auswählen
+Select all entries in language files without existing translations,Alle Einträge in Sprachdateien ohne vorhandene Übersetzung auswählen
+Select all language files,Alle Sprachdateien auswählen
+Select all language files displayed,Alle angezeigten Sprachdateien auswählen
+Select all products displayed,Alle angezeigten Artikel auswählen
+Select all products in this category,Alle Artikel dieser Kategorie auswählen
+Select all products without existing translations,Alle Artikel ohne vorhandene Übersetzung auswählen
+Select categories,Kategorien auswählen
+Select email templates,E-Mail-Vorlagen auswählen
+Select language files,Sprachdateien wählen
+"Select product texts, category texts, or CMS pages for translation.","Wählen Sie Artikeltexte, Kategorietexte oder CMS-Seiten für die Übersetzung aus."
+Select products,Artikel auswählen
+"Select the check box <b>Export SEO content?</b> if you would like to have the SEO content (e.g. keywords, search terms, meta tags, etc.) translated.","Aktivieren Sie die Checkbox <b>SEO-Inhalte exportieren?</b>, falls Sie auch die SEO-Inhalte (z.B. Keywords, Suchbegriffe, Meta-Tags, etc.) übersetzen lassen wollen."
+Select the check box <b>Export URL keys?</b> if you would like to have URLs of products and categories translated.,Aktivieren Sie die Checkbox <b>URL-Keys exportieren?</b> falls Sie die URLs von Artikeln und Kategorien übersetzen lassen möchten.
+Select the check box <b>Export attributes and attribute options?</b> if you would like to have the product attributes and associated values translated.,Aktivieren Sie die Checkbox <b>Attribute und Attribut-Optionen exportieren?</b> falls Sie Artikelattribute und die dazugehörigen Werte übersetzen lassen möchten.
+"Select the products, categories, CMS pages, or email templates you need translated","Wählen Sie die Artikel, Kategorien, CMS-Seiten und/oder E-Mail-Vorlagen aus, die Sie übersetzen lassen wollen"
+Select this check box if you wish to translate product and category URLs,"Aktivieren Sie diese Checkbox, falls Sie die URLs von Artikeln und Kategorien übersetzen lassen möchten."
+Select this check box if you wish to translate product attributes and associated values.,"Aktivieren Sie diese Checkbox, falls Sie Artikelattribute und die dazugehörigen Werte übersetzen lassen möchten."
+"Select this check box if you wish to translate your SEO content (keywords, meta tags, etc.).","Aktivieren Sie diese Checkbox, falls Sie die SEO-Inhalte (z.B. Keywords, Suchbegriffe, Meta-Tags etc.) übersetzen lassen wollen."
+Selected CMS pages/blocks,Ausgewählte CMS-Seiten/-Blöcke
+Selected categories,Ausgewählte Kategorien
+Selected eMail-Templates,Ausgewählte E-Mail-Vorlagen
+Selected language files,Ausgewählte Sprachdateien
+Selected products,Ausgewählte Artikel
+Selecting this check box will assign all CMS pages without existing target language translations.<br/><b>Important: All previous assignments will be cancelled!</b>,"Wenn Sie diese Checkbox aktivieren, werden alle CMS-Seiten zugeordnet bei denen noch keine Texte in der Zielsprache angelegt worden sind.<br/><b>Achtung: Alle vorherigen Zuordnungen werden gelöscht!</b>"
+Selecting this check box will assign all categories for which no texts have been created in the target language.<br/><b>Important: All previous assignments will be cancelled!</b>,"Wenn Sie diese Checkbox aktivieren, werden alle Kategorien zugeordnet bei denen noch keine Texte in der Zielsprache angelegt worden sind.<br/><b>Achtung: Alle vorherigen Zuordnungen werden gelöscht!</b>"
+Selecting this check box will assign all items for which no text has been created in the target language.<br><b>Important: All previous assignments will be cancelled!</b>,"Wenn Sie diese Checkbox aktivieren, werden alle Artikel zugeordnet bei denen noch keine Texte in der Zielsprache angelegt worden sind.<br><b>Achtung: Alle vorherigen Zuordnungen werden gelöscht!</b>"
+Selecting this check box will export all email templates without a counterpart in the target language.<br><b>Important: All previous assignments will be cancelled!</b>,"Wenn Sie diese Checkbox aktivieren, werden alle E-Mail-Vorlagen exportiert bei denen noch keine Vorlage in der Zielsprache existiert.<br><b>Achtung: Alle vorherigen Zuordnungen werden gelöscht!</b>"
+Selecting this check box will trigger a check of all language files for missing translations. All entries without an existing translation will be exported.<br><b>Important: All previous assignments will be cancelled!</b>,"Wenn Sie diese Checkbox aktivieren, werden alle Sprachdateien eingelesen und nach fehlenden Übersetzungen überprüft. Alle Einträge ohne Übersetzung werden exportiert.<br><b>Achtung: Alle vorherigen Zuordnungen werden gelöscht!</b>"
+Sending data,Sende Daten
+Settings,Einstellungen
+Shop Name,Shopname
+Shop URL,Shop-URL
+Show all,Alle anzeigen
+Simple Product,Einfacher Artikel
+Source storeview,Ausgangs-Storeview
+Specify a <b>Source Storeview</b> and <b>Target Storeview</b> for the requested translation.,Legen Sie den <b>Ausgangs-</b> und <b>Ziel-Storeview</b> für die gewünschte Übersetzung fest.
+"Specify the source language (source storeview) and the target language (target storeview).<br/>The language of the current storeview is shown in brackets. You can amend the language setting in Magento if the language shown is incorrect:<br/>System -> Configuration, then select “Storeview” at the top left. Set the correct language via General -> Locale Options (here you can also double-check all other language/country settings for your shop)","Legen Sie hier fest, von welcher Ausgangssprache (Ausgangs-Storeview) eine Übersetzung zu welcher Zielsprache (Ziel-Storeview) durchgeführt werden soll.<br/>In Klammern wird die für den jeweiligen Storeview aktuell gesetzte Spracheinstellung angezeigt. Wird dort nicht die richtige Sprache angezeigt, korrigieren Sie die Spracheinstellung in Magento:<br/>System -> Konfiguration, dann oben links ""Storeview"" wählen. Stellen Sie unter „Allgemein -> Optionen für Lokalisierungen“ die korrekte Sprache ein (hier können Sie auch die anderen Sprach-/Ländereinstellungen überprüfen)"
+Status,Status
+Stock Availability,Lagerbestand
+Street,Straße
+System requirements,Systemvoraussetzungen
+Target storeview,Ziel-Storeview
+Telefax,Fax
+The *.zip-File was extracted. Click “Begin import” to upload the translations.,Die *.zip-Datei wurde entpackt. Die Übersetzungen können Sie nun mit Klick auf den Button 'Import starten' einspielen.
+There seems to be a problem with your login data. Please check username and password!,Es ist ein Login-Fehler aufgetreten. Bitte prüfen Sie Ihre Eingaben!
+This information is your personal access data for the Eurotext AG translation portal.<br/>Registration is free of charge. You will receive your personal access information within 24 hours (weekdays).,Mit diesen Daten erhalten Sie Ihren persönlichen Zugang zum Übersetzungsportal der Eurotext AG.<br/>Durch die Registrierung entstehen keine Kosten. Die Übersendung Ihrer Zugangsdaten erfolgt innerhalb der nächsten 24 Stunden (werktags).
+This process may take a few minutes depending on project size. Please wait until a message is displayed that the import has been completed.,"Dieser Vorgang kann je nach Textmenge mehrere Minuten dauern. Brechen Sie den Vorgang nicht ab und warten Sie, bis der Abschluss des Imports bestätigt wird."
+Translate,Übersetzen
+Translation portal successfully connected!,Verbindung zum Übersetzungsportal erfolgreich!
+Try again,Nochmal versuchen
+Unable to save project settings,Projekteinstellungen konnten nicht gespeichert werden
+Unknown Error,Unerwarteter Fehler
+Unsupported language,Nicht unterstützte Sprache
+User name,Benutzername
+Virtual Product,Virtueller Artikel
+We recommend creating a backup before importing.,Wir empfehlen zuvor eine Datensicherung durchzuführen.
+"You will receive your login details from your customer service representative at Eurotext AG as soon as you have completed your registration. Please enter your user name, password and customer number in ""Settings"".<br/><span style=""font-style:italic;""><span style=""color:red;"">Important:</span> Ensure that a storeview for the target language was created in the shop before exporting the text for translation, and that the storeview settings have the correct language settings</span>","Sie erhalten Ihre Zugangsdaten von Ihrem Kundenbetreuer der Eurotext AG sobald Sie die Registrierung erfolgreich abgeschlossen haben. Bitte tragen Sie im Menüpunkt 'Einstellungen' Ihren Benutzernamen, Ihr Passwort und Ihre Kundennummer ein.<br/><span style=""font-style:italic;""><span style=""color:red;"">Achtung:</span> Denken Sie daran, dass Sie vor dem Export der zu übersetzenden Texte einen Storeview für die Zielsprache im Shop angelegt und in den Storeview-Einstellungen die korrekten Spracheinstellungen hinterlegt haben müssen</span>"
+Your Eurotext customer service representative will send you your translations in a zip file. This zip file can be uploaded and imported to he relevant project.,Sie erhalten die Übersetzungen von Ihrem Eurotext-Kundenbetreuer in einer ZIP-Datei. Die ZIP-Datei kann nun im jeweiligen Projekt hochgeladen und importiert werden.
+Your Magento installation allows the translation of URLs of categories and products.,Ihre Magento-Installation erlaubt auch die Übersetzung der URLs von Kategorien und Artikeln.
+Your Magento languages,Ihre Magento-Sprachen
+Zip,PLZ
+eMail Address,E-Mail-Adresse
+or,oder
+translationManager Quick Start Guide,translationMANAGER Schnellstart-Anleitung

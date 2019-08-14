@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<package>
+    <name>eurotext_translationMANAGER</name>
+    <version>1.1.2.2</version>
+    <stability>stable</stability>
+    <license uri="http://eurotext-ecommerce.com/wp-content/uploads/2016/02/EurotextAG_Nutzungsbedingungen_Softwareanwendungen.pdf">Nutzungsbedingungen f&#xFC;r Softwareanwendungen der Eurotext AG</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>Start your translation projects with native translation professionals.</summary>
+    <description>Website &amp; Online Shop Translations Made Easy. The translationMANAGER allows you to export all text content from your online shop with just a few mouse clicks and then send it to the Eurotext translation portal. All types of content, including product descriptions, SEO content, framework or any other texts, are automatically included.&#xD;
+&#xD;
+Our translations are created where our customers have their marketplace. We absolutely emphasize that our over 4,000 professional translators create translations only into the language they grew up with. That is how we will always be able to guarantee that the translations are not only correct and authentic, but that they also take into account regional and cultural peculiarities.&#xD;
+&#xD;
+A good translation must be more than just linguistically correct; it must comply with technical guidelines to ensure an optimized workflow across all instances of the quality assurance process, the elimination of errors, and keeping costs low. That is why we offer periodic workshops for our professional translators to support them in their daily work.</description>
+    <notes>Version 1.1.2.2&#xD;
+====================================================================================&#xD;
+- Eigene Kategorieattribute &#xFC;bersetzen: Exportieren Sie Ihre benutzerdefinierten Attribute (siehe Dokumentation)&#xD;
+&#xD;
+Version 1.1.2.1&#xD;
+====================================================================================&#xD;
+- Duplicate URL-Key Fehler behoben&#xD;
+&#xD;
+Version 1.1.2.0&#xD;
+====================================================================================&#xD;
+- &#xDC;berarbeiteter DEBUG Modus. Kann nun im Backend (System -&gt; Configuration -&gt; Developer -&gt; Log) aktiviert werden&#xD;
+- Log-Datei wird in /var/log/eurotext.log erstellt, schwere Fehler werden auch&#xD;
+  bei ausgeschaltetem DEBUG Modus in eurotext_fatal.log gespeichert&#xD;
+- Basisverzeichnis jetzt in /var/eurotext und nicht mehr /eurotext&#xD;
+- FTP-Pr&#xFC;fung jetzt mit DEBUG Ausgabe&#xD;
+- Diverse Verbesserungen in der Verwendung von Magento-Verzeichnissen&#xD;
+&#xD;
+Version 1.1.1.0&#xD;
+====================================================================================&#xD;
+- Es werden nur noch die ausgew&#xE4;hlten Sprachdateien exportiert&#xD;
+- Fehlerbehebungen&#xD;
+&#xD;
+Version 1.1.0.0&#xD;
+====================================================================================&#xD;
+- Eigene Artikelattribute &#xFC;bersetzen: Exportieren Sie Ihre benutzerdefinierten Attribute (siehe Dokumentation)&#xD;
+- Absicherung: Bei &#xDC;bertragungsfehlern zum Eurotext Server wird das Paket nach /var/export gesichert.&#xD;
+- Fehlerkorrekturen und Sicherheitsupdates&#xD;
+- Verbesserte und stabilere Programmbasis&#xD;
+&#xD;
+Version 1.0.0.9&#xD;
+====================================================================================&#xD;
+- Der Lagerstatus wird bei der Produktauswahl nun auch f&#xFC;r 'virtuelle' Artikel/Hauptartikel wie im Backend eingestellt angezeigt&#xD;
+&#xD;
+Version 1.0.0.8&#xD;
+====================================================================================&#xD;
+- Bei der Produktauswahl kann nun auch nach Artikeltyp gefiltert werden&#xD;
+&#xD;
+Version 1.0.0.7&#xD;
+====================================================================================&#xD;
+- Javascript-Fehler beseitigt&#xD;
+- Update-Skript arbeitet nun toleranter&#xD;
+&#xD;
+Version 1.0.0.6&#xD;
+====================================================================================&#xD;
+- Bei der Auswahl der Produkte sind nun zwei zus&#xE4;tzliche Filter (nach Status und nach Lagerbestand) verf&#xFC;gbar&#xD;
+- Es k&#xF6;nnen nun auch statische Bl&#xF6;cke exportiert und wieder importiert werden. Die statischen Bl&#xF6;cke werden mit bei der Auswahl der CMS-Seiten angezeigt&#xD;
+&#xD;
+Version 1.0.0.5&#xD;
+====================================================================================&#xD;
+- Es werden im Kommentar-Feld der control.xml mehr Projektinformationen angegeben&#xD;
+- Ein Projekt kann nun jeweils um einen Schritt zur&#xFC;ckgesetzt werden&#xD;
+- Es wird nun die korrekte Modulversion in der control.xml angegeben&#xD;
+&#xD;
+Version 1.0.0.4&#xD;
+====================================================================================&#xD;
+- Das Modul exportiert Attribute nun auch, wenn f&#xFC;r das Quell-Storeview keine Bezeichnung&#xD;
+  vorhanden ist. Es wird dann der Admin-Standardtext exportiert.&#xD;
+&#xD;
+Version 1.0.0.3&#xD;
+====================================================================================&#xD;
+- URL-Key wird im Ziel-Storeview nun nur noch (anhand der Produkt-/Kategorie-Bezeichnung) &#xD;
+  gesetzt, wenn zuvor noch kein Wert gesetzt war (also "Use default values" / &#xD;
+  "Standardwerte &#xFC;bernehmen" aktiv war)&#xD;
+  Zuvor wurde der URL-Key gesetzt, wenn der Wert leer bzw. gleich dem Standardwert gesetzt war&#xD;
+- Einstellung "Use default values" / "Standardwerte &#xFC;bernehmen" sollte bei Feldern, die in den &#xD;
+  &#xDC;bersetzungsdateien nicht vorhanden sind, nun nicht mehr verloren gehen.&#xD;
+&#xD;
+Version 1.0.0.2&#xD;
+====================================================================================&#xD;
+- Wurden zwischen Export und Import Produktbilder im Magento-Backend gel&#xF6;scht f&#xFC;r die &#xDC;bersetzungen erzeugt wurden, konnte der Import fehlschlagen.&#xD;
+  Beim Import fehlende Produktbilder werden nun &#xFC;bersprungen.&#xD;
+&#xD;
+Version 1.0.0.1&#xD;
+====================================================================================&#xD;
+- Erweiterung der Produktauswahl um die M&#xF6;glichkeit auch nach Kategorien zu filtern&#xD;
+  und so ggf. schnell ganze Kategorien &#xFC;bersetzen zu k&#xF6;nnen&#xD;
+- Wurden URL-Felder nicht mit exportiert, wurden diese beim Import auf die Standardwerte gesetzt statt diese anhand der (&#xFC;bersetzten) Bezeichnung zu generieren</notes>
+    <authors><author><name>Eurotext AG</name><user>eurotext</user><email>info@eurotext.de</email></author></authors>
+    <date>2016-06-30</date>
+    <time>09:58:17</time>
+    <contents><target name="magecommunity"><dir name="Eurotext"><dir name="TranslationManager"><dir name="Block"><file name="Help.php" hash="ca61b416958f9a5304a94a9ce69df7da"/><file name="Projects.php" hash="ce7c629995f4c977d5bed0c91659961c"/><file name="Register.php" hash="1fb433fe50938c92b848ddbb8b6568e9"/><dir name="Response"><file name="Ajax.php" hash="54b099def382c680ca5e06be65aaa8e7"/></dir><file name="Selectcategories.php" hash="26572a232119318b324c6173e09c248d"/><file name="Selectcmspages.php" hash="0b91f0c03677b44b4c9b8c8243c18fd2"/><file name="Selectemails.php" hash="45f64f329f2b0f158a2d8e33a1ad8310"/><file name="Selectlangfiles.php" hash="2fdaca1539e88fbc4f44116a9453abc2"/><file name="Selectproducts.php" hash="d3d74ab6393d6521cc0b46523f8e882b"/><file name="Settings.php" hash="4e5bc502fd871664ca56f2a6851f01a7"/></dir><dir name="Helper"><file name="Data.php" hash="48331ebc701a0e6cbf00b6da56660717"/><file name="Eurotext.php" hash="8b6b610dbd3f63257ce44bceeb0743e1"/></dir><dir name="Model"><dir name="Resource"><file name="Setup.php" hash="992b5dbedd9dc6d669ff7a7949c790ab"/></dir><file name=".DS_Store" hash="7c3522d12f27b1bc414fac586a4b971f"/></dir><dir name="controllers"><dir name="Adminhtml"><dir name="Eurotext"><dir name="Translationmanager"><file name="HelpController.php" hash="2073b9b65b11df0e31157128af9d47c0"/><file name="ProjectsController.php" hash="dd9148ba09b929295a810e69e2948636"/><file name="RegisterController.php" hash="6d610017c92deba24e65223fb5fd9c54"/><file name="SelectcategoriesController.php" hash="79a4c379f47f9d353e850d5afaa321f2"/><file name="SelectcmspagesController.php" hash="c65ee51e92b29c0322c0924fa6ca9dac"/><file name="SelectemailsController.php" hash="e8b2bdd15cdae614012bc05abdd81d63"/><file name="SelectlangfilesController.php" hash="5df24ee920c75cf4a530611481826b50"/><file name="SelectproductsController.php" hash="c75d91b8706f25e9e4bb47f3843f5e3d"/><file name="SettingsController.php" hash="9f3916cfa1e9ffe8ba82955c9f48c58a"/></dir><file name=".DS_Store" hash="be9480710cd7aa8bcc8ca162bbe60791"/></dir><file name=".DS_Store" hash="af0a7d68dfc1505f5fd04c55baff3727"/></dir><file name=".DS_Store" hash="9d6e9b7cea3d170ee9c8cfccccc4ee80"/></dir><dir name="etc"><file name="adminhtml.xml" hash="a7235397925e4a68962ceaf8bd498c8c"/><file name="config.xml" hash="d78d111c2b25a56153bc9e2bb3b6da97"/><file name="jstranslator.xml" hash="5a9f0af14a162abf86bc2f2afad5f841"/><file name="system.xml" hash="6fc0f8c314886f0cb3671db6efdaa7f6"/></dir><dir name="sql"><dir name="eurotext_translationmanager_setup"><file name="mysql4-install-1.0.0.0.php" hash="e18c0008fdf86231a2b9fc5fdaf772f6"/><file name="mysql4-upgrade-1.0.0.5-1.0.0.6.php" hash="ea4e8bfeb96b41454a6270fc679a97fc"/><file name="mysql4-upgrade-1.0.0.7-1.0.0.8.php" hash="b610342ad985cd23f823cb05048c172d"/></dir></dir><file name=".DS_Store" hash="a747456783fab7a1190bb4bb3c45424a"/></dir></dir></target><target name="magedesign"><dir name="adminhtml"><dir name="base"><dir name="default"><dir name="layout"><dir name="eurotext"><file name="translationmanager.xml" hash="3a44d296d48ae2b34424ec2a61b7434f"/></dir></dir><dir name="template"><dir name="eurotext"><dir name="translationmanager"><file name="help.phtml" hash="a3b027449fb83c4c6fbc563d8ed23e93"/><file name="projects.phtml" hash="a42131faebe288458943a8efc7b00665"/><file name="register.phtml" hash="a3f8f80005c2d2991571f2dab9634cf5"/><file name="selectcategories.phtml" hash="885c57925f375c8b6b32ec986bb58de2"/><file name="selectcmspages.phtml" hash="616ae977dd80b588084b061862f05095"/><file name="selectemails.phtml" hash="a5c31d90157f73ff702f92af35b323df"/><file name="selectlangfiles.phtml" hash="a121b4a5c0a40474260a9c94947100c0"/><file name="selectproducts.phtml" hash="4c54a9d4ea954711812896279337dd6c"/><file name="settings.phtml" hash="845d24724446ec369b95c605fa1e5189"/></dir></dir></dir></dir></dir></dir></target><target name="magelocale"><dir name="en_US"><file name="Eurotext_TranslationManager.csv" hash="8b76eae9c7f6318779e19ce2050365cb"/></dir><dir name="de_DE"><file name="Eurotext_TranslationManager.csv" hash="bdcdf13c3490d89fa92779fbc42465da"/></dir></target><target name="mageetc"><dir name="modules"><file name="Eurotext_TranslationManager.xml" hash="c07fa4fd43f46687c594e3ecd76b72c9"/></dir></target><target name="mageskin"><dir name="adminhtml"><dir name="base"><dir name="default"><dir name="eurotext"><dir name="translationmanager"><dir name="css"><file name="styles.css" hash="ca6ddd95cc42d1a802aaa1fa85d401a5"/></dir><dir name="images"><file name="btt_suche.png" hash="9b74d62b9840cafb6990352c52a39458"/><file name="cat-minus.png" hash="d092af81ca37c821e13f27cc9bc44378"/><file name="cat-none.png" hash="88805f6b1ed90aa66db3cc6f89c83db0"/><file name="cat-plus.png" hash="16d73e360bebbeb16c4115ceea771b56"/><file name="eurotext_logo.png" hash="87120ee2d376e3195e2e7cd8b9661ba7"/><file name="eurotext_table_head.png" hash="36583e9470155c585304e305133e13ec"/><file name="logo_dixeno.png" hash="dd23f387d0eee8a9494724a470d8742e"/><file name="logo_eurotext.png" hash="7a8627f728f203823fbee1575d223131"/><file name="pager_arrow_left.gif" hash="6e44f608dac8eb8be1d1ebee5a3285aa"/><file name="pager_arrow_left_off.gif" hash="30f5e56195ab3546b36f4016db5254be"/><file name="pager_arrow_right.gif" hash="cc79526156b7e0c8abce61fad3d53f77"/><file name="pager_arrow_right_off.gif" hash="f01b7dad9acf0180b5c62edbd7ea9939"/></dir><dir name="js"><file name="eurotext-jquery-1.9.1.js" hash="345bf9214f44da83c245ef933035937d"/><file name="eurotext.js" hash="7fa29d5a26baa83adccbe1c082e362a6"/></dir></dir></dir></dir></dir></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.2.0</min><max>7.0.0</max></php></required></dependencies>
+</package>

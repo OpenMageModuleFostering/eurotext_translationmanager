@@ -1,0 +1,88 @@
+<?php
+// utf8-detection: öäü€
+?>
+
+<table cellspacing="0" cellpadding="0" width="100%" height="100%" border="0">
+<tr>
+<td class="edittext">
+    <table width="900" border="0">
+    <tr>
+        <td width="900" class="edittext"><a href="http://www.eurotext.de/" target="_blank"><span class="eurotext_logo"></span></a></td>
+        </td>
+    </tr>
+    </table>
+    
+	<div style="font-weight:bold;font-size:12pt; margin-top:25px;"><?php echo $this->__("translationMANAGER Quick Start Guide"); ?></div>
+	<div><?php echo $this->__("Here you will find a list of the settings required for operating the Eurotext interface"); ?></div>
+
+	<div style="margin-top:15px;margin-left:20px;">
+		<div style="font-weight:bold;font-size:11pt;"><?php echo $this->__("Registration"); ?></div>
+		<div><?php echo $this->__("Make sure to complete the registration process and enter your access information before submitting your first translation project. Fill out all fields of the registration form and click <b><i>Save and send</i>.</b> Eurotext will send you your login details within 24 hours (weekdays). Enter that information in the menu item <b><i>Settings</i></b>."); ?></div>
+	</div>
+	
+	<div style="margin-top:15px;margin-left:20px;">
+		<div style="font-weight:bold;font-size:11pt;"><?php echo $this->__("Settings"); ?></div>
+		<div><?php echo $this->__('You will receive your login details from your customer service representative at Eurotext AG as soon as you have completed your registration. Please enter your user name, password and customer number in "Settings".<br/><span style="font-style:italic;"><span style="color:red;">Important:</span> Ensure that a storeview for the target language was created in the shop before exporting the text for translation, and that the storeview settings have the correct language settings</span>'); ?></div>
+	</div>
+	
+	<div style="margin-top:15px;margin-left:20px;">
+		<div style="font-weight:bold;font-size:11pt;"><?php echo $this->__("Projects"); ?></div>
+		<div><?php echo $this->__("Create a new project for each translation order."); ?></div>
+		<ul style="margin-left:20px;">
+			<li style="list-style-type:disc;"><?php echo $this->__("Each project must have a name assigned (we recommend something unique and identifiable)."); ?></li>
+			<li style="list-style-type:disc;"><?php echo $this->__("Specify a <b>Source Storeview</b> and <b>Target Storeview</b> for the requested translation."); ?></li>
+		</ul>
+		
+		<div style="margin-top:10px;"><?php echo $this->__("Select the products, categories, CMS pages, or email templates you need translated"); ?>:</div>
+		<ul style="margin-left:20px;">
+			<li style="list-style-type:disc;"><?php echo $this->__("Products, categories, CMS pages, or email templates can be selected individually (<b>Select […]</b>), or alternatively:"); ?></li>
+			<li style="list-style-type:disc;"><?php echo $this->__("<b>Select all [...] without existing translation:</b> The module will automatically select all Products, categories, CMS pages and email templates for which no translated text exists in the target language."); ?><br/><?php echo $this->__("<i><span style='color:red;'>Important:</span> All previous assignments will be deleted!</i>"); ?></li>
+		</ul>
+		
+		<div style="margin-top:10px;"><?php echo $this->__("Clicking <b>Select language files</b> will allow you to manually select specific shop system texts in the selection window for translation."); ?></div>
+		
+		<div style="margin-top:10px;"><?php echo $this->__("Clicking <b>Select all language files without existing translation</b> will automatically select all files and check for missing translations. All entries without an existing translation will be exported."); ?></div>
+		<div><?php echo $this->__("<i><span style='color:red;'>Important:</span> We recommend using this setting only for the initial translation of a new online shop, as it will trigger a translation of ALL language files for the selected target language!</i>"); ?></div>
+		
+		<div style="margin-top:10px;"><?php echo $this->__("Select the check box <b>Export SEO content?</b> if you would like to have the SEO content (e.g. keywords, search terms, meta tags, etc.) translated."); ?></div>
+		
+		<div style="margin-top:10px;"><?php echo $this->__("Select the check box <b>Export attributes and attribute options?</b> if you would like to have the product attributes and associated values translated."); ?></div>
+		
+		<div style="margin-top:10px;"><?php echo $this->__("Select the check box <b>Export URL keys?</b> if you would like to have URLs of products and categories translated."); ?></div>
+		
+		<div style="margin-top:20px;"><?php echo $this->__("Clicking the button <b>Request your free quote now</b> will transmit your texts for translation to the translation portal, and you will receive a detailed quote for your translation project within the next 24 hours (weekdays)."); ?>
+		
+		<div style="margin-top:10px;"><?php echo $this->__("Your Eurotext customer service representative will send you your translations in a zip file. This zip file can be uploaded and imported to he relevant project."); ?></div>
+		
+		<div style="margin-top:10px;"><?php echo $this->__("<b>Please note:</b> For safety reasons, we recommend importing to a staging system first. Make sure to backup all your data before importing."); ?></div>
+		
+		<div style="margin-top:10px;"><?php echo $this->__("Please read the translationMANAGER documentation for more information."); ?></div>
+		
+		<div>&nbsp;</div>
+		<div style="border:1px solid black;padding:20px;display:inline-block;">
+			<table width="900" border="0">
+				<tr>
+					<td width="445" class="edittext"><p align="left"><strong><?php echo $this->__("Contact"); ?> Eurotext AG </strong></td>
+				</tr>
+				<tr>
+					<td height="135" class="edittext">
+						<p class="edittext" align="left">
+							<span class="logo_eurotext"></span><br>
+							Eurotext AG<br>
+							Sch&uuml;rerstra&szlig;e 3<br>
+							97080 W&uuml;rzburg<br>
+							Deutschland<br><br>
+							<?php echo $this->__("Phone"); ?>: +49 (0)931 35 40 50<br>
+							<?php echo $this->__("Telefax"); ?>: +49 (0)931 35 40 580<br>
+							E-Mail: <a href="mailto:>info@eurotext.de">info@eurotext.de</a><br>
+							Web: <a href="http://www.eurotext.de" target="_blank">www.eurotext.de</a>
+						</p>
+						<p class="edittext" align="left">&nbsp;</p>
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+		</td>
+	</tr>
+</table>

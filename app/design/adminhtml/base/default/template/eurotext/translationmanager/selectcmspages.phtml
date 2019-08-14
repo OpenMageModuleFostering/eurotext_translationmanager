@@ -1,0 +1,169 @@
+<?php
+// allow utf8-detection: öäü€
+
+$visibleCMSPages=array();
+$visibleCMSBlocks=array();
+?>
+
+<div class="eurotext_layertitle"><?php echo $this->__("Select CMS pages/blocks"); ?></div>
+<div class="eurotext_layerstrip"></div>
+
+<table cellpadding="0" cellspacing="0" style="width:100%;border:1px solid #E6E6E6;">
+	<tr>
+		<td class="eurotext_layercellheader"><?php echo $this->__("Select CMS pages/blocks"); ?></td>
+		<td class="eurotext_layercellheader" style="border-left:1px solid #E6E6E6;"><?php echo $this->__("Selected CMS pages/blocks"); ?></td>
+	</tr>
+	<tr>
+		<td style="width:50%;vertical-align:top;">
+			<div style="margin:20px;">
+			<?php
+				// Results:
+				echo "<table cellpadding=0 cellspacing=0>";
+				echo "<tr>";
+				echo "  <td class='et_th'>".$this->__("Translate")."</td>";
+				echo "  <td class='et_th'>".$this->__("Designation")."</td>";
+				echo "  <td class='et_th'>".$this->__("Identifier")."</td>";
+				echo "  <td class='et_th'>".$this->__("CMS-Type")."</td>";
+				echo "  <td class='et_th'>&nbsp;</td>";
+				echo "</tr>";
+
+				$pages=$this->getCMSPages();
+				foreach($pages as $page)
+				{
+					$checkStr="";
+					if ($page['checked'])
+					{
+						$checkStr="checked='checked'";
+					}
+
+					array_push($visibleCMSPages,$page['page_id']);
+
+					echo "<tr>";
+					echo "  <td class='et_tc'><input ".$checkStr." type='checkbox' id='et_selcmspage1_".$page['page_id']."' class='et_selcmspage et_selcmspage_".$page['page_id']."' onchange=\"eurotext_selectcmspage('1','".$page['page_id']."')\" /></td>";
+					echo "  <td class='et_tc'>".$page['title']."</td>";
+					echo "  <td class='et_tc'>".$page['identifier']."</td>";
+					echo "  <td class='et_tc' style='white-space:pre;'>".$page['type']."</td>";
+					echo "  <td class='et_tc'>&nbsp;</td>";
+					echo "</tr>";
+				}
+
+				$blocks=$this->getCMSBlocks();
+				foreach($blocks as $block)
+				{
+					$checkStr="";
+					if ($block['checked'])
+					{
+						$checkStr="checked='checked'";
+					}
+
+					array_push($visibleCMSBlocks,$block['block_id']);
+
+					echo "<tr>";
+					echo "  <td class='et_tc'><input ".$checkStr." type='checkbox' id='et_selcmsblock1_".$block['block_id']."' class='et_selcmsblock et_selcmsblock_".$block['block_id']."' onchange=\"eurotext_selectcmsblock('1','".$block['block_id']."')\" /></td>";
+					echo "  <td class='et_tc'>".$block['title']."</td>";
+					echo "  <td class='et_tc'>".$block['identifier']."</td>";
+					echo "  <td class='et_tc' style='white-space:pre;'>".$block['type']."</td>";
+					echo "  <td class='et_tc'>&nbsp;</td>";
+					echo "</tr>";
+				}
+
+				echo "</table>";
+
+
+
+			?>
+			</div>
+			<?php
+				echo "<div style='margin:20px;'>";
+				//echo "<div><a href='#' class='eurotext_selectcmspages_allvisible'>".$this->__("Select all CMS pages displayed")."</a></div>";
+				echo "<div><a href='#' class='eurotext_selectcmspages_all'>".$this->__("Select all CMS pages/blocks")."</a></div>";
+				echo "<div><a href='#' class='eurotext_selectcmspages_none'>".$this->__("No selection")."</a></div>";
+				echo "</div>";
+			?>
+		</td>
+		<td style="vertical-align:top;background-color:#F2F2F2;">
+			<div style="margin:20px;">
+				<div id="et_saveinfo"><?php $this->__("Loading - please wait..."); ?></div>
+				<div id="selectedcmspages_result"></div>
+			</div>
+		</td>
+	</tr>
+</table>
+<div style="text-align:center;margin-top:10px;"><a href="#" onclick="return eurotext_closeme()" class="et_btt"><?php echo $this->__("Save"); ?></a></div>
+<div>&nbsp;</div>
+
+<script>
+var eurotext_selectcmspages_url="<?php echo $this->getSelectCmsPagesUrl(); ?>";
+var eurotext_selectcmspages_saveurl="<?php echo $this->getSelectCmsPagesSaveUrl(); ?>";
+var eurotext_formkey="<?php echo Mage::getSingleton('core/session')->getFormKey(); ?>";
+var eurotext_projectid="<?php echo $this->getRequest()->getParam("id"); ?>";
+
+jQuery(document).ready(function()
+{
+	eurotext_selectedcmspages_send(new Array(),null);
+
+	jQuery(".eurotext_selectcmspages_allvisible").click(function()
+	{
+		var postdata=new Array();
+
+		<?php
+			echo "postdata['cnt_pages']=".count($visibleCMSPages).";";
+			for($i=0; $i<count($visibleCMSPages); $i++)
+			{
+				echo "postdata['page_id_".$i."']=".$visibleCMSPages[$i].";";
+				echo "postdata['setpage_".$i."']='enabled';";
+			}
+
+			echo "postdata['cnt_blocks']=".count($visibleCMSBlocks).";";
+			for($i=0; $i<count($visibleCMSBlocks); $i++)
+			{
+				echo "postdata['block_id_".$i."']=".$visibleCMSBlocks[$i].";";
+				echo "postdata['setblock_".$i."']='enabled';";
+			}
+		?>
+
+		jQuery(".et_selcmspage").setPropAndAttr("checked","checked");
+		jQuery(".et_selcmsblock").setPropAndAttr("checked","checked");
+
+		eurotext_selectedcmspages_send(postdata,null);
+	});
+
+	jQuery(".eurotext_selectcmspages_all").click(function()
+	{
+		var postdata=new Array();
+
+		<?php
+			echo "postdata['cnt_pages']=".count($visibleCMSPages).";";
+			for($i=0; $i<count($visibleCMSPages); $i++)
+			{
+				echo "postdata['page_id_".$i."']=".$visibleCMSPages[$i].";";
+				echo "postdata['setpage_".$i."']='enabled';";
+			}
+
+			echo "postdata['cnt_blocks']=".count($visibleCMSBlocks).";";
+			for($i=0; $i<count($visibleCMSBlocks); $i++)
+			{
+				echo "postdata['block_id_".$i."']=".$visibleCMSBlocks[$i].";";
+				echo "postdata['setblock_".$i."']='enabled';";
+			}
+		?>
+
+		jQuery(".et_selcmspage").setPropAndAttr("checked","checked");
+		jQuery(".et_selcmsblock").setPropAndAttr("checked","checked");
+		eurotext_selectedcmspages_send(postdata,null);
+	});
+
+	jQuery(".eurotext_selectcmspages_none").click(function()
+	{
+		var postdata=new Array();
+		postdata['cnt_pages']=0;
+		postdata['cnt_blocks']=0;
+		postdata['select']='none';
+
+		jQuery(".et_selcmspage").setPropAndAttr("checked",false);
+		jQuery(".et_selcmsblock").setPropAndAttr("checked",false);
+
+		eurotext_selectedcmspages_send(postdata,null);
+	});
+});
+</script>

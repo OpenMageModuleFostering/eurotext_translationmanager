@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <eurotext_translationmanager module="eurotext_translationmanager">
+            <title>translationMANAGER</title>
+            <sort_order>70</sort_order>
+            <children>
+                <register translate="title" module="eurotext_translationmanager">
+                    <title>Registration</title>
+                    <sort_order>10</sort_order>
+                    <action>adminhtml/eurotext_translationmanager_register</action>
+                </register>
+                <settings translate="title" module="eurotext_translationmanager">
+                    <title>Settings</title>
+                    <sort_order>20</sort_order>
+                    <action>adminhtml/eurotext_translationmanager_settings</action>
+                </settings>
+                <export translate="title" module="eurotext_translationmanager">
+                    <title>Projects</title>
+                    <sort_order>30</sort_order>
+                    <action>adminhtml/eurotext_translationmanager_projects</action>
+                </export>
+                <help translate="title" module="eurotext_translationmanager">
+                    <title>Help</title>
+                    <sort_order>40</sort_order>
+                    <action>adminhtml/eurotext_translationmanager_help</action>
+                </help>
+            </children>
+        </eurotext_translationmanager>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <eurotext_translationmanager module="eurotext_translationmanager">
+                        <title>Eurotext - translationMANAGER</title>
+                        <children>
+                            <register translate="title" module="eurotext_translationmanager">
+                                <title>Registration</title>
+                                <sort_order>10</sort_order>
+                            </register>
+                            <settings translate="title" module="eurotext_translationmanager">
+                                <title>Settings</title>
+                                <sort_order>20</sort_order>
+                            </settings>
+                            <export translate="title" module="eurotext_translationmanager">
+                                <title>Projects</title>
+                                <sort_order>30</sort_order>
+                            </export>
+                            <help translate="title" module="eurotext_translationmanager">
+                                <title>Help</title>
+                                <sort_order>40</sort_order>
+                            </help>
+                        </children>
+                    </eurotext_translationmanager>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
