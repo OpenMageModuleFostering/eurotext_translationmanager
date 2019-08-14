@@ -2,7 +2,7 @@
 
 class Eurotext_TranslationManager_Model_Export_Project_FtpUpload
 {
-    const FTP_HOST = "eurotext-services.de";
+    const FTP_HOST = 'eurotext-services.de';
     const FTP_PORT = 21;
 
     /**
@@ -63,7 +63,7 @@ class Eurotext_TranslationManager_Model_Export_Project_FtpUpload
 
         $uploadSuccess = $this->uploadZipFileToEurotext($zipFile);
 
-        if ((false === $uploadSuccess || true === $this->configHelper->isDebugMode())) {
+        if (false === $uploadSuccess || true === $this->configHelper->isDebugMode()) {
             $this->createFallbackFile($zipFile);
         }
 
@@ -155,11 +155,11 @@ class Eurotext_TranslationManager_Model_Export_Project_FtpUpload
 
     private function validateUsername()
     {
-        if (trim($this->ftpUsername) == "") {
+        if (trim($this->ftpUsername) == '') {
             $this->helper->log('Login data is not set.', Zend_Log::ERR);
             throw new Eurotext_TranslationManager_Exception_FtpException(
                 $this->helper->__(
-                    "There seems to be a problem with your login data. Please check username and password!"
+                    'There seems to be a problem with your login data. Please check username and password!'
                 )
             );
         }
@@ -167,11 +167,11 @@ class Eurotext_TranslationManager_Model_Export_Project_FtpUpload
 
     private function validateFtpConnectExists()
     {
-        if (!function_exists("ftp_connect")) {
+        if (!function_exists('ftp_connect')) {
             $this->helper->log('There is no FTP Client available: ftp_connect does not exist.', Zend_Log::CRIT);
             throw new Eurotext_TranslationManager_Exception_FtpException(
                 $this->helper->__(
-                    "There is no FTP Client available: ftp_connect does not exist."
+                    'There is no FTP Client available: ftp_connect does not exist.'
                 )
             );
         }
@@ -183,7 +183,7 @@ class Eurotext_TranslationManager_Model_Export_Project_FtpUpload
             $this->helper->log('There is no FTP Client available: ftp_connect is disabled in PHP.', Zend_Log::CRIT);
             throw new Eurotext_TranslationManager_Exception_FtpException(
                 $this->helper->__(
-                    "There is no FTP Client available: ftp_connect is disabled in PHP."
+                    'There is no FTP Client available: ftp_connect is disabled in PHP.'
                 )
             );
         }
@@ -195,7 +195,7 @@ class Eurotext_TranslationManager_Model_Export_Project_FtpUpload
             $this->helper->log('Could not connect to Translation Portal Server.', Zend_Log::ERR);
             throw new Eurotext_TranslationManager_Exception_FtpException(
                 $this->helper->__(
-                    "Could not connect to server. Could be a temporary error or firewall problem. You could also check for a new module version. It might be a problem with your login data, too. Please check username and password!"
+                    'Could not connect to server. Could be a temporary error or firewall problem. You could also check for a new module version. It might be a problem with your login data, too. Please check username and password!'
                 )
             );
         }
@@ -204,13 +204,13 @@ class Eurotext_TranslationManager_Model_Export_Project_FtpUpload
     private function cleanupFtp()
     {
         @ftp_delete($this->ftpConnection, $this->project->getData('zip_filename'));
-        @ftp_delete($this->ftpConnection, $this->project->getData('zip_filename') . ".uploading");
+        @ftp_delete($this->ftpConnection, $this->project->getData('zip_filename') . '.uploading');
     }
 
     private function setupFtpSettings()
     {
         ftp_pasv($this->ftpConnection, true);
-        ftp_chdir($this->ftpConnection, "/");
+        ftp_chdir($this->ftpConnection, '/');
     }
 
     /**
@@ -218,7 +218,7 @@ class Eurotext_TranslationManager_Model_Export_Project_FtpUpload
      */
     private function uploadZipWithUploadingExtension($zipFile)
     {
-        if (ftp_put($this->ftpConnection, $this->project->getZipFilename() . ".uploading", $zipFile, FTP_BINARY)) {
+        if (ftp_put($this->ftpConnection, $this->project->getZipFilename() . '.uploading', $zipFile, FTP_BINARY)) {
             $this->helper->log(
                 'File was successfully uploaded to ' . $this->project->getZipFilename() . '.uploading',
                 Zend_Log::INFO
@@ -232,7 +232,7 @@ class Eurotext_TranslationManager_Model_Export_Project_FtpUpload
     private function removeUploadingExtension()
     {
         $filename = $this->project->getZipFilename();
-        $uploadSuccess = ftp_rename($this->ftpConnection, $filename . ".uploading", $filename);
+        $uploadSuccess = ftp_rename($this->ftpConnection, $filename . '.uploading', $filename);
         if ($uploadSuccess) {
             $this->helper->log('File was successfully renamed to ' . $filename, Zend_Log::INFO);
         }

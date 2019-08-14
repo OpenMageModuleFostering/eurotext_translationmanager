@@ -63,7 +63,7 @@ class Eurotext_TranslationManager_Model_Export_Project
                 ->validateFtpConnection();
             $this->setDataOnStatusBlock(
                 $block,
-                ['offset' => 1, 'step' => self::STEP_BUILD_LANGXML, 'status_msg' => '']
+                ['offset' => 0, 'step' => self::STEP_BUILD_LANGXML, 'status_msg' => '']
             );
         } elseif ($step == self::STEP_BUILD_LANGXML) {
             $rvSub = $this->ajaxexportAction_BuildLangXML($project, $offset);
@@ -92,18 +92,18 @@ class Eurotext_TranslationManager_Model_Export_Project
         } elseif ($step == self::STEP_GENERATE_CONTROL_FILE) {
             $this->ajaxexportAction_GenerateControlFile($project);
             $block->setStep(self::STEP_COMPRESS_FILES);
-            $block->setStatusMsg($this->helper->__("Generating ZIP archive"));
+            $block->setStatusMsg($this->helper->__('Generating ZIP archive'));
         } elseif ($step == self::STEP_COMPRESS_FILES) {
             $this->ajaxexportAction_CompressFiles($project);
             $block->setStep(self::STEP_TRANSMIT_ARCHIVE);
-            $block->setStatusMsg($this->helper->__("Sending data"));
+            $block->setStatusMsg($this->helper->__('Sending data'));
         } elseif ($step == self::STEP_TRANSMIT_ARCHIVE) {
             $this->ajaxexportAction_TransmitArchive($project);
             $block->setStep(self::STEP_DONE);
-            $block->setStatusMsg($this->helper->__("Data sent."));
+            $block->setStatusMsg($this->helper->__('Data sent.'));
         } else {
             $block->setStep(self::STEP_DONE);
-            $block->setStatusMsg($this->helper->__("Export done."));
+            $block->setStatusMsg($this->helper->__('Export done.'));
             $block->setStatusCode('success');
             $block->setFinished(true);
         }
@@ -211,13 +211,12 @@ class Eurotext_TranslationManager_Model_Export_Project
 
     /**
      * @param Eurotext_TranslationManager_Model_Project $project
-     * @return mixed[]
      */
     private function ajaxexportAction_CompressFiles(Eurotext_TranslationManager_Model_Project $project)
     {
         $xmlDir = Mage::helper('eurotext_translationmanager/filesystem')->getExportXMLPath($project);
         $this->getEurotextHelper()
-            ->zipFolder($xmlDir, $this->getProjectZipFilename($project), "Created by Eurotext Magento Module");
+            ->zipFolder($xmlDir, $this->getProjectZipFilename($project), 'Created by Eurotext Magento Module');
     }
 
     /**
@@ -228,7 +227,7 @@ class Eurotext_TranslationManager_Model_Export_Project
     {
         $xmlDir = Mage::helper('eurotext_translationmanager/filesystem')->getExportXMLPath($project);
 
-        if ($project->getZipFilename() != "") {
+        if ($project->getZipFilename() != '') {
             return $xmlDir . DS . $project->getZipFilename();
         }
 
@@ -273,12 +272,12 @@ class Eurotext_TranslationManager_Model_Export_Project
     private function generateZipFilename(Eurotext_TranslationManager_Model_Project $project)
     {
         $filename = sprintf(
-            "ET-%s-%s-%s.zip",
+            'ET-%s-%s-%s.zip',
             Mage::helper('eurotext_translationmanager/filesystem')
                 ->getFilenameSafeString($this->configHelper->getShopname()),
             Mage::helper('eurotext_translationmanager/filesystem')
                 ->getFilenameSafeString($this->configHelper->getCustomerId()),
-            date("Y-m-d_H-i-s_T")
+            date('Y-m-d_H-i-s_T')
         );
 
         $project->setZipFilename($filename);

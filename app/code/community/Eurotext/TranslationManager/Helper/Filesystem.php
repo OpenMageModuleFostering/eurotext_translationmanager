@@ -11,10 +11,8 @@ class Eurotext_TranslationManager_Helper_Filesystem
     {
         $xmlDir = $this->getExportXMLPath($project);
         $xmlDir .= DS . $subdir;
-        if (!is_dir($xmlDir)) {
-            mkdir($xmlDir, 0777, true);
-
-            return $xmlDir;
+        if (!@mkdir($xmlDir, 0777, true) && !is_dir($xmlDir)) {
+            throw new Exception(sprintf('Directory %s could not be created.', $xmlDir));
         }
 
         return $xmlDir;
@@ -39,7 +37,7 @@ class Eurotext_TranslationManager_Helper_Filesystem
      */
     private function createHtaccessFile($dir)
     {
-        $htaccessFilename = $dir . DS . ".htaccess";
+        $htaccessFilename = $dir . DS . '.htaccess';
         if (!is_file($htaccessFilename)) {
             file_put_contents($htaccessFilename, "# Eurotext Export folder\nOrder Deny,Allow\nDeny From All");
         }
@@ -53,10 +51,8 @@ class Eurotext_TranslationManager_Helper_Filesystem
     private function createProjectExportDirectory(Eurotext_TranslationManager_Model_Project $project, $dir)
     {
         $dir .= DS . "projects/{$project->getId()}/export";
-        if (!is_dir($dir)) {
-            mkdir($dir, 0777, true);
-
-            return $dir;
+        if (!@mkdir($dir, 0777, true) && !is_dir($dir)) {
+            throw new Exception(sprintf('Directory %s could not be created.', $dir));
         }
 
         return $dir;
@@ -67,12 +63,10 @@ class Eurotext_TranslationManager_Helper_Filesystem
      */
     private function tryCreateEurotextVarDirectory($dir)
     {
-        if (!is_dir($dir)) {
-            if (!mkdir($dir, 0777, true)) {
-                Mage::helper('eurotext_translationmanager')
-                    ->log('Working directory could not be created in ' . Mage::getBaseDir('var'), Zend_Log::CRIT);
-                throw new Magento_Exception('Eurotext working directory could not be created.');
-            }
+        if (!@mkdir($dir, 0777, true) && !is_dir($dir)) {
+            Mage::helper('eurotext_translationmanager')
+                ->log('Working directory could not be created in ' . Mage::getBaseDir('var'), Zend_Log::CRIT);
+            throw new Magento_Exception('Eurotext working directory could not be created.');
         }
     }
 
@@ -82,7 +76,7 @@ class Eurotext_TranslationManager_Helper_Filesystem
      */
     public function getFilenameSafeString($filename)
     {
-        $filename = trim(strtolower($filename));
+        $filename = strtolower(trim($filename));
         $filename = preg_replace('#[^a-z0-9-_.]#', '-', $filename);
 
         do {

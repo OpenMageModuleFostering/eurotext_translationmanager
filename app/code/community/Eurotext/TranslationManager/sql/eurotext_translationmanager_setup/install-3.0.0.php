@@ -162,7 +162,7 @@ $project = $con->newTable($this->getTable('eurotext_translationmanager/project')
 
 $con->createTable($project);
 
-$projectCategories = $con->newTable($this->getTable("eurotext_translationmanager/project_categories"))
+$projectCategories = $con->newTable($this->getTable('eurotext_translationmanager/project_categories'))
     ->addColumn(
         'project_category_id',
         Varien_Db_Ddl_Table::TYPE_INTEGER,

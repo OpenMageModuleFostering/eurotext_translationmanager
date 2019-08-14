@@ -40,7 +40,7 @@ class Eurotext_TranslationManager_Model_Export_Project_EmailFileTemplates
 
         if (!$numberOfEmailTemplatesExported) {
             return [
-                'status_msg' => $this->getHelper()->__("No Email-File-Templates exported"),
+                'status_msg' => $this->getHelper()->__('No Email-File-Templates exported'),
                 'offset'     => 1,
                 'step'       => Eurotext_TranslationManager_Model_Export_Project::STEP_COLLECT_TEMPLATES_DATABASE,
             ];
@@ -53,7 +53,7 @@ class Eurotext_TranslationManager_Model_Export_Project_EmailFileTemplates
         $this->writeXml($emailTemplates, $project);
 
         return [
-            'status_msg' => $this->getHelper()->__("Exported %s Email Templates", $this->exportedTemplateFiles),
+            'status_msg' => $this->getHelper()->__('Exported %s Email Templates', $this->exportedTemplateFiles),
             'offset'     => 1,
             'step'       => Eurotext_TranslationManager_Model_Export_Project::STEP_COLLECT_TEMPLATES_DATABASE,
         ];
@@ -82,7 +82,7 @@ class Eurotext_TranslationManager_Model_Export_Project_EmailFileTemplates
             $filenameSrc = $baseLocale . "/{$project->getStoreviewSrcLocale()}/template$relativeFilePath";
             $filenameDst = $baseLocale . "/{$project->getStoreviewDstLocale()}/template$relativeFilePath";
 
-            if (!$this->isTranslationNeeded($filenameDst) || !isset($this->emailPaths[$fileInConfigXml])) {
+            if (!isset($this->emailPaths[$fileInConfigXml]) || !$this->isTranslationNeeded($filenameDst)) {
                 continue;
             }
             $this->exportedTemplateFiles++;
@@ -98,13 +98,13 @@ class Eurotext_TranslationManager_Model_Export_Project_EmailFileTemplates
             $type = $this->emailPaths[$fileInConfigXml]['type'];
             $xmlWriter->writeElement('Type', $type);
             $xmlWriter->startElement('Styles');
-            $xmlWriter->writeCdata($info['styles']);
+            $xmlWriter->writeCData($info['styles']);
             $xmlWriter->endElement(); // Styles
             $xmlWriter->startElement('Subject');
-            $xmlWriter->writeCdata($info['subject']);
+            $xmlWriter->writeCData($info['subject']);
             $xmlWriter->endElement(); // Subject
             $xmlWriter->startElement('Text');
-            $xmlWriter->writeCdata($info['text']);
+            $xmlWriter->writeCData($info['text']);
             $xmlWriter->endElement(); // Text
             $xmlWriter->endElement(); // email
 

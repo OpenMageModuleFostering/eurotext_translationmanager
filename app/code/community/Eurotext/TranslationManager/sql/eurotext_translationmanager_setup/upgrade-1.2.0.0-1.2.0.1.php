@@ -4,7 +4,7 @@
 
 $this->startSetup();
 
-$tablesToPutFkOn = array(
+$tablesToPutFkOn = [
     'eurotext_translationmanager/csv',
     'eurotext_translationmanager/csv_data',
     'eurotext_translationmanager/emailtemplates',
@@ -13,14 +13,14 @@ $tablesToPutFkOn = array(
     'eurotext_translationmanager/project_cmsblocks',
     'eurotext_translationmanager/project_cmspages',
     'eurotext_translationmanager/project_products',
-);
+];
 
 $projectTableName = $this->getTable('eurotext_translationmanager/project');
 $this->getConnection()->changeColumn(
     $projectTableName,
     'id',
     'id',
-    array('type' => Varien_Db_Ddl_Table::TYPE_BIGINT, 'auto_increment' => true, 'unsigned' => false)
+    ['type' => Varien_Db_Ddl_Table::TYPE_BIGINT, 'auto_increment' => true, 'unsigned' => false]
 );
 foreach ($tablesToPutFkOn as $table) {
     $tableName = $this->getTable($table);

@@ -32,7 +32,7 @@ class Eurotext_TranslationManager_Model_Import_Validator
         if (!ctype_digit($projectIdFromXml)) {
             Mage::throwException(
                 Mage::helper('eurotext_translationmanager')->__(
-                    "Could not read project-id from Description-Field in control.xml"
+                    'Could not read project-id from Description-Field in control.xml'
                 )
             );
         }
@@ -63,7 +63,7 @@ class Eurotext_TranslationManager_Model_Import_Validator
     {
         $doc = new DOMDocument();
         $doc->load($controlFile);
-        $nodes = $doc->getElementsByTagName("Description");
+        $nodes = $doc->getElementsByTagName('Description');
         $projectIdFromXml = null;
         foreach ($nodes as $node) {
             $description = $node->textContent;

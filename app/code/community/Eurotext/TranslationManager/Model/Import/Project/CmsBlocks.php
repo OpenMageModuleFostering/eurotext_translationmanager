@@ -21,7 +21,7 @@ class Eurotext_TranslationManager_Model_Import_Project_CmsBlocks
     {
         $doc = new DOMDocument();
         $doc->load($filename);
-        $cmsSites = $doc->getElementsByTagName("cms-site");
+        $cmsSites = $doc->getElementsByTagName('cms-site');
         foreach ($cmsSites as $cmsSite) {
             try {
                 $this->importBlock($cmsSite, $project);
@@ -91,11 +91,11 @@ class Eurotext_TranslationManager_Model_Import_Project_CmsBlocks
             $nodeName = trim($fieldNode->nodeName);
             $nodeContent = trim($fieldNode->textContent);
 
-            if ($nodeName != "") {
-                if ($nodeName == "Id") {
-                    $id = intval($nodeContent);
-                } elseif ($nodeName == "StoreviewDst") {
-                    $StoreviewDst = intval($nodeContent);
+            if ($nodeName != '') {
+                if ($nodeName == 'Id') {
+                    $id = (int)$nodeContent;
+                } elseif ($nodeName == 'StoreviewDst') {
+                    $StoreviewDst = (int)$nodeContent;
                 } else {
                     $fields[$nodeName] = $nodeContent;
                 }
@@ -103,7 +103,6 @@ class Eurotext_TranslationManager_Model_Import_Project_CmsBlocks
         }
 
         if ($id > 0) {
-            $blockDst = null;
             /** @var $blockSrc Mage_Cms_Model_Block */
             $blockSrc = Mage::getModel('cms/block')->load($id);
 

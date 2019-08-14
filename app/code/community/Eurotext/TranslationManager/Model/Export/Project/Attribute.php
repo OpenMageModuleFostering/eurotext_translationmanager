@@ -19,7 +19,7 @@ class Eurotext_TranslationManager_Model_Export_Project_Attribute
         $this->doc = new DOMDocument('1.0', 'UTF-8');
         $this->doc->formatOutput = true;
 
-        $this->nodeAttributes = $this->doc->createElement("attributes");
+        $this->nodeAttributes = $this->doc->createElement('attributes');
         $this->doc->appendChild($this->nodeAttributes);
     }
 
@@ -39,12 +39,12 @@ class Eurotext_TranslationManager_Model_Export_Project_Attribute
             ->addFieldToFilter('is_user_defined', 1);
 
         foreach ($attributes as $a) {
-            $comment = $a->getFrontendLabel() == $a->getStoreLabel() ? "(default label)" : "(src-storeview label)";
+            $comment = $a->getFrontendLabel() == $a->getStoreLabel() ? '(default label)' : '(src-storeview label)';
 
-            $nodeAttribute = $this->doc->createElement("attribute");
+            $nodeAttribute = $this->doc->createElement('attribute');
             $this->nodeAttributes->appendChild($nodeAttribute);
 
-            $optionId = $this->doc->createAttribute("id");
+            $optionId = $this->doc->createAttribute('id');
             $optionId->value = $a->getId();
             $nodeAttribute->appendChild($optionId);
 
@@ -52,12 +52,12 @@ class Eurotext_TranslationManager_Model_Export_Project_Attribute
             $nodeAttributeComment = $this->doc->createComment($comment);
             $nodeAttribute->appendChild($nodeAttributeComment);
 
-            $nodeName = $this->doc->createElement("AttributeName");
+            $nodeName = $this->doc->createElement('AttributeName');
             Mage::helper('eurotext_translationmanager/xml')
                 ->appendTextChild($this->doc, $nodeName, $a->getStoreLabel());
 
-            $attrTranslate = $this->doc->createAttribute("translate");
-            $attrTranslate->value = "1";
+            $attrTranslate = $this->doc->createAttribute('translate');
+            $attrTranslate->value = '1';
             $nodeName->appendChild($attrTranslate);
 
             $nodeAttribute->appendChild($nodeName);
@@ -71,30 +71,30 @@ class Eurotext_TranslationManager_Model_Export_Project_Attribute
             $optionCollection->addOrder('sort_order ASC, main_table.option_id', 'ASC');
 
             if ($optionCollection->count()) {
-                $nodeOptions = $this->doc->createElement("options");
+                $nodeOptions = $this->doc->createElement('options');
                 $nodeAttribute->appendChild($nodeOptions);
                 foreach ($optionCollection as $optionValue) {
                     $defaultValue = $optionValue->getValue();
                     $storeValue = $optionValue->getStoreValue();
 
-                    $nodeOption = $this->doc->createElement("option");
+                    $nodeOption = $this->doc->createElement('option');
                     $nodeOptions->appendChild($nodeOption);
 
-                    $optionId = $this->doc->createAttribute("id");
+                    $optionId = $this->doc->createAttribute('id');
                     $optionId->value = $optionValue->getOptionId();
                     $nodeOption->appendChild($optionId);
 
-                    $optionComment = empty($storeValue) || $defaultValue == $storeValue ? "(has default label)" : "(has src-storeview label)";
+                    $optionComment = empty($storeValue) || $defaultValue == $storeValue ? '(has default label)' : '(has src-storeview label)';
 
                     $nodeAttributeOptionComment = $this->doc->createComment($optionComment);
                     $nodeOption->appendChild($nodeAttributeOptionComment);
 
-                    $nodeName = $this->doc->createElement("OptionName");
+                    $nodeName = $this->doc->createElement('OptionName');
                     Mage::helper('eurotext_translationmanager/xml')
                         ->appendTextChild($this->doc, $nodeName, $storeValue ?: $defaultValue);
 
-                    $attrTranslate = $this->doc->createAttribute("translate");
-                    $attrTranslate->value = "1";
+                    $attrTranslate = $this->doc->createAttribute('translate');
+                    $attrTranslate->value = '1';
                     $nodeName->appendChild($attrTranslate);
 
                     $nodeOption->appendChild($nodeName);
@@ -109,13 +109,13 @@ class Eurotext_TranslationManager_Model_Export_Project_Attribute
                 $subdir
             );
 
-            $xml_filename = $xmlDir . DS . "attributes.xml";
+            $xml_filename = $xmlDir . DS . 'attributes.xml';
 
             $this->doc->save($xml_filename);
         }
 
         return [
-            'status_msg' => Mage::helper('eurotext_translationmanager')->__("Exported attributes."),
+            'status_msg' => Mage::helper('eurotext_translationmanager')->__('Exported attributes.'),
             'step'       => ProjectExporter::STEP_GENERATE_CONTROL_FILE,
             'offset'     => 1,
         ];

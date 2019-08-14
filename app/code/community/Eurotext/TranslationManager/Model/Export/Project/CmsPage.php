@@ -54,18 +54,18 @@ class Eurotext_TranslationManager_Model_Export_Project_CmsPage
             $manualSelected = true;
         }
 
-        if ((!$project->isExportingAllCmsContent() && !count($project->getPages()))
-            || $offset > $pageSrcCollection->getLastPageNumber()
+        if ($offset > $pageSrcCollection->getLastPageNumber() ||
+            (!$project->isExportingAllCmsContent() && !count($project->getPages()))
         ) {
             return [
-                'status_msg' => $helper->__("Exported CMS Pages."),
+                'status_msg' => $helper->__('Exported CMS Pages.'),
                 'step'       => ProjectExporter::STEP_COLLECT_CMSBLOCKS,
                 'offset'     => 1,
             ];
         }
 
         $statusMessage = sprintf(
-            Mage::helper('eurotext_translationmanager')->__("Batch %s / %s CMS Pages:"),
+            Mage::helper('eurotext_translationmanager')->__('Batch %s / %s CMS Pages:'),
             $offset + 1,
             $pageSrcCollection->getLastPageNumber()
         );
@@ -78,9 +78,9 @@ class Eurotext_TranslationManager_Model_Export_Project_CmsPage
             $identifier = $pageSrc->getIdentifier();
             /** @var Mage_Cms_Model_Page $matchingPage */
             $matchingPage = Mage::getResourceModel('cms/page_collection')
-                                ->addStoreFilter($project->getStoreviewDst())
-                                ->addFieldToFilter('identifier', $identifier)
-                                ->getFirstItem();
+                ->addStoreFilter($project->getStoreviewDst())
+                ->addFieldToFilter('identifier', $identifier)
+                ->getFirstItem();
 
             if (!$matchingPage->isObjectNew()) {
                 $pageDst = $matchingPage;
@@ -131,7 +131,7 @@ class Eurotext_TranslationManager_Model_Export_Project_CmsPage
     {
         $srcValue = $pageSrc->getDataUsingMethod($attr);
         $dstValue = $pageDst->getDataUsingMethod($attr);
-        if ($srcValue != "" && (($srcValue == $dstValue) || ($dstValue == "") || ($manualSelected))) {
+        if ($srcValue != '' && (($srcValue == $dstValue) || ($dstValue == '') || $manualSelected)) {
             $item = $this->doc->createElement($nodeName);
             Mage::helper('eurotext_translationmanager/xml')
                 ->appendTextChild($this->doc, $item, $srcValue);
@@ -148,13 +148,13 @@ class Eurotext_TranslationManager_Model_Export_Project_CmsPage
         if ($this->cmsSiteNode->hasChildNodes()) {
             $subdir = 'cms-sites';
             $xmlDir = Mage::helper('eurotext_translationmanager/filesystem')
-                          ->getXmlSubdirectoryAndMakeSureItExists($project, $subdir);
+                ->getXmlSubdirectoryAndMakeSureItExists($project, $subdir);
 
             $identifier = Mage::helper('eurotext_translationmanager/filesystem')
-                              ->getFilenameSafeString($page->getIdentifier());
+                ->getFilenameSafeString($page->getIdentifier());
 
             $xmlFilename = "$xmlDir/cms-" . Mage::helper('eurotext_translationmanager/filesystem')
-                                                ->getFilenameSafeString($identifier) . "-" . $page->getId() . ".xml";
+                    ->getFilenameSafeString($identifier) . '-' . $page->getId() . '.xml';
 
             $this->doc->save($xmlFilename);
         }
@@ -167,10 +167,10 @@ class Eurotext_TranslationManager_Model_Export_Project_CmsPage
      */
     private function addBasicInformation(Eurotext_TranslationManager_Model_Project $project, $pageSrc, $pageDst)
     {
-        $this->addNodeTopageNode("Id", $pageSrc->getId());
-        $this->addNodeTopageNode("StoreviewSrc", $project->getStoreviewSrc());
-        $this->addNodeTopageNode("StoreviewDst", $project->getStoreviewDst());
-        $this->addNodeTopageNode("PageIdDst", $pageDst->getId() != $pageSrc->getId() ? $pageDst->getId() : -1);
+        $this->addNodeTopageNode('Id', $pageSrc->getId());
+        $this->addNodeTopageNode('StoreviewSrc', $project->getStoreviewSrc());
+        $this->addNodeTopageNode('StoreviewDst', $project->getStoreviewDst());
+        $this->addNodeTopageNode('PageIdDst', $pageDst->getId() != $pageSrc->getId() ? $pageDst->getId() : -1);
     }
 
     /**
@@ -181,17 +181,17 @@ class Eurotext_TranslationManager_Model_Export_Project_CmsPage
     private function getCmsPageCollectionFor($storeId)
     {
         return Mage::getResourceModel('cms/page_collection')
-                   ->addStoreFilter($storeId)
-                   ->addOrder('page_id');
+            ->addStoreFilter($storeId)
+            ->addOrder('page_id');
     }
 
     private function createNewDOMDocument()
     {
-        $this->doc               = new DOMDocument('1.0', 'UTF-8');
+        $this->doc = new DOMDocument('1.0', 'UTF-8');
         $this->doc->formatOutput = true;
-        $cmsSites                = $this->doc->createElement("cms-sites");
+        $cmsSites = $this->doc->createElement('cms-sites');
         $this->doc->appendChild($cmsSites);
-        $this->cmsSiteNode = $this->doc->createElement("cms-site");
+        $this->cmsSiteNode = $this->doc->createElement('cms-site');
         $cmsSites->appendChild($this->cmsSiteNode);
     }
 }

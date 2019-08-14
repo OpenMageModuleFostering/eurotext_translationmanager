@@ -39,7 +39,7 @@ class Eurotext_TranslationManager_Adminhtml_Eurotext_Project_ImportController ex
 
             return;
         } catch (Exception $e) {
-            $message = $this->getHelper()->__("Error Message: %s", $e->getMessage());
+            $message = $this->getHelper()->__('Error Message: %s', $e->getMessage());
             $this->setWarningAndRedirect($message);
 
             return;
@@ -106,7 +106,7 @@ class Eurotext_TranslationManager_Adminhtml_Eurotext_Project_ImportController ex
     {
         $this->getResponse()->setHeader('Content-type', 'application/json', true);
 
-        $controlFile = $this->getTempDirectory() . DIRECTORY_SEPARATOR . "control.xml";
+        $controlFile = $this->getTempDirectory() . DIRECTORY_SEPARATOR . 'control.xml';
         $projectId   = $this->getProjectIdFromSession();
         try {
             Mage::getModel('eurotext_translationmanager/import_validator')->validate($projectId, $controlFile);
@@ -203,9 +203,7 @@ class Eurotext_TranslationManager_Adminhtml_Eurotext_Project_ImportController ex
      */
     private function getTempDirectory()
     {
-        $dir = Mage::getBaseDir('tmp') . '/eurotext';
-
-        return $dir;
+        return Mage::getBaseDir('tmp') . '/eurotext';
     }
 
     /**
@@ -217,7 +215,7 @@ class Eurotext_TranslationManager_Adminhtml_Eurotext_Project_ImportController ex
             return;
         }
 
-        if (!mkdir($dir)) {
+        if (!@mkdir($dir) && !is_dir($dir)) {
             $baseDir = Mage::getBaseDir('var');
             $this->getHelper()->log('Temporary directory could not be created in ' . $baseDir, Zend_Log::CRIT);
             throw new Magento_Exception('Eurotext temporary directory could not be created.');
@@ -237,7 +235,7 @@ class Eurotext_TranslationManager_Adminhtml_Eurotext_Project_ImportController ex
      */
     private function createHtaccessFile($dir)
     {
-        $htaccessFilename = $dir . DS . ".htaccess";
+        $htaccessFilename = $dir . DS . '.htaccess';
         if (!is_file($htaccessFilename)) {
             file_put_contents($htaccessFilename, "# Eurotext Temp folder\r\nOrder Deny,Allow\r\nDeny From All");
         }

@@ -10,9 +10,9 @@ class Eurotext_TranslationManager_Helper_Eurotext extends Mage_Core_Helper_Abstr
         $lastSep = strrpos($rpath, DIRECTORY_SEPARATOR);
         if ($lastSep >= 0) {
             return substr($rpath, 0, $lastSep);
-        } else {
-            return $path;
         }
+
+        return $path;
     }
 
     // Extract directory-part of path
@@ -81,11 +81,10 @@ class Eurotext_TranslationManager_Helper_Eurotext extends Mage_Core_Helper_Abstr
         return false;
     }
 
-    public function zipFolder($directory, $zipFile, $comment = "")
+    public function zipFolder($directory, $zipFile, $comment = '')
     {
-
         $helper = Mage::helper('eurotext_translationmanager');
-        if (!class_exists("ZipArchive")) {
+        if (!class_exists(ZipArchive::class)) {
             $helper->log('ZipArchive Class does not exist!', Zend_Log::CRIT);
 
             return false;
@@ -96,7 +95,7 @@ class Eurotext_TranslationManager_Helper_Eurotext extends Mage_Core_Helper_Abstr
 
         $mode = file_exists($zipFile) ? ZipArchive::OVERWRITE : ZipArchive::CREATE;
 
-        $zip = new ZipArchive;
+        $zip = new ZipArchive();
         $zipOpeningResult = $zip->open($zipFile, $mode);
 
         if ($zipOpeningResult !== true) {
@@ -106,21 +105,20 @@ class Eurotext_TranslationManager_Helper_Eurotext extends Mage_Core_Helper_Abstr
             return false;
         }
 
-        if ($comment != "") {
+        if ($comment != '') {
             $zip->setArchiveComment($comment);
         }
 
         foreach ($items as $item) {
             if ($item['full_path'] == $zipFile) {
-                // Skip
-            } else {
-                $inZipPath = substr($item['full_path'], strlen($dirpath) + 1);
+                continue;
+            }
+            $inZipPath = substr($item['full_path'], strlen($dirpath) + 1);
 
-                if ($item['type'] == "dir") {
-                    $zip->addEmptyDir($inZipPath);
-                } else {
-                    $zip->addFile($item['full_path'], $inZipPath);
-                }
+            if ($item['type'] == 'dir') {
+                $zip->addEmptyDir($inZipPath);
+            } else {
+                $zip->addFile($item['full_path'], $inZipPath);
             }
         }
 
@@ -145,20 +143,21 @@ class Eurotext_TranslationManager_Helper_Eurotext extends Mage_Core_Helper_Abstr
             while (false !== ($item = readdir($dir))) {
                 $full_path = $dirpath . DIRECTORY_SEPARATOR . $item;
                 if (($item == ".") || ($item == "..")) {
-                    // Skip
-                } elseif ((is_file($full_path)) && ($enumerateFiles)) {
+                    continue;
+                }
+                if ($enumerateFiles && is_file($full_path)) {
                     $rvItem = [];
                     $rvItem['full_path'] = $full_path;
                     $rvItem['name'] = $item;
-                    $rvItem['type'] = "file";
-                    array_push($result, $rvItem);
+                    $rvItem['type'] = 'file';
+                    $result[] = $rvItem;
                 } elseif (is_dir($full_path)) {
                     if ($enumerateDirs) {
                         $rvItem = [];
                         $rvItem['full_path'] = $full_path;
                         $rvItem['name'] = $item;
-                        $rvItem['type'] = "dir";
-                        array_push($result, $rvItem);
+                        $rvItem['type'] = 'dir';
+                        $result[] = $rvItem;
                     }
 
                     if ($recurse) {
@@ -178,7 +177,7 @@ class Eurotext_TranslationManager_Helper_Eurotext extends Mage_Core_Helper_Abstr
         }
 
         if ($sortResult) {
-            usort($result, [$this, "compareFileItems"]);
+            usort($result, [$this, 'compareFileItems']);
         }
 
         return $result;

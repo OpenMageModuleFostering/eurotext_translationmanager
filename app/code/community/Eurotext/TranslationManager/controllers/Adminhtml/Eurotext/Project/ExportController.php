@@ -37,20 +37,20 @@ class Eurotext_TranslationManager_Adminhtml_Eurotext_Project_ExportController ex
         $block = $this->getLayout()->getBlock('et.tm.response.ajax');
 
         $request = $this->getRequest();
-        $step = intval($request->getParam("step"));
-        $offset = intval($request->getParam("offset"));
-        $project_id = intval($request->getParam("project_id"));
+        $step = (int)$request->getParam('step');
+        $offset = (int)$request->getParam('offset');
+        $project_id = (int)$request->getParam('project_id');
 
         $project = $this->getProject($project_id);
 
-        $block->setStatusMsg($this->__("Please wait …"));
-        $block->setStatusCode("ok");
+        $block->setStatusMsg($this->__('Please wait …'));
+        $block->setStatusCode('ok');
         $block->setStep($step);
         $block->setFinished(false);
         try {
             Mage::getModel('eurotext_translationmanager/export_project')->export($step, $block, $project, $offset);
         } catch (Exception $e) {
-            $block->setStatusCode("error");
+            $block->setStatusCode('error');
             $block->setStatusMsg($e->getMessage());
         }
         $response->setBody($block->toJson());

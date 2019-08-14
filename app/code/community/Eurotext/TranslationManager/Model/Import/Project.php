@@ -3,19 +3,9 @@
 class Eurotext_TranslationManager_Model_Import_Project
 {
     /**
-     * @var Varien_Db_Adapter_Interface
-     */
-    private $writeConnection;
-
-    /**
      * @var mixed[]
      */
     private $skippedEntities = [];
-
-    public function __construct()
-    {
-        $this->writeConnection = Mage::getSingleton('core/resource')->getConnection('core_write');
-    }
 
     public function import(
         Eurotext_TranslationManager_Model_Project $project
@@ -43,19 +33,19 @@ class Eurotext_TranslationManager_Model_Import_Project
         $filename = $importFile->getFilename();
         $fullFilename = $tmpdir . DIRECTORY_SEPARATOR . $filename;
 
-        if (stripos($filename, "cms-sites" . DS . "cms-") === 0) {
+        if (stripos($filename, 'cms-sites' . DS . 'cms-') === 0) {
             $this->importstepActionImportCMS($fullFilename, $project);
-        } elseif (stripos($filename, "cms-sites" . DS . "cmsblock-") === 0) {
+        } elseif (stripos($filename, 'cms-sites' . DS . 'cmsblock-') === 0) {
             $this->importstepActionImportBlocks($fullFilename, $project);
-        } elseif (stripos($filename, "articles" . DS) === 0) {
+        } elseif (stripos($filename, 'articles' . DS) === 0) {
             $this->importstepActionImportArticle($fullFilename, $project);
-        } elseif (stripos($filename, "categories" . DS) === 0) {
+        } elseif (stripos($filename, 'categories' . DS) === 0) {
             $this->importstepActionImportCategory($fullFilename, $project);
-        } elseif (stripos($filename, "framework" . DS) === 0) {
+        } elseif (stripos($filename, 'framework' . DS) === 0) {
             $this->importstepActionImportTranslation($fullFilename);
-        } elseif (stripos($filename, "attributes" . DS) === 0) {
+        } elseif (stripos($filename, 'attributes' . DS) === 0) {
             $this->importstepActionImportAttributes($fullFilename, $project);
-        } elseif (stripos($filename, "emailtemplates" . DS) === 0) {
+        } elseif (stripos($filename, 'emailtemplates' . DS) === 0) {
             $this->importstepActionImportTemplates($fullFilename, $project);
         }
 
@@ -69,17 +59,15 @@ class Eurotext_TranslationManager_Model_Import_Project
     private function getTempDir()
     {
         $dir = Mage::getBaseDir('tmp');
-        $dir .= DS . "eurotext";
-        if (!is_dir($dir)) {
-            if (!mkdir($dir)) {
-                Mage::helper('eurotext_translationmanager')->log(
-                    'Temporary directory could not be created in ' . Mage::getBaseDir('var'),
-                    Zend_Log::CRIT
-                );
-                throw new Magento_Exception('Eurotext temporary directory could not be created.');
-            }
+        $dir .= DS . 'eurotext';
+        if (!@mkdir($dir) && !is_dir($dir)) {
+            Mage::helper('eurotext_translationmanager')->log(
+                'Temporary directory could not be created in ' . Mage::getBaseDir('var'),
+                Zend_Log::CRIT
+            );
+            throw new Magento_Exception('Eurotext temporary directory could not be created.');
         }
-        $htaccessFilename = $dir . DS . ".htaccess";
+        $htaccessFilename = $dir . DS . '.htaccess';
         if (!is_file($htaccessFilename)) {
             file_put_contents($htaccessFilename, "# Eurotext Temp folder\r\nOrder Deny,Allow\r\nDeny From All");
         }

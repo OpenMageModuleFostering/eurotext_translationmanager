@@ -74,7 +74,9 @@ class Eurotext_TranslationManager_Adminhtml_Eurotext_ProjectController extends M
                 $model = Mage::getModel('eurotext_translationmanager/project');
                 $model->load($id);
                 if (!$model->getId()) {
-                    Mage::throwException($this->getHelper()->__('Unable to find a project with id "%s" to delete.', $id));
+                    Mage::throwException(
+                        $this->getHelper()->__('Unable to find a project with id "%s" to delete.', $id)
+                    );
                 }
                 $model->delete();
 
@@ -114,7 +116,12 @@ class Eurotext_TranslationManager_Adminhtml_Eurotext_ProjectController extends M
         /** @var $project Eurotext_TranslationManager_Model_Project */
         $project = $this->loadAndRegisterProject($this->getRequest()->getParam('project_id'));
         if (!$project->isEditable()) {
-            $this->getSession()->addNotice($this->getHelper()->__('Project "%s" was exported. You can\'t edit it anymore.', $project->getProjectName()));
+            $this->getSession()->addNotice(
+                $this->getHelper()->__(
+                    'Project "%s" was exported. You can\'t edit it anymore.',
+                    $project->getProjectName()
+                )
+            );
         }
         $this->loadLayout();
         $this->renderLayout();
@@ -266,6 +273,7 @@ class Eurotext_TranslationManager_Adminhtml_Eurotext_ProjectController extends M
 
     /**
      * @param int[] $products
+     * @param int[] $categories
      */
     private function renderProductGridAndCategoryTree($products, $categories)
     {
@@ -376,38 +384,45 @@ class Eurotext_TranslationManager_Adminhtml_Eurotext_ProjectController extends M
     {
         $project->addData($this->getRequest()->getParams());
         /** @noinspection PhpAssignmentInConditionInspection */
-        if ($productIds = $this->getRequest()->getParam('product_ids', null)) {
+        if ($this->hasRequestParam('product_ids')) {
+            $productIds = $this->getRequest()->getParam('product_ids', null);
             $productIds = Mage::helper('adminhtml/js')->decodeGridSerializedInput($productIds);
             $project->setProducts($productIds);
         }
-        $this->addProductsBySku($project, $productIds);
+        $this->addProductsBySku($project);
         /** @noinspection PhpAssignmentInConditionInspection */
-        if ($categoryIds = $this->getRequest()->getParam('category_ids', null)) {
+        if ($this->hasRequestParam('category_ids')) {
+            $categoryIds = $this->getRequest()->getParam('category_ids', null);
             $categoryIds = Mage::helper('adminhtml/js')->decodeGridSerializedInput($categoryIds);
             $project->setCategories($categoryIds);
         }
         /** @noinspection PhpAssignmentInConditionInspection */
-        if ($cmsBlockIds = $this->getRequest()->getParam('cmsBlock_ids', null)) {
+        if ($this->hasRequestParam('cmsBlock_ids')) {
+            $cmsBlockIds = $this->getRequest()->getParam('cmsBlock_ids', null);
             $cmsBlockIds = Mage::helper('adminhtml/js')->decodeGridSerializedInput($cmsBlockIds);
             $project->setBlocks($cmsBlockIds);
         }
         /** @noinspection PhpAssignmentInConditionInspection */
-        if ($cmsPageIds = $this->getRequest()->getParam('cmsPage_ids', null)) {
+        if ($this->hasRequestParam('cmsPage_ids')) {
+            $cmsPageIds = $this->getRequest()->getParam('cmsPage_ids', null);
             $cmsPageIds = Mage::helper('adminhtml/js')->decodeGridSerializedInput($cmsPageIds);
             $project->setPages($cmsPageIds);
         }
         /** @noinspection PhpAssignmentInConditionInspection */
-        if ($transactionEmailFilesFilenames = $this->getRequest()->getParam('transactionEmailFile_ids', null)) {
+        if ($this->hasRequestParam('transactionEmailFile_ids')) {
+            $transactionEmailFilesFilenames = $this->getRequest()->getParam('transactionEmailFile_ids', null);
             $transactionEmailFilesFilenames = array_filter(explode('&', $transactionEmailFilesFilenames));
             $project->setTransactionEmailFiles($transactionEmailFilesFilenames);
         }
         /** @noinspection PhpAssignmentInConditionInspection */
-        if ($mailDatabaseIds = $this->getRequest()->getParam('transactionEmailDatabase_ids', null)) {
+        if ($this->hasRequestParam('transactionEmailDatabase_ids')) {
+            $mailDatabaseIds = $this->getRequest()->getParam('transactionEmailDatabase_ids', null);
             $mailDatabaseIds = Mage::helper('adminhtml/js')->decodeGridSerializedInput($mailDatabaseIds);
             $project->setTransactionEmailDatabase($mailDatabaseIds);
         }
         /** @noinspection PhpAssignmentInConditionInspection */
-        if ($translationFileFilenames = $this->getRequest()->getParam('translateFiles_ids', null)) {
+        if ($this->hasRequestParam('translateFiles_ids')) {
+            $translationFileFilenames = $this->getRequest()->getParam('translateFiles_ids', null);
             $translationFileFilenames = array_filter(explode('&', $translationFileFilenames));
             $project->setTranslationFiles($translationFileFilenames);
         }
@@ -440,9 +455,8 @@ class Eurotext_TranslationManager_Adminhtml_Eurotext_ProjectController extends M
 
     /**
      * @param Eurotext_TranslationManager_Model_Project $project
-     * @param int[]                                     $productIds
      */
-    private function addProductsBySku(Eurotext_TranslationManager_Model_Project $project, $productIds)
+    private function addProductsBySku(Eurotext_TranslationManager_Model_Project $project)
     {
         $skus = $this->getBulkProducts($this->getRequest()->getParam('bulk_sku'));
         if ($skus) {
@@ -458,5 +472,13 @@ class Eurotext_TranslationManager_Adminhtml_Eurotext_ProjectController extends M
                 )
             );
         }
+    }
+
+
+    private function hasRequestParam($name)
+    {
+        $params = $this->getRequest()->getParams();
+
+        return array_key_exists($name, $params);
     }
 }

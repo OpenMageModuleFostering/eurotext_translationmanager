@@ -122,8 +122,8 @@ class Eurotext_TranslationManager_Model_EurotextLanguages
 
         return [
             'locale'          => $locale,
-            'locale_eurotext' => "-",
-            'lang_name'       => Mage::helper('eurotext_translationmanager')->__("Unsupported language"),
+            'locale_eurotext' => '-',
+            'lang_name'       => Mage::helper('eurotext_translationmanager')->__('Unsupported language'),
             'supported'       => false,
         ];
     }
@@ -138,8 +138,8 @@ class Eurotext_TranslationManager_Model_EurotextLanguages
 
         return [
             'locale'          => $locale,
-            'locale_eurotext' => "-",
-            'lang_name'       => Mage::helper('eurotext_translationmanager')->__("Unsupported language"),
+            'locale_eurotext' => '-',
+            'lang_name'       => Mage::helper('eurotext_translationmanager')->__('Unsupported language'),
             'supported'       => false,
         ];
     }

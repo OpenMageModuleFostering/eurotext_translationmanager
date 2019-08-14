@@ -50,10 +50,8 @@ class Eurotext_TranslationManager_Model_Resource_Csv_Collection
 
         $this->setFilesFilter('#^[a-zA-Z0-9_]+\.csv$#');
         $this->setDisallowedFilesFilter(false);
-        /** @var Eurotext_TranslationManager_Model_Resource_Csv_Collection $collection */
-        $collection = parent::loadData($printQuery, $logQuery);
 
-        return $collection;
+        return parent::loadData($printQuery, $logQuery);
     }
 
     /**
@@ -66,6 +64,7 @@ class Eurotext_TranslationManager_Model_Resource_Csv_Collection
 
     /**
      * @param string $language
+     * @param string $store
      * @return $this
      */
     public function setTargetPathByLanguageAndStore($language, $store)
@@ -92,7 +91,7 @@ class Eurotext_TranslationManager_Model_Resource_Csv_Collection
      */
     public function setPageSize($size)
     {
-        /** @var $thisCollection $this */
+        /** @var $thisCollection Eurotext_TranslationManager_Model_Resource_Csv_Collection */
         $thisCollection = parent::setPageSize($size + 1);
 
         return $thisCollection;

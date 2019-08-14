@@ -20,7 +20,7 @@ class Eurotext_TranslationManager_Model_Import_Project_Product
     /**
      * @var string[]
      */
-    private $ignoreFields = ["#text", "Url"];
+    private $ignoreFields = ['#text', 'Url'];
 
     /**
      * @var mixed[]
@@ -81,7 +81,7 @@ class Eurotext_TranslationManager_Model_Import_Project_Product
         $this->helper->log('=== Importing Products ===');
 
         /** @var $article DOMElement */
-        foreach ($this->domDocument->getElementsByTagName("article") as $article) {
+        foreach ($this->domDocument->getElementsByTagName('article') as $article) {
             try {
                 $product = $this->productLoader->load(
                     $this->getProductIdFromXml($article),
@@ -140,9 +140,9 @@ class Eurotext_TranslationManager_Model_Import_Project_Product
             $nodeName = trim($fieldNode->nodeName);
             $nodeContent = trim($fieldNode->textContent);
 
-            if ($nodeName != "") {
-                if ($nodeName == "Id") {
-                    $id = intval($nodeContent);
+            if ($nodeName != '') {
+                if ($nodeName == 'Id') {
+                    $id = (int)$nodeContent;
                 } else {
                     if ('custom_attributes' == $nodeName) {
                         $fields[$nodeName] = $fieldNode;
@@ -166,11 +166,11 @@ class Eurotext_TranslationManager_Model_Import_Project_Product
                 $product->setDataUsingMethod('url_key', $value);
                 continue;
             }
-            if ($key == "Images") {
+            if ($key == 'Images') {
                 $this->processProductImages($article, $product);
                 continue;
             }
-            if ($key == "Options") {
+            if ($key == 'Options') {
                 $this->processOptionsForProduct($article);
                 continue;
             }
@@ -194,20 +194,19 @@ class Eurotext_TranslationManager_Model_Import_Project_Product
      */
     private function processProductImages(DOMElement $article, Mage_Catalog_Model_Product $product)
     {
+        $imageNodes = $article->getElementsByTagName('Image');
 
-        $imageNodes = $article->getElementsByTagName("Image");
-
-        if($imageNodes->length){
+        if ($imageNodes->length) {
             $product->getMediaGalleryImages();
         }
 
         foreach ($imageNodes as $imageNode) {
             /** @var $imageNode DomElement */
-            $imgValueId = intval($imageNode->getAttributeNode("value_id")->value);
-            $imgPosition = intval($imageNode->getAttributeNode("position")->value);
-            $imgDisabled = intval($imageNode->getAttributeNode("disabled")->value);
+            $imgValueId = (int)$imageNode->getAttributeNode('value_id')->value;
+            $imgPosition = (int)$imageNode->getAttributeNode('position')->value;
+            $imgDisabled = (int)$imageNode->getAttributeNode('disabled')->value;
 
-            $labelNodes = $imageNode->getElementsByTagName("Label");
+            $labelNodes = $imageNode->getElementsByTagName('Label');
             $imgLabel = '';
             foreach ($labelNodes as $labelNode) {
                 $imgLabel = trim($labelNode->textContent);
@@ -223,20 +222,20 @@ class Eurotext_TranslationManager_Model_Import_Project_Product
      */
     private function processOptionsForProduct($article)
     {
-        $optionNodes = $article->getElementsByTagName("Option");
+        $optionNodes = $article->getElementsByTagName('Option');
         foreach ($optionNodes as $optionNode) {
             /** @var $optionNode DOMElement */
-            $optionId = intval($optionNode->getAttributeNode("Id")->value);
-            $title = trim($this->getXMLChildNodeText($optionNode, "Title", ""));
+            $optionId = (int)$optionNode->getAttributeNode('Id')->value;
+            $title = trim($this->getXMLChildNodeText($optionNode, 'Title', ''));
             if ($title) {
                 Mage::getResourceModel('eurotext_translationmanager/catalog_product_option_title')
                     ->updateTitleForStore($optionId, $title, $this->getStoreId());
             }
 
-            $OptionValueNodes = $article->getElementsByTagName("Value");
+            $OptionValueNodes = $article->getElementsByTagName('Value');
             foreach ($OptionValueNodes as $OptionValueNode) {
-                $optionValueId = intval($OptionValueNode->getAttributeNode("Id")->value);
-                $optionValueTitle = trim($this->getXMLChildNodeText($OptionValueNode, "Title", ""));
+                $optionValueId = (int)$OptionValueNode->getAttributeNode('Id')->value;
+                $optionValueTitle = trim($this->getXMLChildNodeText($OptionValueNode, 'Title', ''));
 
                 if ($optionValueTitle) {
                     Mage::getResourceModel('eurotext_translationmanager/catalog_product_option_type_title')
@@ -253,7 +252,7 @@ class Eurotext_TranslationManager_Model_Import_Project_Product
      *
      * @return string
      */
-    private function getXMLChildNodeText(DOMElement $element, $childnodeName, $defaultValue = "")
+    private function getXMLChildNodeText(DOMElement $element, $childnodeName, $defaultValue = '')
     {
         $childNode = $this->getXMLChildNode($element, $childnodeName);
         if ($childNode == null) {
@@ -274,10 +273,8 @@ class Eurotext_TranslationManager_Model_Import_Project_Product
     {
         $childNodes = $element->childNodes;
         foreach ($childNodes as $childNode) {
-            if ($childNode->nodeType == XML_ELEMENT_NODE) {
-                if ($childNode->tagName == $childnodeName) {
-                    return $childNode;
-                }
+            if ($childNode->nodeType == XML_ELEMENT_NODE && $childNode->tagName == $childnodeName) {
+                return $childNode;
             }
         }
 

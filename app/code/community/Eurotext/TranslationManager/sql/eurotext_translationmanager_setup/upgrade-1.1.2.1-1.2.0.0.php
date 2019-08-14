@@ -11,23 +11,23 @@ $this->getConnection()->addIndex(
     $tableName,
     $this->getConnection()->getIndexName(
         $tableName,
-        array('project_id', 'filename'),
+        ['project_id', 'filename'],
         Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE
     ),
-    array('project_id', 'filename'),
+    ['project_id', 'filename'],
     Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE
 );
 
 $this->getConnection()->addColumn(
     $tableName,
     'import_id',
-    array(
+    [
         'primary'  => true,
         'comment'  => 'Primary key',
         'unsigned' => true,
         'identity' => true,
         'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
-    )
+    ]
 );
 
 $tableName = $this->getTable('eurotext_translationmanager/project_categories');
@@ -36,23 +36,23 @@ $this->getConnection()->addIndex(
     $tableName,
     $this->getConnection()->getIndexName(
         $tableName,
-        array('project_id', 'category_id'),
+        ['project_id', 'category_id'],
         Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE
     ),
-    array('project_id', 'category_id'),
+    ['project_id', 'category_id'],
     Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE
 );
 
 $this->getConnection()->addColumn(
     $tableName,
     'project_category_id',
-    array(
+    [
         'primary'  => true,
         'comment'  => 'Primary key',
         'unsigned' => true,
         'identity' => true,
         'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
-    )
+    ]
 );
 
 $this->endSetup();

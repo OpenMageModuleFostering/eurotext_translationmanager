@@ -65,7 +65,7 @@ class Eurotext_TranslationManager_Block_Status extends Mage_Adminhtml_Block_Widg
     }
 
     /**
-     * @return string[]
+     * @return string[][]
      */
     private function getLanguagesInStores()
     {
@@ -96,22 +96,22 @@ class Eurotext_TranslationManager_Block_Status extends Mage_Adminhtml_Block_Widg
             'module_version'     => [
                 'name'           => $this->__('Plugin version'),
                 'value_now'      => $this->configHelper->getModuleVersion(),
-                'value_required' => "&mdash;",
+                'value_required' => '&mdash;',
             ],
             'php_version'        => [
                 'name'           => $this->__('PHP version'),
                 'value_now'      => PHP_VERSION,
-                'value_required' => "> 5.5.0",
+                'value_required' => '> 5.5.0',
             ],
             'ftp_extension'      => [
                 'name'           => $this->__('FTP-Extension'),
-                'value_now'      => extension_loaded('ftp') ? $this->__("Installed") : $this->__("Missing"),
-                'value_required' => $this->__("Installed"),
+                'value_now'      => extension_loaded('ftp') ? $this->__('Installed') : $this->__('Missing'),
+                'value_required' => $this->__('Installed'),
             ],
             'zip_extension'      => [
                 'name'           => $this->__('ZIP-Extension'),
-                'value_now'      => extension_loaded('zip') ? $this->__("Installed") : $this->__("Missing"),
-                'value_required' => $this->__("Installed"),
+                'value_now'      => extension_loaded('zip') ? $this->__('Installed') : $this->__('Missing'),
+                'value_required' => $this->__('Installed'),
             ],
             'max_execution_time' => [
                 'name'           => $this->__("Value for 'max_execution_time'"),
@@ -221,7 +221,7 @@ class Eurotext_TranslationManager_Block_Status extends Mage_Adminhtml_Block_Widg
             );
         } else {
             $ftpMessage = $this->__(
-                "Your Magento installation allows the translation of URLs of categories and products."
+                'Your Magento installation allows the translation of URLs of categories and products.'
             );
             $fieldset->addField(
                 'url_key_scope',
@@ -258,11 +258,12 @@ class Eurotext_TranslationManager_Block_Status extends Mage_Adminhtml_Block_Widg
 
     /**
      * @param string $dir
+     * @return bool
      */
     private function checkDirectory($dir)
     {
-        if (!is_dir($dir)) {
-            mkdir($dir, 0777, true);
+        if (!@mkdir($dir, 0777, true) && !is_dir($dir)) {
+            throw new Exception(sprintf('Directory %s could not be created.', $dir));
         }
 
         return is_dir_writeable($dir);

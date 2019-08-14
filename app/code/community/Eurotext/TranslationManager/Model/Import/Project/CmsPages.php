@@ -13,7 +13,7 @@ class Eurotext_TranslationManager_Model_Import_Project_CmsPages
     {
         $doc = new DOMDocument();
         $doc->load($fullFilename);
-        $cmsSites = $doc->getElementsByTagName("cms-site");
+        $cmsSites = $doc->getElementsByTagName('cms-site');
         foreach ($cmsSites as $cmsSite) {
             try {
                 $this->importPage($cmsSite, $project, $fullFilename);
@@ -43,9 +43,10 @@ class Eurotext_TranslationManager_Model_Import_Project_CmsPages
     }
 
     /**
-     * @param DOMDocument                               $cmsSite
+     * @param DOMDocument|DOMElement                    $cmsSite
      * @param Eurotext_TranslationManager_Model_Project $project
-     * @param                                           $fullFilename
+     * @param string                                    $fullFilename
+     * @throws Eurotext_TranslationManager_Model_Import_Project_Exception_MissingEntity
      * @throws Exception
      */
     private function importPage(DOMElement $cmsSite, Eurotext_TranslationManager_Model_Project $project, $fullFilename)
@@ -63,9 +64,9 @@ class Eurotext_TranslationManager_Model_Import_Project_CmsPages
             $nodeName = trim($fieldNode->nodeName);
             $nodeContent = trim($fieldNode->textContent);
 
-            if ($nodeName != "") {
-                if ($nodeName == "Id") {
-                    $id = intval($nodeContent);
+            if ($nodeName != '') {
+                if ($nodeName == 'Id') {
+                    $id = (int)$nodeContent;
                 } else {
                     $fields[$nodeName] = $nodeContent;
                 }

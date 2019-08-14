@@ -16,7 +16,8 @@ class Eurotext_TranslationManager_Model_Import_Queue
     }
 
     /**
-     * @param string $controlFile
+     * @param Eurotext_TranslationManager_Model_Project $project
+     * @param string                                    $controlFile
      */
     public function addControlXmlToQueue(Eurotext_TranslationManager_Model_Project $project, $controlFile)
     {

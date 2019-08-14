@@ -12,6 +12,7 @@ class Eurotext_TranslationManager_Block_Adminhtml_Eurotext_Project_Edit_Tab_Prod
 
     protected function _getNodeJson($node, $level = 0)
     {
+        /** @var $item string[] */
         $item = parent::_getNodeJson($node, $level);
         if (in_array($node->getId(), $this->getSelectedCategories())) {
             $item['checked'] = true;

@@ -31,10 +31,10 @@ class Eurotext_TranslationManager_Block_Adminhtml_Eurotext_Project_Edit_Tab_Grid
             $this->getParentBlock()->getSelected()
         );
         if ($selected) {
-            return join(',', $selected);
-        } else {
-            return '';
+            return implode(',', $selected);
         }
+
+        return '';
     }
 
     /**
@@ -51,8 +51,8 @@ class Eurotext_TranslationManager_Block_Adminhtml_Eurotext_Project_Edit_Tab_Grid
             $selected = explode(',', $selected);
 
             return $selected;
-        } else {
-            return [];
         }
+
+        return [];
     }
 }

@@ -304,16 +304,16 @@ class Eurotext_TranslationManager_Block_Adminhtml_Eurotext_Project_Edit_Tab_Prod
                 $collection = $category->getProductCollection();
 
                 return $collection;
-            } else {
-                $categoryCollection = Mage::getResourceModel('catalog/category_collection')
-                    ->addPathFilter("^{$category->getPath()}/[0-9]*$");
-                $categories = $categoryCollection->getAllIds();
-                $categories[] = $category->getId();
-                $collection->joinField('category_id', 'catalog/category_product', 'category_id', 'product_id=entity_id')
-                    ->addAttributeToFilter('category_id', ['in' => $categories]);
-
-                return $collection;
             }
+
+            $categoryCollection = Mage::getResourceModel('catalog/category_collection')
+                ->addPathFilter("^{$category->getPath()}/[0-9]*$");
+            $categories = $categoryCollection->getAllIds();
+            $categories[] = $category->getId();
+            $collection->joinField('category_id', 'catalog/category_product', 'category_id', 'product_id=entity_id')
+                ->addAttributeToFilter('category_id', ['in' => $categories]);
+
+            return $collection;
         }
 
         return $collection;

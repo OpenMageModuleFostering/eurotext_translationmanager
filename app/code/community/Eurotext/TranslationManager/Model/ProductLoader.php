@@ -2,6 +2,10 @@
 
 class Eurotext_TranslationManager_Model_ProductLoader
 {
+    private $requiredAttributes = [
+        'entity_id', 'attribute_set_id', 'store_id', 'media_gallery'
+    ];
+
     /**
      * @param int $productId
      * @param int $storeId
@@ -17,7 +21,7 @@ class Eurotext_TranslationManager_Model_ProductLoader
                     Mage::helper('eurotext_translationmanager')->__("Wrong Product ID '%s'", $productId)
                 );
             }
-            Mage::log("Wrong Product (ID: <no int>)");
+            Mage::log('Wrong Product (ID: <no int>)');
             Mage::throwException(
                 Mage::helper('eurotext_translationmanager')->__("Wrong Product ID '<no int>'", $productId)
             );
@@ -34,7 +38,20 @@ class Eurotext_TranslationManager_Model_ProductLoader
                 $productId
             );
         }
-        $product->setUrlKey(false);
+
+        $requiredAttributes = $this->requiredAttributes;
+        $data = $product->getData();
+        array_walk(
+            $data,
+            function (&$value, $key) use ($requiredAttributes) {
+                if (in_array($key, $requiredAttributes, true)) {
+                    return;
+                }
+                $value = false;
+            }
+        );
+
+        $product->setData($data);
 
         return $product;
     }

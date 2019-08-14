@@ -5,27 +5,27 @@ class Eurotext_TranslationManager_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * @var string
      */
-    private $helpUrl = "http://www.eurotext.de";
+    private $helpUrl = 'http://www.eurotext.de';
 
     /**
      * @var string
      */
-    private $liveRegistrationEmail = "magento@eurotext.de";
+    private $liveRegistrationEmail = 'magento@eurotext.de';
 
     /**
      * @var string
      */
-    private $liveRegistrationEmailName = "Eurotext Magento (Live)";
+    private $liveRegistrationEmailName = 'Eurotext Magento (Live)';
 
     /**
      * @var string
      */
-    private $debugRegistrationEmail = "debug@eurotext.de";
+    private $debugRegistrationEmail = 'debug@eurotext.de';
 
     /**
      * @var string
      */
-    private $debugRegistrationEmailName = "Eurotext Magento (Debug)";
+    private $debugRegistrationEmailName = 'Eurotext Magento (Debug)';
 
     /**
      * @var Eurotext_TranslationManager_Helper_Config
@@ -92,14 +92,14 @@ class Eurotext_TranslationManager_Helper_Data extends Mage_Core_Helper_Abstract
     {
         $recipient = [];
         if ($this->configHelper->isDebugMode()) {
-            $recipient["email"] = $this->debugRegistrationEmail;
-            $recipient["name"] = $this->debugRegistrationEmailName;
+            $recipient['email'] = $this->debugRegistrationEmail;
+            $recipient['name'] = $this->debugRegistrationEmailName;
 
             return $recipient;
         }
 
-        $recipient["email"] = $this->liveRegistrationEmail;
-        $recipient["name"] = $this->liveRegistrationEmailName;
+        $recipient['email'] = $this->liveRegistrationEmail;
+        $recipient['name'] = $this->liveRegistrationEmailName;
 
         return $recipient;
     }

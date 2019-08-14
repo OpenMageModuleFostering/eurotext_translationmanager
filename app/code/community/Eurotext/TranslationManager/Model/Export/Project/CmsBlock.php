@@ -59,18 +59,18 @@ class Eurotext_TranslationManager_Model_Export_Project_CmsBlock
             $manualSelected = true;
         }
 
-        if ((!$project->isExportingAllCmsContent() && !count($project->getBlocks()))
-            || $offset > $blockSrcCollection->getLastPageNumber()
+        if ($offset > $blockSrcCollection->getLastPageNumber() ||
+            (!$project->isExportingAllCmsContent() && !count($project->getBlocks()))
         ) {
             return [
-                'status_msg' => $helper->__("Exported CMS Blocks."),
+                'status_msg' => $helper->__('Exported CMS Blocks.'),
                 'step'       => ProjectExporter::STEP_COLLECT_TEMPLATES_FILES,
                 'offset'     => 0,
             ];
         }
 
         $statusMessage = sprintf(
-            Mage::helper('eurotext_translationmanager')->__("Batch %s / %s CMS Blocks:"),
+            Mage::helper('eurotext_translationmanager')->__('Batch %s / %s CMS Blocks:'),
             $offset + 1,
             $blockSrcCollection->getLastPageNumber()
         );
@@ -109,16 +109,15 @@ class Eurotext_TranslationManager_Model_Export_Project_CmsBlock
         }
 
         return [
-            "status_msg" => $statusMessage,
-            "offset"     => ($offset + 1),
-            "step"       => ProjectExporter::STEP_COLLECT_CMSBLOCKS,
+            'status_msg' => $statusMessage,
+            'offset'     => $offset + 1,
+            'step'       => ProjectExporter::STEP_COLLECT_CMSBLOCKS,
         ];
     }
 
     /**
      * @param string $nodeName
      * @param string $value
-     * @return DOMElement
      */
     private function addNodeToBlockNode($nodeName, $value)
     {
@@ -138,7 +137,7 @@ class Eurotext_TranslationManager_Model_Export_Project_CmsBlock
     {
         $srcValue = $blockSrc->getDataUsingMethod($attr);
         $dstValue = $blockDst->getDataUsingMethod($attr);
-        if ($srcValue != "" && (($srcValue == $dstValue) || ($dstValue == "") || ($manualSelected))) {
+        if ($srcValue != '' && (($srcValue == $dstValue) || ($dstValue == '') || $manualSelected)) {
             $item = $this->doc->createElement($nodeName);
             Mage::helper('eurotext_translationmanager/xml')
                 ->appendTextChild($this->doc, $item, $srcValue);
@@ -172,10 +171,10 @@ class Eurotext_TranslationManager_Model_Export_Project_CmsBlock
      */
     private function addBasicInformation(Eurotext_TranslationManager_Model_Project $project, $blockSrc, $blockDst)
     {
-        $this->addNodeToBlockNode("Id", $blockSrc->getId());
-        $this->addNodeToBlockNode("StoreviewSrc", $project->getStoreviewSrc());
-        $this->addNodeToBlockNode("StoreviewDst", $project->getStoreviewDst());
-        $this->addNodeToBlockNode("PageIdDst", $blockDst->getId() != $blockSrc->getId() ? $blockDst->getId() : -1);
+        $this->addNodeToBlockNode('Id', $blockSrc->getId());
+        $this->addNodeToBlockNode('StoreviewSrc', $project->getStoreviewSrc());
+        $this->addNodeToBlockNode('StoreviewDst', $project->getStoreviewDst());
+        $this->addNodeToBlockNode('PageIdDst', $blockDst->getId() != $blockSrc->getId() ? $blockDst->getId() : -1);
     }
 
     /**
@@ -191,11 +190,11 @@ class Eurotext_TranslationManager_Model_Export_Project_CmsBlock
 
     private function createNewDOMDocument()
     {
-        $this->doc               = new DOMDocument('1.0', 'UTF-8');
+        $this->doc = new DOMDocument('1.0', 'UTF-8');
         $this->doc->formatOutput = true;
-        $cmsSites                = $this->doc->createElement("cms-sites");
+        $cmsSites = $this->doc->createElement('cms-sites');
         $this->doc->appendChild($cmsSites);
-        $this->cmsSiteNode = $this->doc->createElement("cms-site");
+        $this->cmsSiteNode = $this->doc->createElement('cms-site');
         $cmsSites->appendChild($this->cmsSiteNode);
     }
 }

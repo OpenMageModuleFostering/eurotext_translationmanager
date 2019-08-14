@@ -10,7 +10,7 @@ class Eurotext_TranslationManager_Model_Observer
     /**
      * @var string
      */
-    private $subject = "Magento translationMANAGER: Registrierung";
+    private $subject = 'Magento translationMANAGER: Registrierung';
 
     /**
      * @var string[]
@@ -139,10 +139,10 @@ class Eurotext_TranslationManager_Model_Observer
      */
     private function composeEmail($changes, $newValues, $prevValues)
     {
-        $this->addLineHtml("Hallo,");
-        $this->addLineHtml("Ein Kunde hat sich via Magento-Modul neu registriert");
+        $this->addLineHtml('Hallo,');
+        $this->addLineHtml('Ein Kunde hat sich via Magento-Modul neu registriert');
         if ($this->alreadyRegistered) {
-            $this->subject = "Update - Ein Magento translationMANAGER-Kunde hat seine Registrierungsdaten geändert";
+            $this->subject = 'Update - Ein Magento translationMANAGER-Kunde hat seine Registrierungsdaten geändert';
 
             if (!empty($changes)) {
                 $this->addChangesToEmailBody($changes, $newValues, $prevValues);
@@ -180,14 +180,14 @@ class Eurotext_TranslationManager_Model_Observer
      */
     private function addChangesToEmailBody($changes, $newValues, $prevValues)
     {
-        $this->addLineHtml("Ein Kunde hat im Magento-Modul seine Kontaktdaten geändert:");
+        $this->addLineHtml('Ein Kunde hat im Magento-Modul seine Kontaktdaten geändert:');
 
         $customerId = $this->configHelper->getCustomerId();
 
         if ($customerId) {
-            $this->addLineHtml("Kundennummer: " . $customerId);
+            $this->addLineHtml('Kundennummer: ' . $customerId);
         } else {
-            $this->addLineHtml("Bisher hat der Kunde keine gültige Kundennummer eingetragen.");
+            $this->addLineHtml('Bisher hat der Kunde keine gültige Kundennummer eingetragen.');
         }
 
         $this->addHorizontalRuler();
@@ -243,7 +243,7 @@ class Eurotext_TranslationManager_Model_Observer
     private function updateConfig()
     {
         $this->configHelper->setEmailSent();
-        $this->configHelper->setEmailSentDate(date("d.m.Y H:i:s (T)"));
+        $this->configHelper->setEmailSentDate(date('d.m.Y H:i:s (T)'));
     }
 
     /**

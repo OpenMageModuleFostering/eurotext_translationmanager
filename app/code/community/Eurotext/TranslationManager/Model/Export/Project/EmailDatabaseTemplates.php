@@ -50,7 +50,7 @@ class Eurotext_TranslationManager_Model_Export_Project_EmailDatabaseTemplates
 
         if (!$templateCollection->getSize()) {
             return [
-                'status_msg' => $this->getHelper()->__("No Email Templates from the database exported"),
+                'status_msg' => $this->getHelper()->__('No Email Templates from the database exported'),
                 'offset'     => 1,
                 'step'       => Eurotext_TranslationManager_Model_Export_Project::STEP_EXPORT_ATTRIBUTES,
             ];
@@ -58,7 +58,7 @@ class Eurotext_TranslationManager_Model_Export_Project_EmailDatabaseTemplates
 
         if ($templateCollection->getLastPageNumber() < $this->offset) {
             return [
-                'status_msg' => $this->getHelper()->__("All Email-Database-Templates exported"),
+                'status_msg' => $this->getHelper()->__('All Email-Database-Templates exported'),
                 'offset'     => 1,
                 'step'       => Eurotext_TranslationManager_Model_Export_Project::STEP_EXPORT_ATTRIBUTES,
             ];
@@ -70,7 +70,7 @@ class Eurotext_TranslationManager_Model_Export_Project_EmailDatabaseTemplates
         $this->writeXml($templateCollection);
 
         return [
-            'status_msg' => $this->getHelper()->__("%s Email-Database-Templates exported", $templateCollection->getSize()),
+            'status_msg' => $this->getHelper()->__('%s Email-Database-Templates exported', $templateCollection->getSize()),
             'offset'     => $this->offset + 1,
             'step'       => Eurotext_TranslationManager_Model_Export_Project::STEP_EXPORT_ATTRIBUTES,
         ];
@@ -107,13 +107,13 @@ class Eurotext_TranslationManager_Model_Export_Project_EmailDatabaseTemplates
             $type = $t->getType() == \Mage_Core_Model_Template::TYPE_HTML ? 'html' : 'plaintext';
             $xmlWriter->writeElement('Type', $type);
             $xmlWriter->startElement('Styles');
-            $xmlWriter->writeCdata($t->getTemplateStyles());
+            $xmlWriter->writeCData($t->getTemplateStyles());
             $xmlWriter->endElement(); // Styles
             $xmlWriter->startElement('Subject');
-            $xmlWriter->writeCdata($t->getTemplateSubject());
+            $xmlWriter->writeCData($t->getTemplateSubject());
             $xmlWriter->endElement(); // Subject
             $xmlWriter->startElement('Text');
-            $xmlWriter->writeCdata(
+            $xmlWriter->writeCData(
                 Mage::helper('eurotext_translationmanager/string')
                     ->replaceMagentoBlockDirectives($t->getTemplateText())
             );
@@ -123,7 +123,7 @@ class Eurotext_TranslationManager_Model_Export_Project_EmailDatabaseTemplates
             $xmlWriter->endElement(); // emails
 
             file_put_contents(
-                sprintf($this->xmlDir . '/emailtemplates-db-%s.xml', ($this->offset * self::PAGE_SIZE) + $i++),
+                sprintf($this->xmlDir . '/emailtemplates-db-%s.xml', (($this->offset - 1) * self::PAGE_SIZE) + $i++),
                 $xmlWriter->flush()
             );
         }

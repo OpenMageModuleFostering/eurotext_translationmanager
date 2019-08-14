@@ -119,8 +119,8 @@ $text
 HTML;
         $file = Mage::getBaseDir('app') . '/locale/' . $project->getStoreviewDstLocale() . '/template' . $path;
         $dir = dirname($file);
-        if (!is_dir($dir)) {
-            mkdir($dir, 0777, true);
+        if (!@mkdir($dir, 0777, true) && !is_dir($dir)) {
+            throw new Exception(sprintf('Directory %s could not be created.', $dir));
         }
         file_put_contents($file, $html);
     }

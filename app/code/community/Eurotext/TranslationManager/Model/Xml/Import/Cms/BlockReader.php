@@ -7,11 +7,11 @@ class Eurotext_TranslationManager_Model_Xml_Import_Cms_BlockReader implements It
      */
     private $domDocument;
 
-    private $intNodes = array(
+    private $intNodes = [
         'StoreviewSrc',
         'StoreviewDst',
         'Id',
-    );
+    ];
 
     public function __construct($xmlFile)
     {
@@ -30,7 +30,7 @@ class Eurotext_TranslationManager_Model_Xml_Import_Cms_BlockReader implements It
     {
 
         $xmlBlocks = $this->domDocument->getElementsByTagName('cms-site');
-        $blocks    = array();
+        $blocks    = [];
         /** @var $xmlBlock DOMElement */
         foreach ($xmlBlocks as $xmlBlock) {
             $block = Mage::getModel('eurotext_translationmanager/xml_import_cms_block');
@@ -43,10 +43,9 @@ class Eurotext_TranslationManager_Model_Xml_Import_Cms_BlockReader implements It
                 $nodeName  = $node->nodeName;
                 $nodeValue = (string)$node->textContent;
 
+                $block->$nodeName = $nodeValue;
                 if (in_array($nodeName, $this->intNodes)) {
                     $block->$nodeName = (int)$nodeValue;
-                } else {
-                    $block->$nodeName = $nodeValue;
                 }
             }
 

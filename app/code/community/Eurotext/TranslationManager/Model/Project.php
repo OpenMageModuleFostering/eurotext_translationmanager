@@ -22,7 +22,6 @@
  * @method int getFilterStock()
  * @method int getFilterProductTyp()
  * @method int getCreatedAt()
- * @method setId(int $id)
  * @method setDeleted(bool $deleted)
  * @method setCreateId(int $created)
  * @method setUpatedAt(int $timestamp)
@@ -262,10 +261,7 @@ class Eurotext_TranslationManager_Model_Project extends Mage_Core_Model_Abstract
             $this->setStoreviewDstLocale(Mage::getStoreConfig('general/locale/code', $this->getStoreviewDst()));
         }
 
-        /** @var Eurotext_TranslationManager_Model_Project $project */
-        $project = parent::_afterLoad();
-
-        return $project;
+        return parent::_afterLoad();
     }
 
     /**

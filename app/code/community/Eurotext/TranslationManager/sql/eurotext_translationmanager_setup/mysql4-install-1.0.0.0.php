@@ -6,52 +6,52 @@ $installer = $this;
 $installer->startSetup();
 
 try {
-    $sql = "";
-    $sql .= "CREATE TABLE IF NOT EXISTS `" . $installer->getTable("eurotext_config") . "` (";
-    $sql .= "  `config_key` varchar(255) NOT NULL,";
-    $sql .= "  `config_value` text NOT NULL,";
-    $sql .= "  PRIMARY KEY (`config_key`)";
-    $sql .= ") ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;";
+    $sql = '';
+    $sql .= 'CREATE TABLE IF NOT EXISTS `' . $installer->getTable('eurotext_config') . '` (';
+    $sql .= '  `config_key` varchar(255) NOT NULL,';
+    $sql .= '  `config_value` text NOT NULL,';
+    $sql .= '  PRIMARY KEY (`config_key`)';
+    $sql .= ') ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;';
     $installer->run($sql);
 } catch (Exception $e) {
 //void if table exists 
 }
 
 try {
-    $sql = "CREATE TABLE IF NOT EXISTS `" . $installer->getTable("eurotext_csv") . "` (";
-    $sql .= "  `line_hash` varchar(60) NOT NULL,";
-    $sql .= "  `project_id` bigint(20) NOT NULL,";
-    $sql .= "  `filename` varchar(255) NOT NULL,";
-    $sql .= "  `locale_dst` varchar(50) NOT NULL,";
+    $sql = 'CREATE TABLE IF NOT EXISTS `' . $installer->getTable('eurotext_csv') . '` (';
+    $sql .= '  `line_hash` varchar(60) NOT NULL,';
+    $sql .= '  `project_id` bigint(20) NOT NULL,';
+    $sql .= '  `filename` varchar(255) NOT NULL,';
+    $sql .= '  `locale_dst` varchar(50) NOT NULL,';
     $sql .= "  `translate_flag` smallint(6) NOT NULL DEFAULT '0',";
-    $sql .= "  `time_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,";
+    $sql .= '  `time_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,';
     $sql .= "  `deleteflag` smallint(6) NOT NULL DEFAULT '0',";
-    $sql .= "  PRIMARY KEY (`line_hash`),";
-    $sql .= "  KEY `idx_filename` (`filename`),";
-    $sql .= "  KEY `idx_project_id` (`project_id`),";
-    $sql .= "  KEY `idx_locale_dst` (`locale_dst`)";
-    $sql .= ") ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;";
+    $sql .= '  PRIMARY KEY (`line_hash`),';
+    $sql .= '  KEY `idx_filename` (`filename`),';
+    $sql .= '  KEY `idx_project_id` (`project_id`),';
+    $sql .= '  KEY `idx_locale_dst` (`locale_dst`)';
+    $sql .= ') ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;';
     $installer->run($sql);
 } catch (Exception $e) {
 //void if table exists 
 }
 
 try {
-    $sql = "CREATE TABLE IF NOT EXISTS `" . $installer->getTable("eurotext_csv_data") . "` (";
-    $sql .= "  `line_hash` varchar(60) NOT NULL,";
-    $sql .= "  `project_id` bigint(20) NOT NULL,";
-    $sql .= "  `filename` varchar(255) NOT NULL,";
+    $sql = 'CREATE TABLE IF NOT EXISTS `' . $installer->getTable('eurotext_csv_data') . '` (';
+    $sql .= '  `line_hash` varchar(60) NOT NULL,';
+    $sql .= '  `project_id` bigint(20) NOT NULL,';
+    $sql .= '  `filename` varchar(255) NOT NULL,';
     $sql .= "  `csvline` int(11) NOT NULL DEFAULT '-1',";
-    $sql .= "  `locale_dst` varchar(50) NOT NULL,";
-    $sql .= "  `text_src` varchar(5000) NOT NULL,";
+    $sql .= '  `locale_dst` varchar(50) NOT NULL,';
+    $sql .= '  `text_src` varchar(5000) NOT NULL,';
     $sql .= "  `text_src_hash` varchar(100) NOT NULL DEFAULT '',";
-    $sql .= "  `text_dst` varchar(5000) NOT NULL,";
-    $sql .= "  PRIMARY KEY (`line_hash`),";
-    $sql .= "  KEY `project_id` (`project_id`),";
-    $sql .= "  KEY `filename` (`filename`),";
-    $sql .= "  KEY `text_src_hash` (`text_src_hash`),";
-    $sql .= "  KEY `locale_dst` (`locale_dst`)";
-    $sql .= ") ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;";
+    $sql .= '  `text_dst` varchar(5000) NOT NULL,';
+    $sql .= '  PRIMARY KEY (`line_hash`),';
+    $sql .= '  KEY `project_id` (`project_id`),';
+    $sql .= '  KEY `filename` (`filename`),';
+    $sql .= '  KEY `text_src_hash` (`text_src_hash`),';
+    $sql .= '  KEY `locale_dst` (`locale_dst`)';
+    $sql .= ') ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;';
     $installer->run($sql);
 } catch
 (Exception $e) {
@@ -59,49 +59,49 @@ try {
 }
 
 try {
-    $sql = "CREATE TABLE IF NOT EXISTS `" . $installer->getTable("eurotext_emailtemplates") . "` (";
-    $sql .= "  `file_hash` varchar(150) NOT NULL,";
-    $sql .= "  `filename` varchar(1500) NOT NULL,";
+    $sql = 'CREATE TABLE IF NOT EXISTS `' . $installer->getTable('eurotext_emailtemplates') . '` (';
+    $sql .= '  `file_hash` varchar(150) NOT NULL,';
+    $sql .= '  `filename` varchar(1500) NOT NULL,';
     $sql .= "  `translate_flag` smallint(6) NOT NULL DEFAULT '0',";
     $sql .= "  `project_id` bigint(20) NOT NULL DEFAULT '-1',";
     $sql .= "  `deleteflag` smallint(6) NOT NULL DEFAULT '0',";
-    $sql .= "  `locale_dst` varchar(50) NOT NULL,";
-    $sql .= "  `time_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,";
-    $sql .= "  PRIMARY KEY (`file_hash`)";
-    $sql .= ") ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;";
+    $sql .= '  `locale_dst` varchar(50) NOT NULL,';
+    $sql .= '  `time_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,';
+    $sql .= '  PRIMARY KEY (`file_hash`)';
+    $sql .= ') ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;';
     $installer->run($sql);
 } catch (Exception $e) {
 //void if table exists 
 }
 
 try {
-    $sql = "CREATE TABLE IF NOT EXISTS `" . $installer->getTable("eurotext_import") . "` (";
-    $sql .= "  `project_id` bigint(20) NOT NULL,";
-    $sql .= "  `filename` varchar(255) NOT NULL,";
-    $sql .= "  `storeview_dst` int(11) NOT NULL,";
+    $sql = 'CREATE TABLE IF NOT EXISTS `' . $installer->getTable('eurotext_import') . '` (';
+    $sql .= '  `project_id` bigint(20) NOT NULL,';
+    $sql .= '  `filename` varchar(255) NOT NULL,';
+    $sql .= '  `storeview_dst` int(11) NOT NULL,';
     $sql .= "  `num` int(11) NOT NULL DEFAULT '-1',";
     $sql .= "  `is_imported` smallint(6) NOT NULL DEFAULT '0',";
-    $sql .= "  UNIQUE KEY `pk` (`project_id`,`filename`)";
-    $sql .= ") ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;";
+    $sql .= '  UNIQUE KEY `pk` (`project_id`,`filename`)';
+    $sql .= ') ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;';
     $installer->run($sql);
 } catch (Exception $e) {
 //void if table exists 
 }
 
 try {
-    $sql = "CREATE TABLE IF NOT EXISTS `" . $installer->getTable("eurotext_languages") . "` (";
-    $sql .= "  `locale_magento` varchar(20) CHARACTER SET utf8 NOT NULL,";
-    $sql .= "  `locale_eurotext` varchar(100) CHARACTER SET utf8 NOT NULL,";
-    $sql .= "  `lang_name` varchar(200) CHARACTER SET utf8 NOT NULL,";
-    $sql .= "  PRIMARY KEY (`locale_eurotext`)";
-    $sql .= ") ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;";
+    $sql = 'CREATE TABLE IF NOT EXISTS `' . $installer->getTable('eurotext_languages') . '` (';
+    $sql .= '  `locale_magento` varchar(20) CHARACTER SET utf8 NOT NULL,';
+    $sql .= '  `locale_eurotext` varchar(100) CHARACTER SET utf8 NOT NULL,';
+    $sql .= '  `lang_name` varchar(200) CHARACTER SET utf8 NOT NULL,';
+    $sql .= '  PRIMARY KEY (`locale_eurotext`)';
+    $sql .= ') ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;';
     $installer->run($sql);
 } catch (Exception $e) {
 //void if table exists 
 }
 
 try {
-    $sql = "INSERT IGNORE INTO `" . $installer->getTable("eurotext_languages") . "` (`locale_magento`, `locale_eurotext`, `lang_name`) VALUES";
+    $sql = 'INSERT IGNORE INTO `' . $installer->getTable('eurotext_languages') . '` (`locale_magento`, `locale_eurotext`, `lang_name`) VALUES';
     $sql .= "  ('af_ZA', 'afr', 'Afrikaans'),";
     $sql .= "  ('sq_AL', 'alb', 'Albanian'),";
     $sql .= "  ('ar_DZ', 'ar-dz', 'Arabic (Algeria)'),";
@@ -181,10 +181,10 @@ try {
 }
 
 try {
-    $sql = "CREATE TABLE IF NOT EXISTS `" . $installer->getTable("eurotext_project") . "` (";
+    $sql = 'CREATE TABLE IF NOT EXISTS `' . $installer->getTable('eurotext_project') . '` (';
     $sql .= "  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',";
     $sql .= "  `deleted` smallint(6) NOT NULL DEFAULT '0',";
-    $sql .= "  `create_id` varchar(100) DEFAULT NULL,";
+    $sql .= '  `create_id` varchar(100) DEFAULT NULL,';
     $sql .= "  `project_name` text NOT NULL COMMENT 'Project Name',";
     $sql .= "  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',";
     $sql .= "  `storeview_src` int(11) NOT NULL DEFAULT '-1' COMMENT 'Source Storeview',";
@@ -199,7 +199,7 @@ try {
     $sql .= "  `export_attributes` smallint(6) NOT NULL DEFAULT '0',";
     $sql .= "  `templatemode` smallint(6) NOT NULL COMMENT '0',";
     $sql .= "  `export_urlkeys` smallint(6) NOT NULL DEFAULT '0',";
-    $sql .= "  PRIMARY KEY (`id`)";
+    $sql .= '  PRIMARY KEY (`id`)';
     $sql .= ") ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='eurotext_project';";
     $installer->run($sql);
 } catch (Exception $e) {
@@ -207,36 +207,36 @@ try {
 }
 
 try {
-    $sql = "CREATE TABLE IF NOT EXISTS `" . $installer->getTable("eurotext_project_categories") . "` (";
-    $sql .= "  `category_id` bigint(20) NOT NULL,";
-    $sql .= "  `project_id` bigint(20) NOT NULL,";
+    $sql = 'CREATE TABLE IF NOT EXISTS `' . $installer->getTable('eurotext_project_categories') . '` (';
+    $sql .= '  `category_id` bigint(20) NOT NULL,';
+    $sql .= '  `project_id` bigint(20) NOT NULL,';
     $sql .= "  `time_added` bigint(20) NOT NULL DEFAULT '0',";
-    $sql .= "  PRIMARY KEY (`category_id`,`project_id`)";
-    $sql .= ") ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;";
+    $sql .= '  PRIMARY KEY (`category_id`,`project_id`)';
+    $sql .= ') ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;';
     $installer->run($sql);
 } catch (Exception $e) {
 //void if table exists 
 }
 
 try {
-    $sql = "CREATE TABLE IF NOT EXISTS `" . $installer->getTable("eurotext_project_cmspages") . "` (";
-    $sql .= "  `page_id` bigint(20) NOT NULL,";
-    $sql .= "  `project_id` bigint(20) NOT NULL,";
+    $sql = 'CREATE TABLE IF NOT EXISTS `' . $installer->getTable('eurotext_project_cmspages') . '` (';
+    $sql .= '  `page_id` bigint(20) NOT NULL,';
+    $sql .= '  `project_id` bigint(20) NOT NULL,';
     $sql .= "  `time_added` bigint(20) NOT NULL DEFAULT '0',";
-    $sql .= "  PRIMARY KEY (`page_id`,`project_id`)";
-    $sql .= ") ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;";
+    $sql .= '  PRIMARY KEY (`page_id`,`project_id`)';
+    $sql .= ') ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;';
     $installer->run($sql);
 } catch (Exception $e) {
 //void if table exists 
 }
 
 try {
-    $sql = "CREATE TABLE IF NOT EXISTS `" . $installer->getTable("eurotext_project_products") . "` (";
-    $sql .= "  `product_id` bigint(20) NOT NULL,";
-    $sql .= "  `project_id` bigint(20) NOT NULL,";
+    $sql = 'CREATE TABLE IF NOT EXISTS `' . $installer->getTable('eurotext_project_products') . '` (';
+    $sql .= '  `product_id` bigint(20) NOT NULL,';
+    $sql .= '  `project_id` bigint(20) NOT NULL,';
     $sql .= "  `time_added` bigint(20) NOT NULL DEFAULT '0',";
-    $sql .= "  PRIMARY KEY (`product_id`,`project_id`)";
-    $sql .= ") ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;";
+    $sql .= '  PRIMARY KEY (`product_id`,`project_id`)';
+    $sql .= ') ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;';
     $installer->run($sql);
 } catch (Exception $e) {
 //void if table exists 

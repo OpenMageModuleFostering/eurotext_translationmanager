@@ -30,8 +30,8 @@ class Eurotext_TranslationManager_Model_Import_Project_LocaleCsvFiles
     private function createCsvDirectory($path)
     {
         $csvDirectory = dirname($path);
-        if (!is_dir($csvDirectory)) {
-            mkdir($csvDirectory, 0777, true);
+        if (!@mkdir($csvDirectory, 0777, true) && !is_dir($csvDirectory)) {
+            throw new Exception(sprintf('Directory %s could not be created.', $csvDirectory));
         }
     }
 
@@ -57,7 +57,7 @@ class Eurotext_TranslationManager_Model_Import_Project_LocaleCsvFiles
     private function readNewTranslationsFromXml($doc, $path, $translations)
     {
         /** @var $newTranslations DOMNode */
-        $newTranslations = $doc->getElementsByTagName("translation")[0];
+        $newTranslations = $doc->getElementsByTagName('translation')[0];
 
         foreach ($newTranslations->childNodes as $line) {
             $originalString = null;
@@ -135,9 +135,8 @@ class Eurotext_TranslationManager_Model_Import_Project_LocaleCsvFiles
         /** @var DOMElement $node */
         $node = $doc->getElementsByTagName('translation')[0];
         $relativeDestinationFile = $node->getAttribute('dst_filename');
-        $destinationFile = Mage::getBaseDir('app') . $relativeDestinationFile;
 
-        return $destinationFile;
+        return Mage::getBaseDir('app') . $relativeDestinationFile;
     }
 
     /**

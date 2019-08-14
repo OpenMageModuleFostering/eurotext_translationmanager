@@ -35,7 +35,7 @@ class Eurotext_TranslationManager_Model_Import_Project_Categories
     {
         $doc = new DOMDocument();
         $doc->load($filename);
-        $categories = $doc->getElementsByTagName("category");
+        $categories = $doc->getElementsByTagName('category');
         foreach ($categories as $categoryNode) {
             $fieldNodes = $categoryNode->childNodes;
             $id = 0;
@@ -45,9 +45,9 @@ class Eurotext_TranslationManager_Model_Import_Project_Categories
                 $nodeName = trim($fieldNode->nodeName);
                 $nodeContent = trim($fieldNode->textContent);
 
-                if ($nodeName != "") {
-                    if ($nodeName == "Id") {
-                        $id = intval($nodeContent);
+                if ($nodeName != '') {
+                    if ($nodeName == 'Id') {
+                        $id = (int)$nodeContent;
                     }
                     if ('custom_attributes' == $nodeName) {
                         $fields[$nodeName] = $fieldNode;
@@ -81,7 +81,7 @@ class Eurotext_TranslationManager_Model_Import_Project_Categories
             if (!$hasUrlKey) {
                 // Check if urlkey is already set:
                 $urlKey = Mage::getResourceModel('catalog/category')
-                    ->getAttributeRawValue($id, "url_key", $project->getStoreviewDst());
+                    ->getAttributeRawValue($id, 'url_key', $project->getStoreviewDst());
 
                 if (!$urlKey) {
                     // setting null will force magento to generate the urlkey using the product-name

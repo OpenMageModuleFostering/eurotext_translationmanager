@@ -34,7 +34,7 @@ class Eurotext_TranslationManager_Model_Export_Project_LocaleCsvFiles
         $count = $csvCollection->count();
         if (!$csv) {
             return [
-                "status_msg" => $this->getHelper()->__("Exported language files."),
+                'status_msg' => $this->getHelper()->__('Exported language files.'),
                 'step'       => ExportProject::STEP_COLLECT_PRODUCTS,
                 'offset'     => 1,
             ];
@@ -46,7 +46,7 @@ class Eurotext_TranslationManager_Model_Export_Project_LocaleCsvFiles
         $filenameEn = preg_replace('#/[a-z]{2}_[A-Z]{2}/#', '/en_US/', $filenameSrc);
         $filenameDst = preg_replace('#/[a-z]{2}_[A-Z]{2}/#', "/{$project->getStoreviewDstLocale()}/", $filenameSrc);
 
-        $statusMessage = $this->getHelper()->__("Batch %s / %s CSV File: %s", $offset + 1, $count, $filenameSrc);
+        $statusMessage = $this->getHelper()->__('Batch %s / %s CSV File: %s', $offset + 1, $count, $filenameSrc);
 
         $srcCsvFilename = basename($filenameEn);
         $xmlFilename = $this->createFilenameFromCsvFilename($srcCsvFilename, $xmlDir);
@@ -110,7 +110,7 @@ class Eurotext_TranslationManager_Model_Export_Project_LocaleCsvFiles
     {
         $this->doc = new DOMDocument('1.0', 'UTF-8');
         $this->doc->formatOutput = true;
-        $translation = $this->doc->createElement("translation");
+        $translation = $this->doc->createElement('translation');
 
         $this->writeAttribute($translation, 'src_filename', $filenameSrc);
         $this->writeAttribute($translation, 'dst_filename', $filenameDst);
@@ -123,11 +123,12 @@ class Eurotext_TranslationManager_Model_Export_Project_LocaleCsvFiles
     /**
      * @param int     $itemCount
      * @param string  $txtEn
+     * @param string  $locale
      * @param DOMNOde $lineExport
      */
     private function createLineContextNode($itemCount, $txtEn, $locale, DOMNode $lineExport)
     {
-        $lineContext = $this->doc->createElement("line-context");
+        $lineContext = $this->doc->createElement('line-context');
         $this->writeAttribute($lineContext, 'num', $itemCount);
         $this->writeAttribute($lineContext, 'context', 'yes');
         $this->writeAttribute($lineContext, 'locale', $locale);
@@ -160,7 +161,7 @@ class Eurotext_TranslationManager_Model_Export_Project_LocaleCsvFiles
         $txtSrc,
         $lineExport
     ) {
-        $lineContext = $this->doc->createElement("line");
+        $lineContext = $this->doc->createElement('line');
         $this->writeAttribute($lineContext, 'num', $itemCount);
         $this->writeAttribute($lineContext, 'locale-src', $project->getStoreviewSrcLocale());
         $this->writeAttribute($lineContext, 'locale-dst', $project->getStoreviewDstLocale());
@@ -184,10 +185,10 @@ class Eurotext_TranslationManager_Model_Export_Project_LocaleCsvFiles
         $txtDst,
         $txtSrc
     ) {
-        $comment = $this->doc->createComment("Line " . $itemCount);
+        $comment = $this->doc->createComment('Line ' . $itemCount);
         $translation->appendChild($comment);
 
-        $lineExport = $this->doc->createElement("line" . $itemCount);
+        $lineExport = $this->doc->createElement('line' . $itemCount);
         $translation->appendChild($lineExport);
 
         $this->createLineContextNode($itemCount, $txtEn, 'en_US', $lineExport);
@@ -223,7 +224,7 @@ class Eurotext_TranslationManager_Model_Export_Project_LocaleCsvFiles
      */
     private function createSubdirectory(Eurotext_TranslationManager_Model_Project $project)
     {
-        $subdir = "framework";
+        $subdir = 'framework';
         $xmlDir = Mage::helper('eurotext_translationmanager/filesystem')
             ->getXmlSubdirectoryAndMakeSureItExists($project, $subdir);
 

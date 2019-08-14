@@ -53,7 +53,7 @@ class Eurotext_TranslationManager_Model_Extractor
         return 'Unknown error.';
     }
 
-    function __destruct()
+    public function __destruct()
     {
         $this->zip->close();
     }

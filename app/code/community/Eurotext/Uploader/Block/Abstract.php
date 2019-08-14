@@ -92,7 +92,7 @@ abstract class Eurotext_Uploader_Block_Abstract extends Mage_Adminhtml_Block_Wid
      * @param array $additionalButtons
      * @return $this
      */
-    protected function _addElementIdsMapping($additionalButtons = [])
+    protected function _addElementIdsMapping(array $additionalButtons = [])
     {
         $this->_idsMapping = array_merge($this->_idsMapping, $additionalButtons);
 
@@ -175,7 +175,7 @@ abstract class Eurotext_Uploader_Block_Abstract extends Mage_Adminhtml_Block_Wid
      */
     public function getMiscConfig()
     {
-        if (is_null($this->_miscConfig)) {
+        if (null === $this->_miscConfig) {
             $this->_miscConfig = Mage::getModel('eurotext_uploader/config_misc');
         }
 
@@ -189,7 +189,7 @@ abstract class Eurotext_Uploader_Block_Abstract extends Mage_Adminhtml_Block_Wid
      */
     public function getUploaderConfig()
     {
-        if (is_null($this->_uploaderConfig)) {
+        if (null === $this->_uploaderConfig) {
             $this->_uploaderConfig = Mage::getModel('eurotext_uploader/config_uploader');
         }
 
@@ -203,7 +203,7 @@ abstract class Eurotext_Uploader_Block_Abstract extends Mage_Adminhtml_Block_Wid
      */
     public function getButtonConfig()
     {
-        if (is_null($this->_browseButtonConfig)) {
+        if (null === $this->_browseButtonConfig) {
             $this->_browseButtonConfig = Mage::getModel('eurotext_uploader/config_browsebutton');
         }
 
