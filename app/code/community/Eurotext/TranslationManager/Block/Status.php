@@ -260,7 +260,7 @@ class Eurotext_TranslationManager_Block_Status extends Mage_Adminhtml_Block_Widg
                 'note',
                 [
                     'label' => 'Symlink',
-                    'text'  => Mage::getBaseDir('var'),
+                    'text'  => Mage::getBaseDir('var') . ' -> ' . realpath(Mage::getBaseDir('var')),
                 ]
             );
 

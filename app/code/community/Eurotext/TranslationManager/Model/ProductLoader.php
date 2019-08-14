@@ -6,7 +6,7 @@ class Eurotext_TranslationManager_Model_ProductLoader
      * @var string[]
      */
     private $requiredAttributes = [
-        'entity_id', 'attribute_set_id', 'store_id', 'media_gallery'
+        'entity_id', 'attribute_set_id', 'store_id', 'media_gallery', 'price', 'special_price', 'msrp'
     ];
 
     /**
@@ -56,7 +56,7 @@ class Eurotext_TranslationManager_Model_ProductLoader
 
         foreach ($productAttributes as $a) {
             /** @var $a Mage_Eav_Model_Attribute */
-            if (in_array($a->getAttributeCode(), $this->requiredAttributes, true)) {
+            if (in_array($a->getAttributeCode(), $this->requiredAttributes, true) && $product->getDataUsingMethod($a->getAttributeCode()) !== null) {
                 continue;
             }
             $product->setData($a->getAttributeCode(), false);

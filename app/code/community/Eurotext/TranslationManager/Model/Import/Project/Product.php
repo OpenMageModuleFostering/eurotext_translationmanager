@@ -96,12 +96,16 @@ class Eurotext_TranslationManager_Model_Import_Project_Product
                     'eurotext_product_import_save_before',
                     ['product' => $product, 'translation' => $article]
                 );
-                $product->save();
+                if(Mage::registry('eurotext_translationmanager/use_external_save') !== true){
+                    $product->save();
+                    $this->helper->log('== Product has been saved ==');
+                } else {
+                    $this->helper->log('== Product has not been saved due to use_external_save flag ==');
+                }
                 Mage::dispatchEvent(
                     'eurotext_product_import_save_after',
                     ['product' => $product, 'translation' => $article]
                 );
-                $this->helper->log('== Product has been saved ==');
             } catch (Eurotext_TranslationManager_Model_Import_Project_Exception_MissingEntity $e) {
                 $this->addSkipped($e->getSkippedEntity());
             }
@@ -153,7 +157,7 @@ class Eurotext_TranslationManager_Model_Import_Project_Product
             }
         }
 
-        $this->helper->log("Saving Product (ID $id) for StoreID: {$this->getStoreId()}");
+        $this->helper->log("Handling Product (ID $id) for StoreID: {$this->getStoreId()}");
 
         foreach ($fields as $key => $value) {
             if (array_key_exists($key, $this->eurotextToMagentoMappingForSimpleAttributes)) {
