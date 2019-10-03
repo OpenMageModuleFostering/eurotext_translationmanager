@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/eurotext_translationMANAGER",
+    "name": "OpenMageModuleFostering\/eurotext_translationMANAGER",
     "type": "magento-module",
-    "license": "Nutzungsbedingungen-für-Softwareanwendungen-der-Eurotext-AG",
+    "license": "Nutzungsbedingungen-f\u00fcr-Softwareanwendungen-der-Eurotext-AG",
     "homepage": "",
     "description": "Start your translation projects with native translation professionals.",
     "authors": [
-    {
-        "name": "Eurotext AG",
-        "email": "info@eurotext.de"
-    }
-],
+        {
+            "name": "Eurotext AG",
+            "email": "info@eurotext.de"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
